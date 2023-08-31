@@ -3,12 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entradas SIN vueltas | No des más vueltas, comprá tu entrada ya</title>
+    <title>Cine VINTAGE | Volvé a mirarlas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;1000&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/css/style.css">
 </head>
 <body>
-    
+    <section class="carousel"><p>Acá van los 4 posters de las películas</p></section>
+    <section class="seleccion"><h1>Bienvenidos a Cine VINTAGE</h1><p>aca van los desplegables con las peliculas. Se elige la peli y se abre el desplegable de los tipos de sala donde la dan, y luego las funciones en esa sala</p>
+    <form id="selector">
+        <select title="Selector de película" name="selector__peli" id="selector__peli">
+            <option value="0">Elegí la película
+            </option>
+            <option value="1">Volver al Futuro</option>
+            <option value="2">Toy Story</option>
+            <option value="3">Indiana Jones y el templo de la perdición</option>
+        </select>
+        <select title="Selector de sala" name="selector__sala" id="selector__sala">
+            <option value="0">Elegí el tipo de sala</option>
+            <option value="1">Premium</option>
+            <option value="2">Standard</option>
+            <option value="3">Infantil</option>
+        </select>
+        <select title="Selector de función" name="selector__funcion" id="selector__funcion">
+            <option value="0">Elegí la función</option>
+            <option value="1">Viernes 10 - 22:30</option>
+            <option value="2">Sábado 11 - 15:00</option>
+            <option value="3">Sábado 11 - 17:30</option>
+            <option value="4">Sábado 11 - 19:45</option>
+        </select>
+    </form></section>
+    <section class="platea"><p>aca se elige el asiento</p></section>
+    <section class="snacks"><p>ofrecimiento de snacks: sólo pochoclos y golosinas de kiosko, no hay cheddar, no hay hamburguesas, no hay panchos.</p></section>
+    <section><h2>Cuidemos la sala</h2></section>
+    <section class="totales"></section>
 </body>
 </html>

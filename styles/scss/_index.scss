@@ -1,0 +1,35 @@
+:root {
+    --normal: 'Poppins', sans-serif;
+    --headings:'Roboto Slab', serif;
+    --size-p:16px;
+    --size-h1:3em;
+    --size-h2:2em;
+    --size-h3:1.5em;
+    --weight-h1:900;
+    --weight-h:700;
+    --weight-p:400;
+    --weight-p-bold:600;
+}
+html, body {
+    margin:0;
+    padding:0;
+}
+p {
+    font-family: var(--normal);
+    font-weight: var(--weight-p);
+}
+h1 {
+    font-family: var(--headings);
+    font-weight:var(--weight-h1);
+    font-size:var(--size-h1);
+}
+h2, h3, h4, h5 {
+    font-family: var(--headings);
+    font-weight:var(--weight-h);
+}
+@for $i from 2 through 5 {
+    h#{$i} {
+    font-size:var(--size-h#{$i})
+    }
+}
+
