@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine VINTAGE | 1er entrega</title>
+    <link rel="stylesheet" href="../styles/css/style.css">
+</head>
+<body>
+    <h1>Bienvenidos a Cine VINTAGE</h1>
+    <p>Este proyecto es un sitio web para un cine, que incluye una aplicación para la venta de entradas y snacks. Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
+    <ol>
+        <li>Película</li>
+        <li>Tipo de sala (premium, clásica, infantil)</li>
+        <li>Función (fecha y hora)</li>
+        <li>Cantidad de entradas</li>
+        <li>Asientos</li>
+    </ol>
+    <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, éste tendrá un valor específico</p>
+    <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.</p>
+    <h2>Primer entrega</h2>
+    <p>Para esta primer entrega del proyecto, acá mostramos las opciones para que el usuario ingrese en el prompt la opción elegida. Con ese dato calculamos el total y lo mostramos en el alert.</p>
+    <section class="valores">
+        <h2>Películas en cartelera</h2>
+        <ol>
+            <li>Indiana Jones y el templo de la perdición</li>
+            <li>Toy Story</li>
+            <li>Volver al futuro</li>
+            <li>Lo que el viento se llevó</li>
+        </ol>
+        <form>
+            <button class="boton" onclick="selectPeli();">Elegir peli</button>
+        </form>
+        <h2>Salas</h2>
+        <p>Cada sala tiene un valor de entradas diferente, que además varía según la ubicación en la platea</p>
+        <h3>Sala premium -> 1</h3>
+        <ul>
+            <li>ADELANTE (filas 9 a 20): $2900</li>
+            <li>ATRAS (filas 1 a 8): $3500</li>
+        </ul>
+        <h3>Sala standard -> 2</h3>
+        <ul>
+            <li>ADELANTE (filas 9 a 20): $2200</li>
+            <li>ATRAS (filas 1 a 8): $2800</li>
+        </ul>
+        <h3>Sala infantil -> 3</h3>
+        <ul>
+            <li>ADELANTE (filas 9 a 20): $1800</li>
+            <li>ATRAS (filas 1 a 8): $2100</li>
+        </ul>
+        <form>
+            <button class="boton" onclick="selectSala();">Elegir sala</button>
+        </form>
+        <h2>Entradas</h2>
+        <p></p>
+        <form>
+            <button class="boton" onclick="comprarEntradas();">Comprar entradas</button>
+        </form>
+    </section>
+<script src="../scripts/entrega-1.js"></script>    
+</body>
+</html>
