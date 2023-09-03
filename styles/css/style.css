@@ -49,4 +49,31 @@ h5 {
   font-size: var(--size-h5);
 }
 
+.platea {
+  width: 600px;
+  background-color: aqua;
+  border: 1px solid lightseagreen;
+}
+
+.asiento {
+  width: 50px;
+  height: 50px;
+  border: solid 1px black;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  appearance: none;
+}
+.asiento:hover {
+  background-color: lightcyan;
+}
+.asiento:checked {
+  background-color: palegreen;
+}
+
+.fila {
+  width: 100%;
+  display: flex;
+}
+
 /*# sourceMappingURL=style.css.map */

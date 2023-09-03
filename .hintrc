@@ -4,5 +4,11 @@
   ],
   "hints": {
     "button-type": "off"
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ]
   }
 }
