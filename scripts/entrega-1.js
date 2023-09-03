@@ -14,27 +14,30 @@ function ejecutar() {
     function mostrarFuncion(sala) {
         let mostrar = "Acá te mostramos las funciones para dicha sala\n";
         funciones[sala - 1].forEach((element, index) => mostrar = mostrar + "\n" + (index + 1) + " -> " + element);
-        alert(mostrar);
+        return mostrar;
     } 
+    let precio = 0;
     function precioEntrada(sala, fila) {
         switch (sala){
             case 1:
                 if (fila<=8) {
-                    precio=$2900;
+                    precio=2900;
                 } else {
-                    precio=$3500;
+                    precio=3500;
                 }
-                console.log(precio);
                 break;
             case 2:
                 if (fila<=8) {
-                    precio=$2200;
+                    precio=2200;
                 } else {
-                    precio=$2800;
+                    precio=2800;
                 }
                 break;    
         }
         return precio;
+            }
+            function alertaVacio(variable) {
+                alert ("No ingresaste ningún valor de " + variable + ". Por favor volvá al inicio y cargá los datos nuevamente.")
             }
     const peli = new Array();
     peli[0] = "Titanic";
@@ -47,40 +50,58 @@ function ejecutar() {
     for (let i = 0; i < 5; i++) {
         listarNombres = listarNombres + (i + 1) + "->" + peli[i] + "\n";
     }
-    alert(listarNombres);
-    const peli_index = parseInt(prompt("Por favor ingrese el número de la película elegida"));
+    const peli_index = parseInt(prompt(listarNombres + "Por favor ingrese el número de la película elegida"));
+    if (peli_index) {
     if ((peli_index < 1) || (peli_index > 5)) {
         alert("El número que ingresaste no corresponde a ninguna película. Por favor intentalo de nuevo");
         return;
     } else {
         alert("Gracias por elegir '" + peli[peli_index - 1] + "'. Ahora podés continuar la compra.");
     }
-
+} else {
+    alertaVacio ("película");
+    return;
+}
     let sala = "";
-    alert("SALAS Y PRECIOS\n**** 1-> Sala Premium****\nFilas 1 a 8: $2900\nFilas 9 a 20: $3500\n**** 2-> Sala Clásica****\nFilas 1 a 8: $2200\nFilas 9 a 20: $2800")
-    sala = parseInt(prompt("Ingresá el número correspondiente a la sala elegida"));
+    const lista_precios = "SALAS Y PRECIOS\n**** 1-> Sala Premium****\nFilas 1 a 8: $2900\nFilas 9 a 20: $3500\n**** 2-> Sala Clásica****\nFilas 1 a 8: $2200\nFilas 9 a 20: $2800\n";
+    sala = parseInt(prompt(lista_precios + "Ingresá el número correspondiente a la sala elegida"));
+    if (sala) {
     if ((sala < 1) || (sala > 2)) {
         alert("El número no corresponde a ninguna sala, por favor intentalo nuevamente");
         return;
     } else {
-        mostrarFuncion(sala);
+        mostrar=mostrarFuncion(sala);
+        funcionElegida = prompt(mostrar + "\n¿Qué función elegís?");
     }
- const nombreSala = (sala==1) ? "Sala Premium" : "Sala Clásica";
+    } else {
+    alertaVacio ("número de sala");
+    return;
+}
+ const nombreSala = (sala==1) ? "Premium" : "Clásica";
     
     let cantidad = 0;
     let fila = 0;
     cantidad = parseInt(prompt("¿Cuántas entradas querés comprar?"));
-    fila=parseInt(prompt("Ingrese el número de fila"));
-    console.log(fila);
+    if (cantidad) {
     if (cantidad>10) {
         alert("Lo sentimos la cantidad de entradas deseada (" + cantidad + ") excede la capacidad de la sala");
         return;
     }
+    } else {
+       alertaVacio("cantidad de entradas");
+       return;
+    }
+    fila=parseInt(prompt("Ingrese el número de fila"));
+    if (fila) {
+    
     if ((fila<1)||(fila>20)){
         alert("El número de fila que ingresaste no corresponde a ninguna fila existente. Por favor volvé a iniciar el proceso y seleccioná una fila entre 1 y 20.");
         return;
     }
+    } else {
+       alertaVacio ("número de fila");
+       return;
+}
     let a_pagar = precioEntrada(sala,fila) * cantidad;
-    console.log(a_pagar);
-    alert("Gracias por comprar tus entradas en Cine Vintage. Este es el resumen de tu compra:\n-> Película: " + peli[peli_index - 1] + "\n-> Sala: " + nombreSala + "\n-> Cantidad de entradas: " + cantidad + "\n-> Fila: " + fila + "\n-> TOTAL A PAGAR: " + a_pagar);
+    alert("Gracias por comprar tus entradas en Cine Vintage. Este es el resumen de tu compra:\n-> Película: " + peli[peli_index - 1] + "\n-> Sala: " + nombreSala + "\n-> Funcion: " + funciones[sala-1][funcionElegida-1] + "\n-> Cantidad de entradas: " + cantidad + "\n-> Fila: " + fila + "\n-> TOTAL A PAGAR: $" + a_pagar);
 }

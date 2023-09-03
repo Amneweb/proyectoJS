@@ -8,55 +8,47 @@
 </head>
 <body>
     <h1>Bienvenidos a Cine VINTAGE</h1>
-    <p>Este proyecto es un sitio web para un cine, que incluye una aplicación para la venta de entradas y snacks. Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
+    <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p> 
+    <h2>Primer entrega</h2>
+    <p>En esta primer entrega, una vez que el usuario hace click en el botón que sigue, interactuamos con el usuario a través de prompt y alert, sin modificar el html.</p>
+    <form>
+        <button class="boton" onclick="ejecutar();">Comenzar compra</button>
+    </form>
+    <h2>Idea general del proyecto</h2>
+    <p>Acá explicamos con un poco de detalle cuál es la idea del proyecto final</p>
+    <p>Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
     <ol>
         <li>Película</li>
-        <li>Tipo de sala (premium, clásica, infantil)</li>
+        <li>Tipo de sala (premium o clásica)</li>
         <li>Función (fecha y hora)</li>
         <li>Cantidad de entradas</li>
         <li>Asientos</li>
     </ol>
-    <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, éste tendrá un valor específico</p>
+    <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, la entrada tendrá un valor específico.</p>
     <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.</p>
-    <h2>Primer entrega</h2>
-    <p>Para esta primer entrega del proyecto, acá mostramos las opciones para que el usuario ingrese en el prompt la opción elegida. Con ese dato calculamos el total y lo mostramos en el alert.</p>
-    <section class="valores">
+<h3>Datos mostrados en la primer entrega</h3>
+    <p>Las opciones mostradas en la primera entrega son:</p>
         <h2>Películas en cartelera</h2>
         <ol>
+            <li>Titanic</li>
             <li>Indiana Jones y el templo de la perdición</li>
             <li>Toy Story</li>
             <li>Volver al futuro</li>
-            <li>Lo que el viento se llevó</li>
+            <li>África mía</li>
         </ol>
-        <form>
-            <button class="boton" onclick="ejecutar();">Elegir peli</button>
-        </form>
+        
         <h2>Salas</h2>
-        <p>Cada sala tiene un valor de entradas diferente, que además varía según la ubicación en la platea</p>
-        <h3>Sala premium -> 1</h3>
+        <p>Cada sala tiene un valor de entradas diferente, que además varía según la ubicación en la platea. Hay sólo 20 filas.</p>
+        <h3>Sala Premium</h3>
         <ul>
-            <li>ADELANTE (filas 9 a 20): $2900</li>
-            <li>ATRAS (filas 1 a 8): $3500</li>
+            <li>ADELANTE (filas 1 a 8): $2900</li>
+            <li>ATRAS (filas 9 a 20): $3500</li>
         </ul>
-        <h3>Sala standard -> 2</h3>
+        <h3>Sala Clásica</h3>
         <ul>
-            <li>ADELANTE (filas 9 a 20): $2200</li>
-            <li>ATRAS (filas 1 a 8): $2800</li>
+            <li>ADELANTE (filas 1 a 8): $2200</li>
+            <li>ATRAS (filas 9 a 20): $2800</li>
         </ul>
-        <h3>Sala infantil -> 3</h3>
-        <ul>
-            <li>ADELANTE (filas 9 a 20): $1800</li>
-            <li>ATRAS (filas 1 a 8): $2100</li>
-        </ul>
-        <form>
-            <button class="boton" onclick="selectSala();">Elegir sala</button>
-        </form>
-        <h2>Entradas</h2>
-        <p></p>
-        <form>
-            <button class="boton" onclick="comprarEntradas();">Comprar entradas</button>
-        </form>
-    </section>
 <script src="../scripts/entrega-1.js"></script>    
 </body>
 </html>
