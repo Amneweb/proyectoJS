@@ -1,7 +1,7 @@
 /*@import "primeros-pasos";*/
 :root {
-  --normal: "Poppins", sans-serif;
-  --headings:"Roboto Slab", serif;
+  --normal: "Source Serif 4", serif;
+  --headings:"Oswald", sans-serif;
   --size-p:16px;
   --size-h1:3em;
   --size-h2:2em;
@@ -10,14 +10,19 @@
   --weight-h:700;
   --weight-p:400;
   --weight-p-bold:600;
+  --oscuro:#19121c;
 }
 
-html, body {
+html,
+body,
+p,
+h1, h2, h3, h4, h5,
+ul {
   margin: 0;
   padding: 0;
 }
 
-p {
+p, li {
   font-family: var(--normal);
   font-weight: var(--weight-p);
 }
@@ -49,6 +54,37 @@ h5 {
   font-size: var(--size-h5);
 }
 
+.main {
+  padding: 30px;
+}
+
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/imagenes/sala-cine-sepia.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+  color: white;
+}
+.hero__p--principal {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: calc(var(--size-h1) * 1.5);
+  font-family: var(--headings);
+  font-weight: var(--weight-p-bold);
+  border-bottom: solid 10px white;
+}
+.hero__p--secundario {
+  font-style: italic;
+}
+
+/*sepia claro d1ba8e oscuro 2b1c34 */
 .platea {
   width: 600px;
   background-color: aqua;
@@ -74,6 +110,15 @@ h5 {
 .fila {
   width: 100%;
   display: flex;
+}
+
+.boton {
+  background-color: aquamarine;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 30px;
+  font-size: 2em;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

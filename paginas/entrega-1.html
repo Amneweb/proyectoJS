@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine VINTAGE | 1er entrega</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/css/style.css">
 </head>
 <body>
+    <section class="hero">
+        <p class="hero__p--principal">
+            Volvé a mirarlas
+        </p>
+        <p class="hero__p--secundario">En pantalla grande</p>
+    </section>
+    <section class="main">
     <h1>Bienvenidos a Cine VINTAGE</h1>
     <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p> 
     <h2>Primer entrega</h2>
@@ -25,6 +35,33 @@
         <li>Asientos</li>
     </ol>
     <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, la entrada tendrá un valor específico.</p>
+    <p>Acá se puede ver la idea desarrollada hasta el momento (varios "select" dentro de un form).</p>
+    <section class="platea">
+        <div class="fila">
+            <input type="checkbox" class="asiento" id="f1-c1"></input>
+            <input type="checkbox" class="asiento" id="f1-c2"></input>
+            <input type="checkbox" class="asiento" id="f1-c3"></input>
+            <input type="checkbox" class="asiento" id="f1-c4"></input>
+            <input type="checkbox" class="asiento" id="f1-c5"></input>
+            <input type="checkbox" class="asiento" id="f1-c6"></input>
+            <input type="checkbox" class="asiento" id="f1-c7"></input>
+            <input type="checkbox" class="asiento" id="f1-c8"></input>
+            <input type="checkbox" class="asiento" id="f1-c9"></input>
+            <input type="checkbox" class="asiento" id="f1-c10"></input>
+        </div>
+        <div class="fila">
+            <input type="checkbox" class="asiento" id="f2-c1"></input>
+            <input type="checkbox" class="asiento" id="f2-c2"></input>
+            <input type="checkbox" class="asiento" id="f2-c3"></input>
+            <input type="checkbox" class="asiento" id="f2-c4"></input>
+            <input type="checkbox" class="asiento" id="f2-c5"></input>
+            <input type="checkbox" class="asiento" id="f2-c6"></input>
+            <input type="checkbox" class="asiento" id="f2-c7"></input>
+            <input type="checkbox" class="asiento" id="f2-c8"></input>
+            <input type="checkbox" class="asiento" id="f2-c9"></input>
+            <input type="checkbox" class="asiento" id="f2-c10"></input>
+        </div>
+     </section>   
     <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.</p>
 <h3>Datos mostrados en la primer entrega</h3>
     <p>Las opciones mostradas en la primera entrega son:</p>
@@ -49,6 +86,7 @@
             <li>ADELANTE (filas 1 a 8): $2200</li>
             <li>ATRAS (filas 9 a 20): $2800</li>
         </ul>
+    </section>
 <script src="../scripts/entrega-1.js"></script>    
 </body>
 </html>
