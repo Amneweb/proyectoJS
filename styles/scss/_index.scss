@@ -1,6 +1,9 @@
 :root {
     --normal: 'Source Serif 4', serif;
     --headings:'Oswald', sans-serif;
+    --logo:'Lobster', cursive;
+    --bungee: 'Bungee Shade', cursive;
+    --fascinate: 'Fascinate', cursive;
     --size-p:16px;
     --size-h1:3em;
     --size-h2:2em;
@@ -9,7 +12,11 @@
     --weight-h:700;
     --weight-p:400;
     --weight-p-bold:600;
-    --oscuro:#19121c;
+    --kobicha: #653918ff;
+--licorice: #1E1108ff;
+--hunyadi-yellow: #E3A446ff;
+--smoky-black: #080402ff;
+--barn-red: #721609ff;
 }
 html, 
 body,
@@ -24,9 +31,11 @@ p, li {
     font-weight: var(--weight-p);
 }
 h1 {
-    font-family: var(--headings);
+    font-family: var(--logo);
     font-weight:var(--weight-h1);
-    font-size:var(--size-h1);
+    font-size:calc(var(--size-h1)*1.5);
+    color:var(--hunyadi-yellow);
+    margin-bottom:20px;
 }
 h2, h3, h4, h5 {
     font-family: var(--headings);
@@ -38,33 +47,56 @@ h2, h3, h4, h5 {
     }
 }
 .main {
-    padding:30px;
+    padding:100px;
+    background-color: var(--smoky-black);
+    color: whitesmoke;
+    &__span--h1 {
+        font-family:var(--fascinate);
+        font-size: var(--size-h2);
+    }
 }
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/imagenes/sala-cine-sepia.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/imagenes/sala-cine-fullcolor.jpg);
     background-position:center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   height:100%;
   min-height:600px;
-  color:white;
+  color:var(--hunyadi-yellow);
+  &__div {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 &__p--principal {
     text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-transform:uppercase;
   font-size:calc(var(--size-h1)*1.5);
   font-family:var(--headings);
   font-weight:var(--weight-p-bold);
-border-bottom:solid 10px white;
+border:dotted 10px var(--hunyadi-yellow);
+padding:20px 30px;
 }
 &__p--secundario {
     font-style:italic;
+    font-size:var(--size-h2);
+    text-align: center;
+    margin-top:20px;
+    color: var(--hunyadi-yellow);
 }
 }
-/*sepia claro d1ba8e oscuro 2b1c34 */
+.header {
+    position:sticky;
+    background-color: var(--smoky-black);
+}
+.logo__p {
+    font-family:var(--fascinate);
+    font-size:var(--size-h1);
+    padding:20px;
+    color:white;
+}
+
 
 

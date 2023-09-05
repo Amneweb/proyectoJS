@@ -1,8 +1,9 @@
 .boton {
-    background-color: aquamarine;
-    border: black 1px solid;
+    border: #ffffff 10px dotted;
     border-radius: 5px;
     padding:30px;
     font-size:2em;
     cursor:pointer;
+    color: var(--hunyadi-yellow);
+    background-color: var(--barn-red);
 }
