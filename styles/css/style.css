@@ -1,10 +1,10 @@
-/*@import "primeros-pasos";*/
 :root {
   --normal: "Source Serif 4", serif;
   --oswald:"Oswald", sans-serif;
   --logo:"Fascinate", cursive;
   --bungee: "Bungee Shade", cursive;
   --headings: "Fascinate", cursive;
+  --nunito: "Nunito", sans-serif;
   --size-p:20px;
   --size-h1:3em;
   --size-h2:3em;
@@ -69,6 +69,20 @@ h5 {
   font-size: var(--size-h5);
 }
 
+.nav__ul {
+  list-style-type: none;
+}
+.nav__ul li {
+  display: inline-block;
+  font-family: var(--oswald);
+}
+.nav__ul li a {
+  padding: 30px;
+  text-decoration: none;
+  color: var(--hunyadi-yellow);
+  display: block;
+}
+
 .main {
   padding: 100px;
   background-color: var(--smoky-black);
@@ -104,17 +118,26 @@ h5 {
 .hero__p--principal {
   text-align: center;
   text-transform: uppercase;
-  font-size: calc(var(--size-h1) * 1.5);
+  font-size: calc(var(--size-h1) * 1.2);
   font-family: var(--oswald);
   font-weight: var(--weight-p-bold);
-  border: dotted 10px var(--hunyadi-yellow);
+}
+.hero__p--principal a {
+  border: dotted 10px white;
+  display: block;
   color: var(--hunyadi-yellow);
+  text-decoration: none;
   padding: 20px 30px;
+}
+.hero__p--principal a:hover {
+  color: white;
+  border: dotted 10px var(--hunyadi-yellow);
 }
 .hero__p--secundario {
   font-style: italic;
-  font-size: var(--size-h2);
+  font-size: var(--size-h3);
   text-align: center;
+  font-family: var(--normal);
   margin-top: 20px;
   color: var(--hunyadi-yellow);
 }
@@ -122,12 +145,18 @@ h5 {
 .header {
   position: sticky;
   background-color: var(--smoky-black);
+  display: flex;
+  justify-content: space-between;
+}
+.header__li--entradas a {
+  background-color: var(--hunyadi-yellow);
+  color: var(--barn-red);
 }
 
 .logo__p {
   font-family: var(--headings);
   font-size: var(--size-h1);
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   color: white;
 }
 
