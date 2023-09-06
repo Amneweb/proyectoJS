@@ -1,13 +1,13 @@
 :root {
     --normal: 'Source Serif 4', serif;
-    --headings:'Oswald', sans-serif;
-    --logo:'Lobster', cursive;
+    --oswald:'Oswald', sans-serif;
+    --logo:'Fascinate', cursive;
     --bungee: 'Bungee Shade', cursive;
-    --fascinate: 'Fascinate', cursive;
-    --size-p:16px;
+    --headings: 'Fascinate', cursive;
+    --size-p:20px;
     --size-h1:3em;
-    --size-h2:2em;
-    --size-h3:1.5em;
+    --size-h2:3em;
+    --size-h3:2em;
     --weight-h1:900;
     --weight-h:700;
     --weight-p:400;
@@ -25,21 +25,28 @@ h1, h2, h3, h4, h5,
 ul {
     margin:0;
     padding:0;
+    color:rgba(255,255,255,0.7);
 }
 p, li {
     font-family: var(--normal);
     font-weight: var(--weight-p);
+    
+    font-size:var(--size-p);
 }
 h1 {
-    font-family: var(--logo);
+    font-family: var(--oswald);
     font-weight:var(--weight-h1);
     font-size:calc(var(--size-h1)*1.5);
-    color:var(--hunyadi-yellow);
-    margin-bottom:20px;
+    color:white;
+    margin-bottom:40px;
+    text-transform:uppercase;
 }
 h2, h3, h4, h5 {
-    font-family: var(--headings);
+    font-family: var(--oswald);
     font-weight:var(--weight-h);
+    margin:30px auto;
+    color:white;
+    text-transform: uppercase;
 }
 @for $i from 2 through 5 {
     h#{$i} {
@@ -49,10 +56,16 @@ h2, h3, h4, h5 {
 .main {
     padding:100px;
     background-color: var(--smoky-black);
-    color: whitesmoke;
     &__span--h1 {
         font-family:var(--fascinate);
         font-size: var(--size-h2);
+    }
+    .bienvenida {
+       border: solid 1px var(--hunyadi-yellow);
+       padding:50px;
+    }
+    form {
+        text-align: center;
     }
 }
 .hero {
@@ -63,20 +76,22 @@ h2, h3, h4, h5 {
   position: relative;
   height:100%;
   min-height:600px;
-  color:var(--hunyadi-yellow);
+  
   &__div {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color:var(--hunyadi-yellow);
   }
 &__p--principal {
     text-align: center;
   text-transform:uppercase;
   font-size:calc(var(--size-h1)*1.5);
-  font-family:var(--headings);
+  font-family:var(--oswald);
   font-weight:var(--weight-p-bold);
 border:dotted 10px var(--hunyadi-yellow);
+color:var(--hunyadi-yellow);
 padding:20px 30px;
 }
 &__p--secundario {
@@ -84,7 +99,7 @@ padding:20px 30px;
     font-size:var(--size-h2);
     text-align: center;
     margin-top:20px;
-    color: var(--hunyadi-yellow);
+    color:var(--hunyadi-yellow);
 }
 }
 .header {
@@ -92,7 +107,7 @@ padding:20px 30px;
     background-color: var(--smoky-black);
 }
 .logo__p {
-    font-family:var(--fascinate);
+    font-family:var(--headings);
     font-size:var(--size-h1);
     padding:20px;
     color:white;

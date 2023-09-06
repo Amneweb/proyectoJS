@@ -1,9 +1,14 @@
 .boton {
+appearance:none;
     border: #ffffff 10px dotted;
     border-radius: 5px;
     padding:30px;
     font-size:2em;
     cursor:pointer;
     color: var(--hunyadi-yellow);
-    background-color: var(--barn-red);
+    background: transparent;
+    margin:50px auto;
+    font-family: var(--oswald);
+    font-weight:var(--weight-h);
+    text-transform: uppercase;
 }
