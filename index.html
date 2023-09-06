@@ -1,42 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cine VINTAGE | Volvé a mirarlas</title>
+    <title>Cine VINTAGE | 1er entrega</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito&family=Bungee+Shade&family=Fascinate&family=Lobster&family=Oswald:wght@300;700&family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/css/style.css">
 </head>
 <body>
-    <section class="carousel"><p>Acá van los 4 posters de las películas</p></section>
-    <section class="seleccion"><h1>Bienvenidos a Cine VINTAGE</h1><p>aca van los desplegables con las peliculas. Se elige la peli y se abre el desplegable de los tipos de sala donde la dan, y luego las funciones en esa sala</p>
-    <form id="selector">
-        <select title="Selector de película" name="selector__peli" id="selector__peli">
-            <option value="0">Elegí la película
-            </option>
-            <option value="1">Volver al Futuro</option>
-            <option value="2">Toy Story</option>
-            <option value="3">Indiana Jones y el templo de la perdición</option>
-        </select>
-        <select title="Selector de sala" name="selector__sala" id="selector__sala">
-            <option value="0">Elegí el tipo de sala</option>
-            <option value="1">Premium</option>
-            <option value="2">Standard</option>
-            <option value="3">Infantil</option>
-        </select>
-        <select title="Selector de función" name="selector__funcion" id="selector__funcion">
-            <option value="0">Elegí la función</option>
-            <option value="1">Viernes 10 - 22:30</option>
-            <option value="2">Sábado 11 - 15:00</option>
-            <option value="3">Sábado 11 - 17:30</option>
-            <option value="4">Sábado 11 - 19:45</option>
-        </select>
-    </form></section>
-    <section class="platea"><p>aca se elige el asiento</p></section>
-    <section class="snacks"><p>ofrecimiento de snacks: sólo pochoclos y golosinas de kiosko, no hay cheddar, no hay hamburguesas, no hay panchos.</p></section>
-    <section><h2>Cuidemos la sala</h2></section>
-    <section class="totales"></section>
+    <header class="header">
+        <div class="logo">
+            <p class="logo__p">Vintage</p>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero__div">
+        <p class="hero__p--principal">
+            Volvé a mirarlas
+        </p>
+        <p class="hero__p--secundario">
+            En pantalla grande
+        </p>
+    </div>
+    </section>
+    <section class="main">
+    <h1>Bienvenidos a Vintage Cinema</h1>
+    <p class="bienvenida">Volvé a encontrarte con las películas que te hicieron emocionar, llorar, reir, sentir... Pero miralas como cuando eras más chico (o más jóven), comiendo pochoclo y en un cine de verdad, con pantalla GRAAAANDE.</p>
+    <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p> 
+    <h2>Primer entrega</h2>
+    <p>En esta primer entrega, una vez que el usuario hace click en el botón que sigue, interactuamos con el usuario a través de prompt y alert, sin modificar el html.</p>
+    <form>
+        <button class="boton" onclick="ejecutar();">Comprar entradas</button>
+    </form>
+    <h2>Idea general del proyecto</h2>
+    <p>Acá explicamos con un poco de detalle cuál es la idea del proyecto final</p>
+    <p>Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
+    <ol>
+        <li>Película</li>
+        <li>Tipo de sala (premium o clásica)</li>
+        <li>Función (fecha y hora)</li>
+        <li>Cantidad de entradas</li>
+        <li>Asientos</li>
+    </ol>
+    <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, la entrada tendrá un valor específico.</p>
+    <p>Acá se puede ver la idea desarrollada hasta el momento (varios "select" dentro de un form).</p>
+    <section class="platea">
+        <div class="fila">
+            <input type="checkbox" class="asiento" id="f1-c1"></input>
+            <input type="checkbox" class="asiento" id="f1-c2"></input>
+            <input type="checkbox" class="asiento" id="f1-c3"></input>
+            <input type="checkbox" class="asiento" id="f1-c4"></input>
+            <input type="checkbox" class="asiento" id="f1-c5"></input>
+            <input type="checkbox" class="asiento" id="f1-c6"></input>
+            <input type="checkbox" class="asiento" id="f1-c7"></input>
+            <input type="checkbox" class="asiento" id="f1-c8"></input>
+            <input type="checkbox" class="asiento" id="f1-c9"></input>
+            <input type="checkbox" class="asiento" id="f1-c10"></input>
+        </div>
+        <div class="fila">
+            <input type="checkbox" class="asiento" id="f2-c1"></input>
+            <input type="checkbox" class="asiento" id="f2-c2"></input>
+            <input type="checkbox" class="asiento" id="f2-c3"></input>
+            <input type="checkbox" class="asiento" id="f2-c4"></input>
+            <input type="checkbox" class="asiento" id="f2-c5"></input>
+            <input type="checkbox" class="asiento" id="f2-c6"></input>
+            <input type="checkbox" class="asiento" id="f2-c7"></input>
+            <input type="checkbox" class="asiento" id="f2-c8"></input>
+            <input type="checkbox" class="asiento" id="f2-c9"></input>
+            <input type="checkbox" class="asiento" id="f2-c10"></input>
+        </div>
+     </section>   
+    <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.</p>
+<h3>Datos mostrados en la primer entrega</h3>
+    <p>Las opciones mostradas en la primera entrega son:</p>
+        <h2>Películas en cartelera</h2>
+        <ol>
+            <li>Titanic</li>
+            <li>Indiana Jones y el templo de la perdición</li>
+            <li>Toy Story</li>
+            <li>Volver al futuro</li>
+            <li>África mía</li>
+        </ol>
+        
+        <h2>Salas</h2>
+        <p>Cada sala tiene un valor de entradas diferente, que además varía según la ubicación en la platea. Hay sólo 20 filas.</p>
+        <h3>Sala Premium</h3>
+        <ul>
+            <li>ADELANTE (filas 1 a 8): $2900</li>
+            <li>ATRAS (filas 9 a 20): $3500</li>
+        </ul>
+        <h3>Sala Clásica</h3>
+        <ul>
+            <li>ADELANTE (filas 1 a 8): $2200</li>
+            <li>ATRAS (filas 9 a 20): $2800</li>
+        </ul>
+    </section>
+<script src="../scripts/entrega-1.js"></script>    
 </body>
 </html>
