@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Bungee+Shade&family=Fascinate&family=Lobster&family=Oswald:wght@300;700&family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap" rel="stylesheet">
+<link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet">
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/css/style.css">
 </head>
 <body>
@@ -16,11 +19,11 @@
             </div>
             <nav class="nav">
                 <ul class="nav__ul">
-                    <li><a href="#">cartelera</a></li>
-                    <li><a href="">Salas</a></li>
-                    <li><a href="">snacks</a></li>
-                    <li><a href="">contacto</a></li>
-                    <li class="header__li--entradas"><a href="#" onclick="ejecutar();">entradas</a></li>
+                    <li><a class="nav__a" href="#"><i class="fa-solid fa-clapperboard"></i>cartelera</a></li>
+                    <li><a class="nav__a" href="#"><i class="fa-solid fa-people-roof"></i>salas</a></li>
+                    <li><a class="nav__a" href="#"><i class="fa-solid fa-cookie-bite"></i>snacks</a></li>
+                    <li><a class="nav__a" href="#"><i class="fa-solid fa-address-card"></i>contacto</a></li>
+                    <li><a href="#" class="nav__a--entradas" onclick="ejecutar();"><i class="fa-solid fa-ticket"></i>entradas</a></li>
                 </ul>
             </nav>
     </header>
@@ -35,8 +38,16 @@
     </div>
     </section>
     <section class="main">
+        <div class="bienvenidos">
     <h1>Bienvenidos a Vintage Cinema</h1>
     <p class="bienvenida">Volvé a encontrarte con las películas que te hicieron emocionar, llorar, reir, sentir... Pero miralas como cuando eras más chico (o más jóven), comiendo pochoclo y en un cine de verdad, con pantalla GRAAAANDE.</p>
+</div>
+<div class="cartelera"></div>
+<div class="salas"></div>
+<div class="snacks"></div>
+<div class="contacto--form"></div>
+<div class="contacto--datos"></div>
+<footer class="footer"></footer>
     <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p> 
     <h2>Primer entrega</h2>
     <p>En esta primer entrega, una vez que el usuario hace click en el botón que sigue, interactuamos con el usuario a través de prompt y alert, sin modificar el html.</p>

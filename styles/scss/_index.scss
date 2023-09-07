@@ -49,28 +49,72 @@ h2, h3, h4, h5 {
     color:white;
     text-transform: uppercase;
 }
+body {
+    background-color: var(--smoky-black);
+}
+a {
+    text-decoration: none;
+}
 @for $i from 2 through 5 {
     h#{$i} {
     font-size:var(--size-h#{$i})
     }
 }
-.nav__ul {
-    list-style-type: none;
-    li {
-        display:inline-block;
-        font-family: var(--oswald);
-        a {
-            padding:30px;
-            text-decoration:none;
-            color:var(--hunyadi-yellow);
-            display:block;
+.header {
+    position:sticky;
+    background-color: var(--smoky-black);
+    display:flex;
+    justify-content: space-between;
+}
+.nav {
+    &__ul {
+        list-style-type: none;
+
+        li {
+            display: inline-block;
+            font-family: var(--oswald);
+            padding: 20px;
         }
-        
+    }
+
+    &__a {
+        padding: 10px;
+        text-decoration: none;
+        color:white;
+        display: block;
+        &:hover {
+            color:var(--hunyadi-yellow);
+        }
+        i {
+            margin-right:20px;
+        }
+    }
+
+    &__a--entradas {
+        background-color: var(--hunyadi-yellow);
+        color: var(--licorice);
+        padding: 20px 50px 20px 50px;
+        border-radius:5px;
+        &:hover {
+            background-color:var(--barn-red);
+            color:white;
+            animation: transicion-entradas 0.5s;
+        }
+        i {
+            margin-right:20px;
+        }
     }
 }
+@keyframes transicion-entradas {
+    from {background: var(--hunyadi-yellow);
+    color:var(--licorice);}
+  to {background: var(--barn-red);
+color:white;}
+}
+
 .main {
     padding:100px;
-    background-color: var(--smoky-black);
+    
     &__span--h1 {
         font-family:var(--fascinate);
         font-size: var(--size-h2);
@@ -85,62 +129,54 @@ h2, h3, h4, h5 {
 }
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/imagenes/sala-cine-fullcolor.jpg);
-    background-position:center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  height:100%;
-  min-height:600px;
-  
-  &__div {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color:var(--hunyadi-yellow);
-  }
-&__p--principal {
-    text-align: center;
-  text-transform:uppercase;
-  font-size:calc(var(--size-h1)*1.2);
-  font-family:var(--oswald);
-  font-weight:var(--weight-p-bold);
-a {
-    border:dotted 10px white;
-    display:block;
-    color:var(--hunyadi-yellow);
-    text-decoration: none;
-    padding:20px 30px;
-    &:hover {
-        color:white;
-        border:dotted 10px var(--hunyadi-yellow);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    min-height: 600px;
+
+    &__div {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--hunyadi-yellow);
     }
-}
 
+    &__p--principal {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: calc(var(--size-h1)*1.2);
+        font-family: var(--oswald);
+        font-weight: var(--weight-p-bold);
 
-}
-&__p--secundario {
-    font-style:italic;
-    font-size:var(--size-h3);
-    text-align: center;
-    font-family:var(--normal);
-    margin-top:20px;
-    color:var(--hunyadi-yellow);
-}
-}
-.header {
-    position:sticky;
-    background-color: var(--smoky-black);
-    display:flex;
-    justify-content: space-between;
-    &__li--entradas {
-        
         a {
-            background-color:var(--hunyadi-yellow);
-            color:var(--barn-red);
+            border: dotted 10px white;
+            display: block;
+            color: var(--hunyadi-yellow);
+            text-decoration: none;
+            padding: 20px 30px;
+
+            &:hover {
+                color: white;
+                border: dotted 10px var(--hunyadi-yellow);
+            }
         }
+
+
+    }
+
+    &__p--secundario {
+        font-style: italic;
+        font-size: var(--size-h3);
+        text-align: center;
+        font-family: var(--normal);
+        margin-top: 20px;
+        color: var(--hunyadi-yellow);
     }
 }
+
 
 .logo__p {
     font-family:var(--headings);

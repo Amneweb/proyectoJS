@@ -53,6 +53,14 @@ h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 
+body {
+  background-color: var(--smoky-black);
+}
+
+a {
+  text-decoration: none;
+}
+
 h2 {
   font-size: var(--size-h2);
 }
@@ -69,23 +77,60 @@ h5 {
   font-size: var(--size-h5);
 }
 
+.header {
+  position: sticky;
+  background-color: var(--smoky-black);
+  display: flex;
+  justify-content: space-between;
+}
+
 .nav__ul {
   list-style-type: none;
 }
 .nav__ul li {
   display: inline-block;
   font-family: var(--oswald);
+  padding: 20px;
 }
-.nav__ul li a {
-  padding: 30px;
+.nav__a {
+  padding: 10px;
   text-decoration: none;
-  color: var(--hunyadi-yellow);
+  color: white;
   display: block;
 }
+.nav__a:hover {
+  color: var(--hunyadi-yellow);
+}
+.nav__a i {
+  margin-right: 20px;
+}
+.nav__a--entradas {
+  background-color: var(--hunyadi-yellow);
+  color: var(--licorice);
+  padding: 20px 50px 20px 50px;
+  border-radius: 5px;
+}
+.nav__a--entradas:hover {
+  background-color: var(--barn-red);
+  color: white;
+  animation: transicion-entradas 0.5s;
+}
+.nav__a--entradas i {
+  margin-right: 20px;
+}
 
+@keyframes transicion-entradas {
+  from {
+    background: var(--hunyadi-yellow);
+    color: var(--licorice);
+  }
+  to {
+    background: var(--barn-red);
+    color: white;
+  }
+}
 .main {
   padding: 100px;
-  background-color: var(--smoky-black);
 }
 .main__span--h1 {
   font-family: var(--fascinate);
@@ -140,17 +185,6 @@ h5 {
   font-family: var(--normal);
   margin-top: 20px;
   color: var(--hunyadi-yellow);
-}
-
-.header {
-  position: sticky;
-  background-color: var(--smoky-black);
-  display: flex;
-  justify-content: space-between;
-}
-.header__li--entradas a {
-  background-color: var(--hunyadi-yellow);
-  color: var(--barn-red);
 }
 
 .logo__p {
