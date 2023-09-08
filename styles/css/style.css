@@ -31,7 +31,7 @@ h5,
 ul {
   margin: 0;
   padding: 0;
-  /*color: rgba(255, 255, 255, 0.7);*/
+  color: rgba(255, 255, 255, 0.7);
 }
 
 p, li {
@@ -134,7 +134,7 @@ h5 {
   }
 }
 .main {
-  display: grid;
+  display: none;
   margin-top: 100px;
   row-gap: 20px;
   column-gap: 20px;
@@ -255,6 +255,10 @@ h5 {
   font-size: var(--size-h1);
   padding: 10px 20px 20px 20px;
   color: white;
+}
+
+.separator {
+  height: 300px;
 }
 
 .platea {
