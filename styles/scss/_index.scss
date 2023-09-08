@@ -1,52 +1,53 @@
 :root {
     --normal: 'Source Serif 4', serif;
-    --oswald:'Oswald', sans-serif;
-    --logo:'Fascinate', cursive;
+    --oswald: 'Oswald', sans-serif;
+    --logo: 'Fascinate', cursive;
     --bungee: 'Bungee Shade', cursive;
     --headings: 'Fascinate', cursive;
     --nunito: 'Nunito', sans-serif;
-    --size-p:20px;
-    --size-h1:3em;
-    --size-h2:3em;
-    --size-h3:2em;
-    --weight-h1:900;
-    --weight-h:700;
-    --weight-p:400;
-    --weight-p-bold:600;
+    --size-p: 20px;
+    --size-h1: 3em;
+    --size-h2: 3em;
+    --size-h3: 2em;
+    --weight-h1: 900;
+    --weight-h: 700;
+    --weight-p: 400;
+    --weight-p-bold: 600;
     --kobicha: #653918ff;
---licorice: #1E1108ff;
---hunyadi-yellow: #E3A446ff;
---smoky-black: #080402ff;
---barn-red: #721609ff;
+    --licorice: #1E1108ff;
+    --hunyadi-yellow: #E3A446ff;
+    --smoky-black: #080402ff;
+    --barn-red: #721609ff;
 }
-html, 
+html,
 body,
 p,
-h1, h2, h3, h4, h5,
+h1,
+h2,
+h3,
+h4,
+h5,
 ul {
-    margin:0;
-    padding:0;
-    color:rgba(255,255,255,0.7);
+    margin: 0;
+    padding: 0;
+    /*color: rgba(255, 255, 255, 0.7);*/
 }
 p, li {
     font-family: var(--normal);
     font-weight: var(--weight-p);
-    
     font-size:var(--size-p);
 }
 h1 {
-    font-family: var(--oswald);
+    font-family: var(--normal);
+    font-style:italic;
     font-weight:var(--weight-h1);
-    font-size:calc(var(--size-h1)*1.5);
-    color:white;
+    font-size:var(--size-h2);
     margin-bottom:40px;
-    text-transform:uppercase;
 }
 h2, h3, h4, h5 {
     font-family: var(--oswald);
     font-weight:var(--weight-h);
     margin:30px auto;
-    color:white;
     text-transform: uppercase;
 }
 body {
@@ -62,6 +63,8 @@ a {
 }
 .header {
     position:sticky;
+    top:0;
+    z-index:1;
     background-color: var(--smoky-black);
     display:flex;
     justify-content: space-between;
@@ -106,29 +109,83 @@ a {
     }
 }
 @keyframes transicion-entradas {
-    from {background: var(--hunyadi-yellow);
-    color:var(--licorice);}
-  to {background: var(--barn-red);
-color:white;}
+    from {
+        background: var(--hunyadi-yellow);
+        color: var(--licorice);
+    }
+
+    to {
+        background: var(--barn-red);
+        color: white;
+    }
 }
 
 .main {
-    padding:100px;
+    display:grid;
+    margin-top:100px;
+    row-gap: 20px;
+    column-gap:20px;
+    grid-template-rows:repeat(7,auto);
+    grid-template-columns:25% 8% 17% 17% 8% 1fr;
+    grid-template-areas: "entradas entradas entradas entradas entradas entradas" "bienvenidos cartelera cartelera cartelera cartelera cartelera" "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
+    div {
+            
+        border-radius:20px;
+        }
     
-    &__span--h1 {
-        font-family:var(--fascinate);
-        font-size: var(--size-h2);
-    }
-    .bienvenida {
-       border: solid 1px var(--hunyadi-yellow);
-       padding:50px;
-    }
     form {
-        text-align: center;
+            text-align: center;
+         }
+}
+.entradas {
+    display:none;
+    grid-area:entradas;
+}
+.bienvenidos {
+    background-color:white;
+    color:black;
+    grid-area:bienvenidos;
+    box-shadow:5px 5px var(--hunyadi-yellow);
+    padding: 50px;
+}
+.cartelera {
+    grid-area:cartelera;
+    display:flex;
+    div {
+        width:30%;
+        img 
+        {
+           width:auto; 
+            height:100%;
+        }
     }
 }
+.salas {
+    grid-area:salas;
+}
+.salas--clasica {
+    grid-area:salas--clasica;
+}
+.salas--premium {
+    grid-area:salas--premium;
+}
+.salas--infantil {
+    grid-area:salas--infantil;
+}
+.snacks {
+    grid-area:snacks;
+}
+.contacto--form {
+    grid-area:contacto--form;
+}
+.contacto--datos {
+    grid-area:contacto--datos;
+}
+.footer {
+    grid-area:footer;
+}
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/imagenes/sala-cine-fullcolor.jpg);
+    background-image: url(../../assets/imagenes/sala-cine-fullcolor-estrellas.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -150,7 +207,7 @@ color:white;}
         font-size: calc(var(--size-h1)*1.2);
         font-family: var(--oswald);
         font-weight: var(--weight-p-bold);
-
+text-shadow: 1px 1px 4px #000000;
         a {
             border: dotted 10px white;
             display: block;
@@ -179,7 +236,7 @@ color:white;}
 
 
 .logo__p {
-    font-family:var(--headings);
+    font-family:var(--logo);
     font-size:var(--size-h1);
     padding:10px 20px 20px 20px;
     color:white;
