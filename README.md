@@ -26,6 +26,7 @@ Para mostrar los asientos pensé en un *select* en el que cada opción es un cí
 **Paso 7:** Se genera un pdf con un QR (o por lo menos se muestra en pantalla)
 
 ## Primera entrega
+> El archivo js de esta primer entrega es main.js
 ### Disparador del simulador básico
 En esta primera entrega se trabaja sólo con prompts y alerts, aunque para que el programa empiece a funcionar hay que hacer click en un botón que se muestra en la página. (Hay dos botones que disparan el programa, son bastante obvios)
 
