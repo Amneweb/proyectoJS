@@ -9,7 +9,7 @@ Los pasos a seguir por el usuario serán:
 1. Elección de asientos dependiendo de disponibilidad y cantidad de entradas
 1. Elección de ofertas de snacks
 1. Pago
-1. Generación de QR para entrada
+> Al final del recorrido el usuario obtendrá un pdf con un código QR que será su entrada.
 ## Funcionalidades particulares en cada paso del recorrido del usuario
 **Pasos 1 a 3:** La elección de la película (con un select) dispara la aparición de las opciones del paso 2, que a su vez genera la aparición de un menú desplegable para el paso 3. Es decir que los horarios de las funciones dependerán de la sala elegida, y ésta a su vez dependerá de la película elegida. 
 
@@ -23,7 +23,7 @@ Para mostrar los asientos pensé en un *select* en el que cada opción es un cí
 
 **Paso 6:** Se simulará un pago (botón que diga pagar)
 
-**Paso 7:** Se genera un pdf con un QR (o por lo menos se muestra en pantalla)
+**Final** Se genera un pdf con el resumen de la compra y un QR (o por lo menos se mostrará en pantalla)
 
 ## Primera entrega
 > El archivo js de esta primer entrega es main.js

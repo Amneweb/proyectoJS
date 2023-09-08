@@ -56,14 +56,15 @@ function ejecutar() {
             alert("El número que ingresaste no corresponde a ninguna película. Por favor intentalo de nuevo");
             return;
         } else {
-            alert("Gracias por elegir '" + peli[peli_index - 1] + "'. Ahora podés continuar la compra.");
+            alert("Elegiste '" + peli[peli_index - 1] + "'. Hacé click en OK para continuar la compra.");
+
         }
     } else {
         alertaVacio("película");
         return;
     }
     let sala = "";
-    const lista_precios = "SALAS Y PRECIOS\n**** 1-> Sala Premium****\nFilas 1 a 8: $2900\nFilas 9 a 20: $3500\n**** 2-> Sala Clásica****\nFilas 1 a 8: $2200\nFilas 9 a 20: $2800\n";
+    const lista_precios = "SALAS Y PRECIOS\n1-> ****  Sala Premium ****\nFilas 1 a 8: $2900\nFilas 9 a 20: $3500\n2-> **** Sala Clásica ****\nFilas 1 a 8: $2200\nFilas 9 a 20: $2800\n";
     sala = parseInt(prompt(lista_precios + "Ingresá el número correspondiente a la sala elegida"));
     if (sala) {
         if ((sala < 1) || (sala > 2)) {

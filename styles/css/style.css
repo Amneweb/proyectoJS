@@ -133,6 +133,10 @@ h5 {
     color: white;
   }
 }
+.descripcion {
+  display: none;
+}
+
 .main {
   display: none;
   margin-top: 100px;
@@ -255,10 +259,6 @@ h5 {
   font-size: var(--size-h1);
   padding: 10px 20px 20px 20px;
   color: white;
-}
-
-.separator {
-  height: 300px;
 }
 
 .platea {
