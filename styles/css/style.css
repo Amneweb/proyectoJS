@@ -158,6 +158,10 @@ h5 {
   box-shadow: 5px 5px var(--hunyadi-yellow);
   padding: 50px;
   border-radius: 20px;
+  align-self: baseline;
+}
+.bienvenidos h1 {
+  font-size: 2em;
 }
 
 .titulo-cartelera {

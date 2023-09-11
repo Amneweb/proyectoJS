@@ -144,6 +144,10 @@ a {
     box-shadow:5px 5px var(--hunyadi-yellow);
     padding: 50px;
     border-radius:20px;
+    align-self: baseline;
+    h1 {
+        font-size:2em;
+    }
 }
 .titulo-cartelera {
     grid-area:titulo-cartelera;
