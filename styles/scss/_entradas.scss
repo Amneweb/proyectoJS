@@ -1,0 +1,39 @@
+button,
+fieldset,
+input,
+legend,
+select,
+textarea {
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+input,
+select,
+textarea {
+  border: 2px solid #E3A446ff; /*cambiar a yellow*/
+  background-color: white;
+  border-radius: 0.25rem;
+}
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  font: 1.25rem / 1.5 sans-serif;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
+textarea {
+  min-height: 10rem;
+}
+
+select {
+  background: url("../../assets/imagenes/down-arrow.svg") no-repeat center right 0.75rem;
+}
