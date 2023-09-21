@@ -158,6 +158,29 @@ function asientosContiguos(entradas, asientosParticular) {
     return alertaFilas= "las filas con " + entradas + " o más asientos libres contiguos son: " + filasConAsientosContiguos.join();
 }
 
+function errorHandler(iterador, listaX, item) {
+    let mensajeError = 0;
+    let devolucion=new Array();
+    for (let i = 1; i < 3; i++) {
+        seleccionarX = prompt("Lo sentimos, ingresaste el número incorrecto. Volvé a intentarlo o ingresá NO.\nTe quedan " + (3 - i) + " intentos.\n" + listaX + "¿qué " + item + " querés ver?\nIngresá el número correspondiente.");
+        if ((parseInt(seleccionarX) >= 1) && (parseInt(seleccionarX) < iterador)) {
+            break;
+        
+        } else {
+            if ((seleccionarX.trim().toUpperCase() === "NO")) {
+                alert("¡Qué pena que te quieras ir!! ¡Nos vemos la próxima!");
+                mensajeError = 1;
+                break;
+            } else if (i===2){  alert("Lo sentimos, ya lo intentaste demasiadas veces"); 
+                    mensajeError=1;
+                break; }
+        }
+    } 
+
+    devolucion=[seleccionarX,mensajeError];
+    return devolucion;
+}
+
 // **** **** **** FIN DECLARACIONES **** **** **** /////////////////////
 
 // *************     Empieza la interacción con el usuario   **********************//
@@ -169,50 +192,13 @@ for (const peli of pelis) {
 }
 
 let seleccionarPeli = prompt(listaPelis + "¿qué película querés ver?\nIngresá el número correspondiente.");
-// if ((seleccionarPeli<=iterador)&&(seleccionarPeli>=1)) {
-// //filtramos el array de funciones en base a la peli elegida
-// peliSeleccionada = pelis[parseInt(seleccionarPeli) - 1].id;
-// } else {
-//     errorHandler = prompt ("El número ingresado no se corresponde con ninguna opción. ¿Querés volver a elegir? Ingresá SI o NO");
-//     if (errorHandler.trim().toUpperCase()==="SI"){
-//         seleccionarPeli = prompt(listaPelis + "¿qué película querés ver?\nIngresá el número correspondiente.");
-//     } else {
-//         alert ("¡Qué pena que te quieras ir!! ¡Nos veos la próxima!");
-//     }
-// }
 
-//**************** */
-    function errorHandler(iterador, listaX, item) {
-        let mensajeError = "";
-        for (let i = 1; i < 3; i++) {
-            seleccionarX = prompt("Lo sentimos, ingresaste el número incorrecto. Volvé a intentarlo o ingresá NO.\nTe quedan " + (3 - i) + " intentos.\n" + listaX + "¿qué " + item + " querés ver?\nIngresá el número correspondiente.");
-            if ((parseInt(seleccionarX) >= 1) && (parseInt(seleccionarX) < iterador)) {
-        
-                alert("valor devuelto elegido dentro de funcion" + seleccionarX);
-                alert("mensaje de error dentro de funcion " + mensajeError);
-                return (seleccionarX, mensajeError);
-            } else {
-                if ((seleccionarX.trim().toUpperCase() === "NO")) {
-                    alert("¡Qué pena que te quieras ir!! ¡Nos vemos la próxima!");
-                    //mensajeError = "TERMINAR";
-                    return (seleccionarX, mensajeError);
-                } else if (i===2){  alert("Lo sentimos, ya lo intentaste demasiadas veces"); 
-                mensajeError = "TERMINAR";
-                        return (mensajeError); }
-            }
-        } 
-}
- //************** */
     if ((parseInt(seleccionarPeli) >= (iterador)) || (parseInt(seleccionarPeli) < 1) || (seleccionarPeli == null) || (seleccionarPeli == "")) {
-        alert("número errado, me voy a error Handler");
-        errorHandler(iterador, listaPelis, "película");
-        seleccionarPeli = seleccionarX;
-        console.log(seleccionarPeli+" acá debería aparecer un alerta con el msj de error");
-        //console.log(mensajeError);
-        //if (mensajeError === "TERMINAR") { return; }
-
+        devolucion=errorHandler(iterador, listaPelis, "película");
+        seleccionarPeli = devolucion[0];
+        mensajeError = devolucion[1];
+        if (mensajeError === 1) { return; }
     }
-alert ("valor devuelto luego de error handler "+seleccionarPeli);
 peliSeleccionada = pelis[parseInt(seleccionarPeli) - 1].id;
 
 
@@ -229,10 +215,11 @@ for (const elemento of funcionesPeliSeleccionada) {
     iterador++;
 }
 let seleccionarFuncion = prompt("Esta es la lista de funciones para la película elegida \n" + listaFunciones + "¿Cuál elegís?");
-if((parseInt(seleccionarFuncion) > (iterador))||(parseInt(seleccionarFuncion) < 1)||(seleccionarFuncion==null)||(seleccionarFuncion==""))
-{errorHandler(seleccionarFuncion,iterador,listaFunciones,"función");
-if (mensajeError==="TERMINAR")
-{return;} 
+if((parseInt(seleccionarFuncion) > (iterador))||(parseInt(seleccionarFuncion) < 1)||(seleccionarFuncion==null)||(seleccionarFuncion=="")) {
+devolucion=errorHandler(iterador, listaFunciones, "función");
+        seleccionarFuncion = devolucion[0];
+        mensajeError = devolucion[1];
+        if (mensajeError === 1) { return; }
 }
 
 
