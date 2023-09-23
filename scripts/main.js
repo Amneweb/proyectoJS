@@ -5,7 +5,7 @@ function ejecutar() {
 let asientos = new Array();
 const salas = new Array();
 let pelis = new Array();
-const precioBase = 3000; //valor de precio indicado desde el back end
+const PRECIOBASE = 3000; //valor de precio indicado desde el back end
 let funciones = new Array();
 
 // //////// OBJETOS ///////////  //
@@ -49,59 +49,62 @@ pelis = [
 
 //*********** Funciones (día y hora en la que se proyecta un película) */
 class Funcion {
-    constructor(pelicula, sala, dia, hora) {
-        this.id = "f_" + dia + hora + "_" + sala;
+    constructor(pelicula, sala, dia,mes,anio, hora) {
+        this.id = "f_" + anio + (mes+1) + hora + "_" + sala;
         this.pelicula = pelicula;
         this.sala = sala;
         this.dia = dia;
+        this.mes=mes;
+        this.anio=anio;
         this.hora = hora;
         this.asientosFuncion = inicializarAsientos(sala);
-        this.precio=calcularPrecio(sala,dia);
+        this.precio=calcularPrecio(sala,dia,mes,anio);
     }
 }
 
 funciones = [
-    new Funcion("2309101900_IND", 1, "2023-09-24", 1900),
-    new Funcion("2309101900_IND", 1, "2023-09-24", 2200),
-    new Funcion("2309052000_TIT", 0, "2023-09-28", 1315),
-    new Funcion("2309101900_IND", 1, "2023-09-25", 1900),
-    new Funcion("2309101900_IND", 1, "2023-09-25", 2200),
-    new Funcion("2309101900_IND", 1, "2023-09-26", 2200),
-    new Funcion("2309101900_IND", 1, "2023-09-27", 1500),
-    new Funcion("2309101900_IND", 1, "2023-09-27", 1800),
-    new Funcion("2309052000_TIT", 0, "2023-09-28", 1615),
-    new Funcion("2309052000_TIT", 0, "2023-10-05", 1315),
-    new Funcion("2309052000_TIT", 0, "2023-10-06", 1315),
-    new Funcion("2309101904_VOL", 0, "2023-09-21", 1315),
-    new Funcion("2309101904_VOL", 0, "2023-09-21", 1620),
-    new Funcion("2309101904_VOL", 0, "2023-09-21", 1830)
+    new Funcion("2309101900_IND", 1, 24,9, 2023, 1900),
+    new Funcion("2309101900_IND", 1, 24,9, 2023, 2200),
+    new Funcion("2309052000_TIT", 0, 28,9, 2023, 1315),
+    new Funcion("2309101900_IND", 1, 25,9, 2023, 1900),
+    new Funcion("2309101900_IND", 1, 25,9, 2023, 2200),
+    new Funcion("2309101900_IND", 1, 26,9, 2023, 2200),
+    new Funcion("2309101900_IND", 1, 27,9, 2023, 1500),
+    new Funcion("2309101900_IND", 1, 27,9, 2023, 1800),
+    new Funcion("2309052000_TIT", 0, 28,9, 2023, 1615),
+    new Funcion("2309052000_TIT", 0, 5,10, 2023, 1315),
+    new Funcion("2309052000_TIT", 0, 6,10, 2023, 1315),
+    new Funcion("2309101904_VOL", 0, 21,9, 2023, 1315),
+    new Funcion("2309101904_VOL", 0, 21,9, 2023, 1620),
+    new Funcion("2309101904_VOL", 0, 21,9, 2023, 1830),
+    new Funcion("2309040102_AFR", 0, 23,9, 2023, 1830),
+    new Funcion("2309101901_TOY", 2, 23,9, 2023, 1830)
 ];
-
 // //////// FUNCTIONS ///////////  //
 
-function calcularPrecio(sala, dia) {
+
+function calcularPrecio(sala, dia, mes, anio) {
     let precio;
     switch (sala) {
         case 0:
-            precio = precioBase * 1.2;
+            precio = PRECIOBASE * 1.2;
             break;
         case 1:
-            precio = precioBase;
+            precio = PRECIOBASE;
             break;
         case 2:
-            precio = precioBase * 0.8;
+            precio = PRECIOBASE * 0.8;
     }
-    const diaFormateado = new Date(dia);
-    const diaDeSemana = diaFormateado.getDay();
-    switch (diaDeSemana) {
+    
+    switch (() => new Date(anio,mes,dia).getDay()) {
         case 6: //sábado
-            precio = precio * 1.1;
+            precio = parseInt(precio * 1.1);
             break;
         case 3: //miercoles
-            precio = precio * 0.5;
+            precio = parseInt(precio * 0.5);
             break;
         default:
-            precio = precio;
+            precio = parseInt(precio);
     }
     return precio;
 }
@@ -129,10 +132,8 @@ function inicializarAsientos(sala) {
 function mostrarOcupacion(asientosOcupacion) { //esta funcion se va a usar para después mostrar los asientos en pantalla
     let ocupacion = "";
     for (let i = 0; i < asientosOcupacion.length; i++) {
-        ocupacion = ocupacion+"Fila " + (i + 1).toString() + " => [  "+asientosOcupacion[i].join(" ] [ ")+" ]\n";
-        
-        //console.log(ocupacion + asientosOcupacion[i].join(" "));
-        //ocupacion = "";
+        ocupacion = ocupacion+"Fila " + (i + 1).toString() + " => [ "+asientosOcupacion[i].join(" ] [ ")+" ]\n";
+
     }
     return ocupacion;
 }
@@ -162,7 +163,7 @@ function errorHandler(iterador, listaX, item) {
     let mensajeError = 0;
     let devolucion=new Array();
     for (let i = 1; i < 3; i++) {
-        seleccionarX = prompt("Lo sentimos, ingresaste el número incorrecto. Volvé a intentarlo o ingresá NO.\nTe quedan " + (3 - i) + " intentos.\n" + listaX + "¿qué " + item + " querés ver?\nIngresá el número correspondiente.");
+        seleccionarX = prompt("Lo sentimos, ingresaste el número incorrecto. Volvé a intentarlo o ingresá NO.\nTe quedan " + (3 - i) + " intentos.\n" + listaX + "¿qué " + item + " elegís?\nIngresá el número correspondiente.");
         if ((parseInt(seleccionarX) >= 1) && (parseInt(seleccionarX) < iterador)) {
             break;
         
@@ -211,11 +212,12 @@ let funcionesPeliSeleccionada = funciones.filter((peliculaId) => peliculaId.peli
 iterador = 1;
 let listaFunciones = "";
 for (const elemento of funcionesPeliSeleccionada) {
-    listaFunciones = listaFunciones + iterador.toString() + "=> Día " + elemento.dia + " Hora " + elemento.hora + "\n"
+    let formatearDia = () => new Date(elemento.anio,elemento.mes,elemento.anio).toLocaleDateString(); alert (formatearDia);
+    listaFunciones = listaFunciones + iterador.toString() + "=> Día " + formatearDia + " Hora " + elemento.hora + "\n"
     iterador++;
 }
 let seleccionarFuncion = prompt("Esta es la lista de funciones para la película elegida \n" + listaFunciones + "¿Cuál elegís?");
-if((parseInt(seleccionarFuncion) > (iterador))||(parseInt(seleccionarFuncion) < 1)||(seleccionarFuncion==null)||(seleccionarFuncion=="")) {
+if((parseInt(seleccionarFuncion) > (iterador))||(parseInt(seleccionarFuncion) < 1)||(seleccionarFuncion==null)||(seleccionarFuncion=="")) { 
 devolucion=errorHandler(iterador, listaFunciones, "función");
         seleccionarFuncion = devolucion[0];
         mensajeError = devolucion[1];
@@ -276,6 +278,12 @@ if (totalAsientosLibres >= entradas) {
         }
     }
     elegirFilas=prompt("El total de asientos libres en la sala es: " + totalAsientosLibres+"\n"+asientosContiguos(entradas, asientosParticular)+"\n ¿Qué fila elegís?");
+    if((parseInt(elegirFilas) > (asientosParticular.length))||(parseInt(elegirFilas) < 1)||(elegirFilas==null)||(elegirFilas=="")) {
+        devolucion=errorHandler(asientosParticular.length, "", "fila");
+                elegirFilas = devolucion[0];
+                mensajeError = devolucion[1];
+                if (mensajeError === 1) { return; }
+        }
 } else {
     alert("Esta función no tiene la cantidad de asientos libres solicitada \n"+"El total de asientos libres en la sala es: " + totalAsientosLibres);
 }
