@@ -32,7 +32,7 @@ h5,
 ul {
   margin: 0;
   padding: 0;
-  /*color: rgba(255, 255, 255, 0.7);*/
+  color: rgba(255, 255, 255, 0.7);
 }
 
 p, li {
@@ -133,10 +133,14 @@ h5 {
     color: white;
   }
 }
+.descripcion {
+  margin: 20px 100px 0 100px;
+}
+
 .main {
   display: grid;
   margin: 80px 50px 0 50px;
-  row-gap: 60px;
+  row-gap: 5px;
   column-gap: 30px;
   grid-template-rows: repeat(9, auto);
   grid-template-columns: 25% 8% 17% 17% 8% 1fr;
@@ -153,7 +157,6 @@ h5 {
 
 .bienvenidos {
   background-color: white;
-  color: black;
   grid-area: bienvenidos;
   border: solid 1px var(--barn-red);
   box-shadow: 5px 5px var(--hunyadi-yellow);
@@ -163,6 +166,10 @@ h5 {
 }
 .bienvenidos h1 {
   font-size: 2em;
+  color: black;
+}
+.bienvenidos p {
+  color: black;
 }
 
 .titulo-cartelera {
