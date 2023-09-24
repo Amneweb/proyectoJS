@@ -25,6 +25,13 @@ Para mostrar los asientos pensé en un *select* en el que cada opción es un cí
 
 **Final** Se genera un pdf con el resumen de la compra y un QR (o por lo menos se mostrará en pantalla)
 
+## Segunda entrega
+El recorrido del usuario y el método general de funcionamiento es similar al de la primer entrega. El archivo js sigue siendo main.js, pero con las siguientes modificaciones:
+- Las funciones se simplifican utilizando métodos de arrays
+- Las películas, fechas de proyección (que denominamos funciones) y las salas, se guardan como OBJETOS, que a su vez son elementos de arrays
+- Se utilizan funciones flecha y funciones de orden superior
+- Se mejoran los controles de errores cuando el usuario ingresa un valor no compendido entre las opciones ofrecidas. Ahora se ofrece un total de 3 intentos antes de interrumpir la secuencia.
+- Se muestra un esquema de filas y columnas con asientos vacíos y ocupados. En esta entrega esto sólo es a efectos ilustrativos. Más adelante se va a usar para armar el plano de la sala, en el que el usuario podrá hacer click en el asiento elegido, que va a tener un color diferente si está ocupado o libre.
 ## Primera entrega
 > El archivo js de esta primer entrega es main.js
 ### Disparador del simulador básico
