@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="../styles/css/style.css">
 </head>
 <!-- En este archivo generamos el html y en elementos.scss el estilo para los select de las películas y funciones -->
-<body>
-    <label for="pelicula">¿Qué película querés ver?</label>
+<body class="select">
+  <section class="entradas-borrador">
 <div class="select">
   <select name="pelicula" id="pelicula">
-    <option value="Option 1">Option 1</option>
+    <option class="select--disabled" selected disabled value="">Elegí la película</option>
     <option value="Option 2">Option 2</option>
     <option value="Option 3">Option 3</option>
     <option value="Option 4">Option 4</option>
@@ -24,6 +24,23 @@
     </option>
   </select>
 </div>
+<div class="select">
+  <select name="sala" id="sala">
+    <option class="select--disabled" selected disabled value="">Elegí la sala</option>
+    <option value="0">Platinum</option>
+    <option value="1">Clásica</option>
+    <option value="2">Infantil</option>
+  </select>
+</div>
+<div class="select">
+  <select name="funcion" id="funcion">
+    <option class="select--disabled" selected disabled value="">Elgí la función</option>
+    <option value="0">Platinum</option>
+    <option value="1">Clásica</option>
+    <option value="2">Infantil</option>
+  </select>
+</div>
+</section>
 <script src="../scripts/borradores.js"></script>
 </body>
 </html>

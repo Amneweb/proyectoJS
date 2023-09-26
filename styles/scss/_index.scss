@@ -2,9 +2,6 @@
     --normal: 'Source Serif 4', serif;
     --oswald: 'Oswald', sans-serif;
     --logo: 'Fascinate', cursive;
-    --bungee: 'Bungee Shade', cursive;
-    --headings: 'Fascinate', cursive;
-    --nunito: 'Nunito', sans-serif;
     --size-p: 20px;
     --size-h1: 3em;
     --size-h2: 3em;
@@ -13,6 +10,7 @@
     --weight-h: 700;
     --weight-p: 400;
     --weight-p-bold: 600;
+    --rojo-butaca: #cc2d2c;
     --kobicha: #653918ff;
     --licorice: #1E1108ff;
     --hunyadi-yellow: #E3A446ff;
@@ -50,7 +48,7 @@ h2, h3, h4, h5 {
     text-transform: uppercase;
 }
 body {
-    background-color: var(--smoky-black);
+    background-color: white;
 }
 a {
     text-decoration: none;
@@ -85,7 +83,7 @@ a {
         color:white;
         display: block;
         &:hover {
-            color:var(--hunyadi-yellow);
+            color:var(--rojo-butaca);
         }
         i {
             margin-right:20px;
@@ -93,13 +91,13 @@ a {
     }
 
     &__a--entradas {
-        background-color: var(--hunyadi-yellow);
-        color: var(--licorice);
+        background-color: var(--rojo-butaca);
+        color: white;
         padding: 20px 50px 20px 50px;
         border-radius:5px;
         &:hover {
-            background-color:var(--barn-red);
-            color:white;
+            background-color:white;
+            color:var(--rojo-butaca);
             animation: transicion-entradas 0.5s;
         }
         i {
@@ -109,13 +107,13 @@ a {
 }
 @keyframes transicion-entradas {
     from {
-        background: var(--hunyadi-yellow);
+        background: var(--rojo-butaca);
         color: var(--licorice);
     }
 
     to {
-        background: var(--barn-red);
-        color: white;
+        background: white;
+        color: var(--rojo-butaca);
     }
 }
 
@@ -129,7 +127,11 @@ a {
     column-gap:30px;
     grid-template-rows:repeat(9,auto);
     grid-template-columns:25% 8% 17% 17% 8% 1fr;
-    grid-template-areas: "entradas entradas entradas entradas entradas entradas" "bienvenidos titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "bienvenidos cartelera cartelera cartelera cartelera cartelera" "footer-bienvenidos cartelera cartelera cartelera cartelera cartelera" "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
+    grid-template-areas: "entradas entradas entradas entradas entradas entradas" ". bienvenidos bienvenidos bienvenidos bienvenidos ." "titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "cartelera cartelera cartelera cartelera cartelera cartelera"  "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
+    // background-image: url(../../assets/imagenes/butacas.jpg);
+    // background-position: 0%;
+    // background-repeat: no-repeat;
+    // background-size: auto;
 
     
     form {
@@ -216,7 +218,7 @@ a {
     grid-area:footer;
 }
 .hero {
-    background-image: url(../../assets/imagenes/sala-cine-fullcolor-estrellas.jpg);
+    background-image: url(../../assets/imagenes/telon-cine.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -229,7 +231,7 @@ a {
         top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: var(--hunyadi-yellow);
+        color: var(--rojo-butaca);
     }
 
     &__p--principal {
@@ -242,13 +244,13 @@ text-shadow: 1px 1px 4px #000000;
         a {
             border: dotted 10px white;
             display: block;
-            color: var(--hunyadi-yellow);
+            color: var(--rojo-butaca);
             text-decoration: none;
             padding: 20px 30px;
 
             &:hover {
                 color: white;
-                border: dotted 10px var(--hunyadi-yellow);
+                border: dotted 10px var(--rojo-butaca);
             }
         }
 
@@ -261,7 +263,7 @@ text-shadow: 1px 1px 4px #000000;
         text-align: center;
         font-family: var(--normal);
         margin-top: 20px;
-        color: var(--hunyadi-yellow);
+        color: var(--rojo-butacas);
     }
 }
 
@@ -271,7 +273,39 @@ text-shadow: 1px 1px 4px #000000;
     font-size:var(--size-h1);
     padding:10px 20px 20px 20px;
     color:white;
+    &::after {
+        content: '';
+        background-image: url(../../assets/imagenes/estrellaVintage.svg);
+        width:50px;
+        height:50px;
+        background-size: 50px 50px;
+        background-repeat:no-repeat;
+        display: inline-block;
+        background-position:0 0;
+        left:0;
+    }
 }
+.select {
+    background-color:white;
+}
+.entradas-borrador {
+    display:flex;
+    grid-area:entradas-borrador;
+    div {
+        width:100%;
+        margin:5px;
+    }
+    @media screen and (max-width: 992px) {
+    flex-wrap:wrap;
+        }
+        
+      }
+      .bienvenida {
+        background-color: var(--smoky-black);
+        color:white;
+        padding:30px 100px;
+      }
+
 
 
 

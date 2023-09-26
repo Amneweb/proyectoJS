@@ -3,9 +3,6 @@
   --normal: "Source Serif 4", serif;
   --oswald: "Oswald", sans-serif;
   --logo: "Fascinate", cursive;
-  --bungee: "Bungee Shade", cursive;
-  --headings: "Fascinate", cursive;
-  --nunito: "Nunito", sans-serif;
   --size-p: 20px;
   --size-h1: 3em;
   --size-h2: 3em;
@@ -14,6 +11,7 @@
   --weight-h: 700;
   --weight-p: 400;
   --weight-p-bold: 600;
+  --rojo-butaca: #cc2d2c;
   --kobicha: #653918ff;
   --licorice: #1E1108ff;
   --hunyadi-yellow: #E3A446ff;
@@ -56,7 +54,7 @@ h2, h3, h4, h5 {
 }
 
 body {
-  background-color: var(--smoky-black);
+  background-color: white;
 }
 
 a {
@@ -103,20 +101,20 @@ h5 {
   display: block;
 }
 .nav__a:hover {
-  color: var(--hunyadi-yellow);
+  color: var(--rojo-butaca);
 }
 .nav__a i {
   margin-right: 20px;
 }
 .nav__a--entradas {
-  background-color: var(--hunyadi-yellow);
-  color: var(--licorice);
+  background-color: var(--rojo-butaca);
+  color: white;
   padding: 20px 50px 20px 50px;
   border-radius: 5px;
 }
 .nav__a--entradas:hover {
-  background-color: var(--barn-red);
-  color: white;
+  background-color: white;
+  color: var(--rojo-butaca);
   animation: transicion-entradas 0.5s;
 }
 .nav__a--entradas i {
@@ -125,12 +123,12 @@ h5 {
 
 @keyframes transicion-entradas {
   from {
-    background: var(--hunyadi-yellow);
+    background: var(--rojo-butaca);
     color: var(--licorice);
   }
   to {
-    background: var(--barn-red);
-    color: white;
+    background: white;
+    color: var(--rojo-butaca);
   }
 }
 .descripcion {
@@ -144,7 +142,7 @@ h5 {
   column-gap: 30px;
   grid-template-rows: repeat(9, auto);
   grid-template-columns: 25% 8% 17% 17% 8% 1fr;
-  grid-template-areas: "entradas entradas entradas entradas entradas entradas" "bienvenidos titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "bienvenidos cartelera cartelera cartelera cartelera cartelera" "footer-bienvenidos cartelera cartelera cartelera cartelera cartelera" "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
+  grid-template-areas: "entradas entradas entradas entradas entradas entradas" ". bienvenidos bienvenidos bienvenidos bienvenidos ." "titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "cartelera cartelera cartelera cartelera cartelera cartelera" "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
 }
 .main form {
   text-align: center;
@@ -243,7 +241,7 @@ h5 {
 }
 
 .hero {
-  background-image: url(../../assets/imagenes/sala-cine-fullcolor-estrellas.jpg);
+  background-image: url(../../assets/imagenes/telon-cine.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -256,7 +254,7 @@ h5 {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--hunyadi-yellow);
+  color: var(--rojo-butaca);
 }
 .hero__p--principal {
   text-align: center;
@@ -269,13 +267,13 @@ h5 {
 .hero__p--principal a {
   border: dotted 10px white;
   display: block;
-  color: var(--hunyadi-yellow);
+  color: var(--rojo-butaca);
   text-decoration: none;
   padding: 20px 30px;
 }
 .hero__p--principal a:hover {
   color: white;
-  border: dotted 10px var(--hunyadi-yellow);
+  border: dotted 10px var(--rojo-butaca);
 }
 .hero__p--secundario {
   font-style: italic;
@@ -283,7 +281,7 @@ h5 {
   text-align: center;
   font-family: var(--normal);
   margin-top: 20px;
-  color: var(--hunyadi-yellow);
+  color: var(--rojo-butacas);
 }
 
 .logo__p {
@@ -291,6 +289,41 @@ h5 {
   font-size: var(--size-h1);
   padding: 10px 20px 20px 20px;
   color: white;
+}
+.logo__p::after {
+  content: "";
+  background-image: url(../../assets/imagenes/estrellaVintage.svg);
+  width: 50px;
+  height: 50px;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 0 0;
+  left: 0;
+}
+
+.select {
+  background-color: white;
+}
+
+.entradas-borrador {
+  display: flex;
+  grid-area: entradas-borrador;
+}
+.entradas-borrador div {
+  width: 100%;
+  margin: 5px;
+}
+@media screen and (max-width: 992px) {
+  .entradas-borrador {
+    flex-wrap: wrap;
+  }
+}
+
+.bienvenida {
+  background-color: var(--smoky-black);
+  color: white;
+  padding: 30px 100px;
 }
 
 .platea {
@@ -344,52 +377,34 @@ h5 {
 }
 
 select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E3A446ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+select {
   display: block;
   font-size: 16px;
   font-family: sans-serif;
   font-weight: 700;
-  color: #444;
+  color: rgb(18, 17, 17);
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid var(--hunyadi-yellow);
+  border: 1px solid black;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E3A446ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
-  /* A reset of styles, including removing the default dropdown arrow
-    appearance: none;
-    // Additional resets for further consistency
-    background-color: transparent;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
-    }
-    .select {
-    width: 100%;
-  border: 1px solid var(--hunyadi-yellow);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  font-size: 1.25rem;
-  cursor: pointer;
-  line-height: 1.1;
-  background-color: var(--smoky-black);
-  background-image: linear-gradient(to top,  var(--smoky-black),var(--barn-red) 33%);*/
+}
+select option.select--disabled {
+  color: grey;
 }
 
 /*para sacar flecha en explorers viejos*/
