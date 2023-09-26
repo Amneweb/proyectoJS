@@ -121,30 +121,18 @@ a {
     margin:20px 100px 0 100px;
 }
 .main {
-    display:grid;
-    margin:80px 50px 0 50px;
-    row-gap: 5px;
-    column-gap:30px;
-    grid-template-rows:repeat(9,auto);
-    grid-template-columns:25% 8% 17% 17% 8% 1fr;
-    grid-template-areas: "entradas entradas entradas entradas entradas entradas" ". bienvenidos bienvenidos bienvenidos bienvenidos ." "titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "cartelera cartelera cartelera cartelera cartelera cartelera"  "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
-    // background-image: url(../../assets/imagenes/butacas.jpg);
-    // background-position: 0%;
-    // background-repeat: no-repeat;
-    // background-size: auto;
-
-    
+    display:flex;
+    margin:80px 50px 0 50px; 
+    justify-content: space-evenly;  
     form {
             text-align: center;
          }
 }
 .entradas {
     display:none;
-    grid-area:entradas;
 }
 .bienvenidos {
     background-color:white;
-    grid-area:bienvenidos;
     border:solid 1px var(--barn-red);
     box-shadow:5px 5px var(--hunyadi-yellow);
     padding: 50px;
@@ -158,7 +146,7 @@ a {
         color:black;
     }
 }
-.titulo-cartelera {
+.section__titulo {
     grid-area:titulo-cartelera;
     color:var(--hunyadi-yellow);
     padding-left:30px;
@@ -168,20 +156,7 @@ a {
     }
     border-bottom:dotted 10px white;
 }
-.footer-bienvenidos {
-    grid-area:footer-bienvenidos;
-    height:100px;
-}
-.luces {
-    border-top:dotted white 10px;
-    padding-left:20px;
-    padding-right:20px;
-    border-radius:0 !important;
-}
 .cartelera {
-    grid-area:cartelera;
-    display:flex;
-    justify-content: space-evenly;
     div {
         width:30%;
         img 
@@ -193,29 +168,7 @@ a {
     }
 }
 .salas {
-    grid-area:salas;
     color:var(--hunyadi-yellow);
-}
-.salas--clasica {
-    grid-area:salas--clasica;
-}
-.salas--premium {
-    grid-area:salas--premium;
-}
-.salas--infantil {
-    grid-area:salas--infantil;
-}
-.snacks {
-    grid-area:snacks;
-}
-.contacto--form {
-    grid-area:contacto--form;
-}
-.contacto--datos {
-    grid-area:contacto--datos;
-}
-.footer {
-    grid-area:footer;
 }
 .hero {
     background-image: url(../../assets/imagenes/telon-cine.jpg);
@@ -244,7 +197,7 @@ text-shadow: 1px 1px 4px #000000;
         a {
             border: dotted 10px white;
             display: block;
-            color: var(--rojo-butaca);
+            color: var(--hunyadi-yellow); //var(--rojo-butaca);
             text-decoration: none;
             padding: 20px 30px;
 

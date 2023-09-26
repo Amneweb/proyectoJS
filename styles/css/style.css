@@ -136,13 +136,9 @@ h5 {
 }
 
 .main {
-  display: grid;
+  display: flex;
   margin: 80px 50px 0 50px;
-  row-gap: 5px;
-  column-gap: 30px;
-  grid-template-rows: repeat(9, auto);
-  grid-template-columns: 25% 8% 17% 17% 8% 1fr;
-  grid-template-areas: "entradas entradas entradas entradas entradas entradas" ". bienvenidos bienvenidos bienvenidos bienvenidos ." "titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera titulo-cartelera" "cartelera cartelera cartelera cartelera cartelera cartelera" "salas salas salas salas salas salas" "salas--premium salas--premium salas--clasica salas--clasica salas--infantil salas--infantil" "snacks snacks snacks snacks snacks snacks" "contacto--form contacto--form contacto--form contacto--datos contacto--datos contacto--datos" "footer footer footer footer footer footer";
+  justify-content: space-evenly;
 }
 .main form {
   text-align: center;
@@ -150,12 +146,10 @@ h5 {
 
 .entradas {
   display: none;
-  grid-area: entradas;
 }
 
 .bienvenidos {
   background-color: white;
-  grid-area: bienvenidos;
   border: solid 1px var(--barn-red);
   box-shadow: 5px 5px var(--hunyadi-yellow);
   padding: 50px;
@@ -170,34 +164,17 @@ h5 {
   color: black;
 }
 
-.titulo-cartelera {
+.section__titulo {
   grid-area: titulo-cartelera;
   color: var(--hunyadi-yellow);
   padding-left: 30px;
   padding-bottom: 20px;
   border-bottom: dotted 10px white;
 }
-.titulo-cartelera i {
+.section__titulo i {
   margin-right: 30px;
 }
 
-.footer-bienvenidos {
-  grid-area: footer-bienvenidos;
-  height: 100px;
-}
-
-.luces {
-  border-top: dotted white 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 0 !important;
-}
-
-.cartelera {
-  grid-area: cartelera;
-  display: flex;
-  justify-content: space-evenly;
-}
 .cartelera div {
   width: 30%;
 }
@@ -208,36 +185,7 @@ h5 {
 }
 
 .salas {
-  grid-area: salas;
   color: var(--hunyadi-yellow);
-}
-
-.salas--clasica {
-  grid-area: salas--clasica;
-}
-
-.salas--premium {
-  grid-area: salas--premium;
-}
-
-.salas--infantil {
-  grid-area: salas--infantil;
-}
-
-.snacks {
-  grid-area: snacks;
-}
-
-.contacto--form {
-  grid-area: contacto--form;
-}
-
-.contacto--datos {
-  grid-area: contacto--datos;
-}
-
-.footer {
-  grid-area: footer;
 }
 
 .hero {
@@ -267,7 +215,7 @@ h5 {
 .hero__p--principal a {
   border: dotted 10px white;
   display: block;
-  color: var(--rojo-butaca);
+  color: var(--hunyadi-yellow);
   text-decoration: none;
   padding: 20px 30px;
 }
