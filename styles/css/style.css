@@ -1,9 +1,10 @@
 @charset "UTF-8";
 :root {
-  --normal: "Source Serif 4", serif;
+  --source: "Source Serif 4", serif;
+  --poppins: "Poppins", sans-serif;
   --oswald: "Oswald", sans-serif;
   --logo: "Fascinate", cursive;
-  --size-p: 20px;
+  --size-p: 16px;
   --size-h1: 3em;
   --size-h2: 3em;
   --size-h3: 2em;
@@ -31,13 +32,13 @@ ul {
 
 p,
 li {
-  font-family: var(--normal);
+  font-family: var(--poppins);
   font-weight: var(--weight-p);
   font-size: var(--size-p);
 }
 
 h1 {
-  font-family: var(--normal);
+  font-family: var(--source);
   font-style: italic;
   font-weight: var(--weight-h1);
   font-size: var(--size-h2);
@@ -92,6 +93,7 @@ h5 {
   display: inline-block;
   font-family: var(--oswald);
   padding: 20px;
+  font-size: 20px;
 }
 .nav__a {
   padding: 10px;
@@ -153,20 +155,17 @@ h5 {
   border: dotted 5px var(--rojo-butaca);
   padding: 50px;
   align-items: center;
-  background-image: url(../../assets/imagenes/estrellaVintageTopRight.svg);
+  background-image: url(../../assets/imagenes/estrellaVintageTopRight.png);
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: top right;
 }
 .bienvenidos h1 {
-  font-size: 4em;
-  color: black;
-}
-.bienvenidos p {
   color: black;
 }
 
 .vintage {
+  font-family: var(--source);
   font-style: italic;
   font-size: 2em;
 }
@@ -180,7 +179,7 @@ h5 {
 .negro {
   background-color: var(--smoky-black);
   color: var(--rojo-butaca);
-  background-image: url(../../assets/imagenes/estrellaVintageBottomRight.svg);
+  background-image: url(../../assets/imagenes/estrellaVintageBottomRight.png);
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -189,6 +188,10 @@ h5 {
 .rojo {
   background-color: var(--rojo-butaca);
   color: white;
+  background-image: url(../../assets/imagenes/estrellaVintageTopRight--snacks.png);
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-position: top right;
 }
 
 .section__titulo {
@@ -206,6 +209,16 @@ h5 {
 }
 .section__titulo--snacks {
   border-bottom: dotted 10px #eeeeee;
+}
+.section__titulo--intro {
+  border: solid 1px rgba(255, 255, 255, 0.2);
+  width: 70%;
+  padding: 30px;
+  margin: 50px auto auto auto;
+}
+.section__titulo--intro i {
+  margin-right: 10px;
+  color: var(--hunyadi-yellow);
 }
 
 .cartelera__div--imagen {
@@ -229,12 +242,10 @@ h5 {
   font-size: 0.8em;
   position: absolute;
 }
-.cartelera .text--item {
-  font-family: var(--oswald);
-}
 .cartelera .text--item--left {
+  font-family: var(--oswald);
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: var(--weight-h1);
 }
 
 .overlay {
@@ -249,22 +260,59 @@ h5 {
   transition: 0.5s ease;
 }
 
+.salas__p--infantil::after, .salas__p--clasica::after, .salas__p--premium::after {
+  content: "";
+  display: inline;
+  background-repeat: repeat-x;
+  position: absolute;
+  background-size: 20px 20px;
+  background-image: url(../../assets/imagenes/estrellaVintage.png);
+}
+
 .salas {
   flex-direction: column;
+}
+.salas__p--premium::after {
+  width: 100px;
+  height: 20px;
+}
+.salas__p--clasica::after {
+  width: 80px;
+  height: 20px;
+}
+.salas__p--infantil::after {
+  width: 60px;
+  height: 20px;
 }
 
 .salas__div {
   display: grid;
-  grid-template-columns: 40% 20% 40%;
+  grid-template-columns: 30% 15% 55%;
   grid-template-rows: auto auto auto;
+  margin-bottom: 50px;
+  padding: 40px;
+  background-color: #f5f5f5;
 }
 
+.salas__item--info {
+  padding: 20px;
+}
+.salas__item--titulo {
+  padding-left: 30px;
+  padding-top: 20px;
+}
+.salas__item--titulo p {
+  font-family: var(--oswald);
+  font-size: 1.1em;
+  text-transform: uppercase;
+}
 .salas__item--foto {
   grid-area: 1/1/4/2;
 }
 .salas__item--foto img {
   max-width: 100%;
   object-fit: cover;
+  height: 100%;
 }
 
 .hero {
@@ -319,7 +367,7 @@ h5 {
 }
 .logo__p::after {
   content: "";
-  background-image: url(../../assets/imagenes/estrellaVintage.svg);
+  background-image: url(../../assets/imagenes/estrellaVintage.png);
   width: 50px;
   height: 50px;
   background-size: 50px 50px;
@@ -351,6 +399,27 @@ h5 {
   background-color: var(--smoky-black);
   color: white;
   padding: 30px 100px;
+}
+
+.snacks {
+  flex-wrap: wrap;
+  row-gap: 30px;
+}
+.snacks__item {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 30%;
+}
+.snacks__item img {
+  max-width: 100%;
+}
+.snacks__item--contenido {
+  padding: 20px;
+}
+.snacks__p--nombre {
+  font-family: var(--source);
+  font-style: italic;
+  margin-bottom: 30px;
+  font-size: var(--size-h3);
 }
 
 .platea {
