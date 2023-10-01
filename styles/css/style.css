@@ -35,13 +35,15 @@ li {
   font-family: var(--poppins);
   font-weight: var(--weight-p);
   font-size: var(--size-p);
+  color: var(--smoky-black);
 }
 
 h1 {
   font-family: var(--source);
   font-style: italic;
   font-weight: var(--weight-h1);
-  font-size: var(--size-h2);
+  font-size: var(--size-h1);
+  color: var(--smoky-black);
 }
 
 h2,
@@ -51,10 +53,6 @@ h5 {
   font-family: var(--oswald);
   font-weight: var(--weight-h);
   text-transform: uppercase;
-}
-
-body {
-  background-color: white;
 }
 
 a {
@@ -75,6 +73,50 @@ h4 {
 
 h5 {
   font-size: var(--size-h5);
+}
+
+/* drop down select según moderncss.dev */
+/* 1-reseteando estilos*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E3A446ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+select {
+  display: block;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: rgb(18, 17, 17);
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+select option.select--disabled {
+  color: grey;
+}
+
+/*para sacar flecha en explorers viejos*/
+select::-ms-expand {
+  display: none;
 }
 
 .header {
@@ -132,8 +174,63 @@ h5 {
     color: var(--rojo-butaca);
   }
 }
-.descripcion {
-  margin: 20px 100px 0 100px;
+.logo__p {
+  font-family: var(--logo);
+  font-size: var(--size-h1);
+  padding: 10px 20px 20px 20px;
+  color: white;
+}
+.logo__p::after {
+  content: "";
+  background-image: url(../../assets/imagenes/estrellaVintage.png);
+  width: 50px;
+  height: 50px;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 0 0;
+  left: 0;
+}
+
+.hero {
+  background-image: url(../../assets/imagenes/telon-cine.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+}
+.hero__div {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.hero__p--principal {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: calc(var(--size-h1) * 1.2);
+  font-family: var(--oswald);
+  font-weight: var(--weight-p-bold);
+}
+.hero__p--principal a {
+  border: dotted 10px white;
+  display: block;
+  color: var(--rojo-butaca);
+  padding: 20px 30px;
+}
+.hero__p--principal a:hover {
+  color: white;
+  border: dotted 10px var(--rojo-butaca);
+}
+.hero__p--secundario {
+  font-style: italic;
+  font-size: var(--size-h3);
+  text-align: center;
+  font-family: var(--normal);
+  margin-top: 20px;
+  color: var(--rojo-butaca);
 }
 
 .main {
@@ -150,30 +247,27 @@ h5 {
 }
 
 .bienvenidos {
+  display: flex;
   margin: 50px;
-  background-color: white;
-  border: dotted 5px var(--rojo-butaca);
   padding: 50px;
+  border: dotted 5px var(--rojo-butaca);
   align-items: center;
   background-image: url(../../assets/imagenes/estrellaVintageTopRight.png);
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: top right;
 }
-.bienvenidos h1 {
-  color: black;
+.bienvenidos__h1 {
+  width: 80%;
 }
-
-.vintage {
+.bienvenidos__p--vintage {
   font-family: var(--source);
   font-style: italic;
-  font-size: 2em;
+  font-size: 1.5em;
+  margin-bottom: 20px;
 }
-
-.epocas {
-  font-style: italic;
-  font-weight: bold;
-  padding: 5px;
+.bienvenidos__span {
+  color: var(--hunyadi-yellow);
 }
 
 .negro {
@@ -220,35 +314,23 @@ h5 {
   margin-right: 10px;
   color: var(--hunyadi-yellow);
 }
+.section__titulo__p {
+  color: #eeeeee;
+}
 
 .cartelera__div--imagen {
   width: 30%;
   position: relative;
 }
-.cartelera__div--imagen:hover .overlay {
+.cartelera__div--imagen:hover .cartelera__div--overlay {
   height: 100%;
 }
-.cartelera__div--imagen img {
+.cartelera__img {
   width: 100%;
   display: block;
   height: auto;
 }
-.cartelera .text {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 30% 65%;
-  row-gap: 10px;
-  color: white;
-  font-size: 0.8em;
-  position: absolute;
-}
-.cartelera .text--item--left {
-  font-family: var(--oswald);
-  text-transform: uppercase;
-  font-weight: var(--weight-h1);
-}
-
-.overlay {
+.cartelera__div--overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -258,6 +340,40 @@ h5 {
   width: 100%;
   height: 0;
   transition: 0.5s ease;
+}
+.cartelera .text {
+  padding: 50px 20px 20px 20px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 65%;
+  row-gap: 10px;
+  color: white;
+  font-size: 0.8em;
+}
+.cartelera .text--item {
+  color: #eeeeee;
+}
+.cartelera .text--item--left {
+  font-family: var(--oswald);
+  text-transform: uppercase;
+  font-weight: var(--weight-h1);
+}
+.cartelera .text--item--trama {
+  font-size: 1em;
+  text-align: justify;
+}
+.cartelera__boton {
+  width: 80%;
+  margin: auto;
+  border-radius: 5px;
+  color: #eeeeee;
+  font-family: var(--oswald);
+  font-size: var(--size-p);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px;
+  border: solid 1px #eeeeee;
+  text-align: center;
 }
 
 .salas__p--infantil::after, .salas__p--clasica::after, .salas__p--premium::after {
@@ -315,68 +431,6 @@ h5 {
   height: 100%;
 }
 
-.hero {
-  background-image: url(../../assets/imagenes/telon-cine.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  height: 100%;
-  min-height: 600px;
-}
-.hero__div {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--rojo-butaca);
-}
-.hero__p--principal {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: calc(var(--size-h1) * 1.2);
-  font-family: var(--oswald);
-  font-weight: var(--weight-p-bold);
-  text-shadow: 1px 1px 4px #000000;
-}
-.hero__p--principal a {
-  border: dotted 10px white;
-  display: block;
-  color: var(--rojo-butaca);
-  text-decoration: none;
-  padding: 20px 30px;
-}
-.hero__p--principal a:hover {
-  color: white;
-  border: dotted 10px var(--rojo-butaca);
-}
-.hero__p--secundario {
-  font-style: italic;
-  font-size: var(--size-h3);
-  text-align: center;
-  font-family: var(--normal);
-  margin-top: 20px;
-  color: var(--rojo-butacas);
-}
-
-.logo__p {
-  font-family: var(--logo);
-  font-size: var(--size-h1);
-  padding: 10px 20px 20px 20px;
-  color: white;
-}
-.logo__p::after {
-  content: "";
-  background-image: url(../../assets/imagenes/estrellaVintage.png);
-  width: 50px;
-  height: 50px;
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  background-position: 0 0;
-  left: 0;
-}
-
 .select {
   background-color: white;
 }
@@ -395,12 +449,6 @@ h5 {
   }
 }
 
-.bienvenida {
-  background-color: var(--smoky-black);
-  color: white;
-  padding: 30px 100px;
-}
-
 .snacks {
   flex-wrap: wrap;
   row-gap: 30px;
@@ -415,11 +463,18 @@ h5 {
 .snacks__item--contenido {
   padding: 20px;
 }
+.snacks__p {
+  color: #eeeeee;
+}
 .snacks__p--nombre {
   font-family: var(--source);
   font-style: italic;
   margin-bottom: 30px;
   font-size: var(--size-h3);
+}
+
+.descripcion {
+  margin: 20px 100px 0 100px;
 }
 
 .platea {
@@ -447,65 +502,6 @@ h5 {
 .fila {
   width: 100%;
   display: flex;
-}
-
-.boton {
-  appearance: none;
-  border: #ffffff 10px dotted;
-  border-radius: 5px;
-  padding: 30px;
-  font-size: 2em;
-  cursor: pointer;
-  color: var(--hunyadi-yellow);
-  background: transparent;
-  margin: 50px auto;
-  font-family: var(--oswald);
-  font-weight: var(--weight-h);
-  text-transform: uppercase;
-}
-
-/* drop down select según moderncss.dev */
-/* 1-reseteando estilos*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-select {
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E3A446ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-
-select {
-  display: block;
-  font-size: 16px;
-  font-family: sans-serif;
-  font-weight: 700;
-  color: rgb(18, 17, 17);
-  line-height: 1.3;
-  padding: 0.6em 1.4em 0.5em 0.8em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border: 1px solid black;
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  border-radius: 0.5em;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  background-repeat: no-repeat, repeat;
-  background-position: right 0.7em top 50%, 0 0;
-  background-size: 0.65em auto, 100%;
-}
-select option.select--disabled {
-  color: grey;
-}
-
-/*para sacar flecha en explorers viejos*/
-select::-ms-expand {
-  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

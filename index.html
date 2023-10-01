@@ -1,217 +1,335 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine VINTAGE | 1er entrega</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins&family=Oswald:wght@300;700&family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap" rel="stylesheet">
-<link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-  <link href="assets/fontawesome/css/brands.css" rel="stylesheet">
-  <link href="assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins&family=Oswald:wght@300;700&family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+        rel="stylesheet">
+    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="assets/fontawesome/css/solid.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/css/style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
             <p class="logo__p">Vintage</p>
-            </div>
-            <nav class="nav">
-                <ul class="nav__ul">
-                    <li><a class="nav__a" href="#"><i class="fa-solid fa-clapperboard"></i>cartelera</a></li>
-                    <li><a class="nav__a" href="#"><i class="fa-solid fa-people-roof"></i>salas</a></li>
-                    <li><a class="nav__a" href="#"><i class="fa-solid fa-cookie-bite"></i>snacks</a></li>
-                    <li><a class="nav__a" href="#"><i class="fa-solid fa-address-card"></i>contacto</a></li>
-                    <li><a href="#" class="nav__a--entradas" onclick="ejecutar();"><i class="fa-solid fa-ticket"></i>entradas</a></li>
-                </ul>
-            </nav>
+        </div>
+        <nav class="nav">
+            <ul class="nav__ul">
+                <li><a class="nav__a" href="#"><i class="fa-solid fa-clapperboard"></i>cartelera</a></li>
+                <li><a class="nav__a" href="#"><i class="fa-solid fa-people-roof"></i>salas</a></li>
+                <li><a class="nav__a" href="#"><i class="fa-solid fa-cookie-bite"></i>snacks</a></li>
+                <li><a class="nav__a" href="#"><i class="fa-solid fa-address-card"></i>contacto</a></li>
+                <li><a href="#" class="nav__a--entradas" onclick="ejecutar();"><i
+                            class="fa-solid fa-ticket"></i>entradas</a></li>
+            </ul>
+        </nav>
     </header>
     <section class="hero">
         <div class="hero__div">
-        <p class="hero__p--principal">
-            <a href="#" onclick="ejecutar();">Comprá tus entradas</a>
-        </p>
-        <p class="hero__p--secundario">
-            Y volvé a mirar tus pelis favoritas en pantalla grande
-        </p>
-    </div>
+            <p class="hero__p--principal">
+                <a href="#" onclick="ejecutar();">Comprá tus entradas</a>
+            </p>
+            <p class="hero__p--secundario">
+                Y volvé a mirar tus pelis favoritas en pantalla grande
+            </p>
+        </div>
     </section>
-    <section class="main bienvenidos">
-        <div><h1>Bienvenidos...</h1></div>
-    <div>   
-    <p class="vintage">...a Vintage Cinema</p>
-    <p>Donde podés ver, <span class="epocas">hoy</span> las películas del <span class="epocas">pasado</span> en un cine del <span class="epocas">futuro</span>.</p></div> 
+    <section class="bienvenidos">
+        <div class="bienvenidos__h1">
+            <h1>Bienvenidos...</h1>
+        </div>
+        <div>
+            <p class="bienvenidos__p--vintage">...a Vintage Cinema,<br>donde podés ver, <span
+                    class="bienvenidos__span">hoy</span>, las películas del <span
+                    class="bienvenidos__span">pasado</span> en un cine del <span
+                    class="bienvenidos__span">futuro</span>.</p>
+            <p>Comprá tus entradas antes de que se agoten haciendo click en el menú superior (o en cualquier lugar donde diga COMPRAR ENTRADAS 😉) o empezá la compra directamente desde nuestra cartelera, seleccionando la peli que te gusta. </p>
+                <p>Si sos de los que les gusta 'picar' algo mientras mirás la película,
+                más abajo te mostramos las opciones de snacks y golosinas.</p>
+        </div>
 
     </section>
     <section class="main entradas"></section>
     <section class="negro">
-<section class="section__titulo section__titulo--cartelera"><h2><i class="fa-solid fa-clapperboard"></i>cartelera</h2></section>
-<section class="main cartelera">
-    <div class="cartelera__div--imagen"><img src="assets/imagenes/Indiana_Jones_y_el_templo_de_la_perdicion.webp" alt=""><div class="overlay">
-        <div class="text">
-            <p class="text--item text--item--left">Título</p><p class="text--item">Indiana Jones y el templo de la perdición</p>
-            <p class="text--item text--item--left">Duración</p><p class="text--item">2h 30m</p>
-            <p class="text--item text--item--left">Director</p><p class="text--item">Steven Spielberg</p>
-            <p class="text--item text--item--left">Actores</p><p class="text--item">Harrison Ford</p>
-            <p class="text--item text--item--left">Género</p><p class="text--item">Aventuras</p>
-            <p class="text--item text--item--left">Edad</p><p class="text--item">ATP</p>
-            <p class="text--item text--item--left">Rating</p><p class="text--item">7.5</p>
+        <section class="section__titulo section__titulo--cartelera">
+            <h2><i class="fa-solid fa-clapperboard"></i>cartelera</h2>
+        </section>
+        <section class="main cartelera">
+            <div class="cartelera__div--imagen">
+                <img class="cartelera__img" src="assets/imagenes/Indiana_Jones_y_el_templo_de_la_perdicion.webp"
+                    alt="poster de Indiana Jones">
+                <div class="cartelera__div--overlay">
+                    <div class="text">
+                        <p class="text--item text--item--left">Título</p>
+                        <p class="text--item">Indiana Jones</p>
+                        <p class="text--item text--item--left">Duración</p>
+                        <p class="text--item">2h 30m</p>
+                        <p class="text--item text--item--left">Director</p>
+                        <p class="text--item">Steven Spielberg</p>
+                        <p class="text--item text--item--left">Actores</p>
+                        <p class="text--item">Harrison Ford</p>
+                        <p class="text--item text--item--left">Género</p>
+                        <p class="text--item">Aventuras</p>
+                        <p class="text--item text--item--left">Edad</p>
+                        <p class="text--item">ATP</p>
+                        <p class="text--item text--item--left">Rating</p>
+                        <p class="text--item">7.5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cartelera__div--imagen">
+                <img class="cartelera__img" src="assets/imagenes/africaMia.jpg" alt="poster de Africa Mía">
+                <div class="cartelera__div--overlay">
+                    <div class="text">
+                        <p class="text--item text--item--left">Título</p>
+                        <p class="text--item">Africa Mia</p>
+                        <p class="text--item text--item--left">Duración</p>
+                        <p class="text--item">2h 30m</p>
+                        <p class="text--item text--item--left">Director</p>
+                        <p class="text--item">Steven Spielberg</p>
+                        <p class="text--item text--item--left">Actores</p>
+                        <p class="text--item">Harrison Ford</p>
+                        <p class="text--item text--item--left">Género</p>
+                        <p class="text--item">Aventuras</p>
+                        <p class="text--item text--item--left">Edad</p>
+                        <p class="text--item">ATP</p>
+                        <p class="text--item text--item--left">Rating</p>
+                        <p class="text--item">7.5</p>
+                        <p class="text--item text--item--left">Trama</p>
+                        <p class="text--item text--item--trama">En 1935, Indiana Jones llega a la India, todavía parte del Imperio británico, y se le pide que encuentre una piedra mística. Entonces se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un palacio.</p>
+                        
+                    </div>
+                    <div class="cartelera__boton">elegir</div>
+                </div>
+            </div>
+            <div class="cartelera__div--imagen">
+                <img class="cartelera__img" src="assets/imagenes/toyStory.jpg" alt="póster de Toy Story">
+                <div class="cartelera__div--overlay">
+                    <div class="text">
+                        <p class="text--item text--item--left">Título</p>
+                        <p class="text--item">Toy Story</p>
+                        <p class="text--item text--item--left">Duración</p>
+                        <p class="text--item">2h 30m</p>
+                        <p class="text--item text--item--left">Director</p>
+                        <p class="text--item">Steven Spielberg</p>
+                        <p class="text--item text--item--left">Actores</p>
+                        <p class="text--item">Harrison Ford</p>
+                        <p class="text--item text--item--left">Género</p>
+                        <p class="text--item">Aventuras</p>
+                        <p class="text--item text--item--left">Edad</p>
+                        <p class="text--item">ATP</p>
+                        <p class="text--item text--item--left">Rating</p>
+                        <p class="text--item">7.5</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="section__titulo section__titulo--salas">
+        <h2><i class="fa-solid fa-people-roof"></i>Conocé nuestras salas</h2>
+    </section>
+    <section class="main salas">
+        <div class="salas__div salas__div--premium">
+            <div class="salas__item--foto"><img src="assets/imagenes/sala-premium.jpg" alt="vista de la sala Premium">
+            </div>
+            <div class="salas__item--titulo">
+                <p>Nombre sala</p>
+            </div>
+            <div class="salas__item--info">
+                <p class="salas__p--premium">Premium</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Capacidad</p>
+            </div>
+            <div class="salas__item--info">
+                <p>80 personas</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Descripción</p>
+            </div>
+            <div class="salas__item--info">
+                <p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador
+                    elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase
+                    de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor
+                    privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de
+                    menores de 12 años.</p>
+            </div>
         </div>
-      </div></div>
-    <div class="cartelera__div--imagen"><img src="assets/imagenes/africaMia.jpg" alt=""><div class="overlay">
-        <div class="text"><p class="text--item text--item--left">Título</p><p class="text--item">Indiana Jones y el templo de la perdición</p>
-            <p class="text--item text--item--left">Duración</p><p class="text--item">2h 30m</p>
-            <p class="text--item text--item--left">Director</p><p class="text--item">Steven Spielberg</p>
-            <p class="text--item text--item--left">Actores</p><p class="text--item">Harrison Ford</p>
-            <p class="text--item text--item--left">Género</p><p class="text--item">Aventuras</p>
-            <p class="text--item text--item--left">Edad</p><p class="text--item">ATP</p>
-            <p class="text--item text--item--left">Rating</p><p class="text--item">7.5</p></div>
-      </div></div>
-    <div class="cartelera__div--imagen"><img src="assets/imagenes/toyStory.jpg" alt=""><div class="overlay">
-        <div class="text"><p class="text--item text--item--left">Título</p><p class="text--item">Indiana Jones y el templo de la perdición</p>
-            <p class="text--item text--item--left">Duración</p><p class="text--item">2h 30m</p>
-            <p class="text--item text--item--left">Director</p><p class="text--item">Steven Spielberg</p>
-            <p class="text--item text--item--left">Actores</p><p class="text--item">Harrison Ford</p>
-            <p class="text--item text--item--left">Género</p><p class="text--item">Aventuras</p>
-            <p class="text--item text--item--left">Edad</p><p class="text--item">ATP</p>
-            <p class="text--item text--item--left">Rating</p><p class="text--item">7.5</p></div>
-      </div></div>
-</section>
-</section>
-<section class="section__titulo section__titulo--salas"><h2><i class="fa-solid fa-people-roof"></i>Conocé nuestras salas</h2></section>
-<section class="main salas">
-<div class="salas__div salas__div--premium">
-    <div class="salas__item--foto"><img src="assets/imagenes/sala-premium.jpg" alt="vista de la sala Premium"></div>
-    <div class="salas__item--titulo"><p>Nombre sala</p></div>
-<div class="salas__item--info"><p class="salas__p--premium">Premium</p></div>
-<div class="salas__item--titulo"><p>Capacidad</p></div>
-<div class="salas__item--info"><p>100</p></div>
-<div class="salas__item--titulo"><p>Descripción</p></div>
-<div class="salas__item--info"><p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de menores de 12 años.</p></div>
-</div>
-<div class="salas__div">
-    <div class="salas__item--foto"><img src="assets/imagenes/sala-clasica.jpg" alt="vista de la sala Clasica"></div>
-    <div class="salas__item--titulo"><p>Nombre sala</p></div>
-<div class="salas__item--info"><p class="salas__p--clasica">Clásica</p></div>
-<div class="salas__item--titulo"><p>Capacidad</p></div>
-<div class="salas__item--info"><p>100</p></div>
-<div class="salas__item--titulo"><p>Descripción</p></div>
-<div class="salas__item--info"><p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de menores de 12 años.</p></div>
-</div>
-<div class="salas__div">
-    <div class="salas__item--foto"><img src="assets/imagenes/sala-infantil.jpg" alt="vista de la sala Premium"></div>
-    <div class="salas__item--titulo"><p>Nombre sala</p></div>
-<div class="salas__item--info"><p class="salas__p--infantil">Infantil</p></div>
-<div class="salas__item--titulo"><p>Capacidad</p></div>
-<div class="salas__item--info"><p>250</p></div>
-<div class="salas__item--titulo"><p>Descripción</p></div>
-<div class="salas__item--info"><p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de menores de 12 años.</p></div>
-</div>
-</section>
-<section class="rojo">
-<section class="section__titulo section__titulo--snacks"><h2><i class="fa-solid fa-cookie-bite"></i>Snacks</h2>
-</section>
-<section class="section__titulo section__titulo--intro"><p>Tentate con nuestros snacks. Acá te mostramos las opciones en combos. Además, en la entrada al complejo tenés un kiosko lleno de golosinas para elegir.</p>
-    <p><i class="fa-solid fa-circle-exclamation"></i>Los snacks sólo se pueden adquirir una vez seleccionadas las entradas. No se venden por separado.</p></section>
+        <div class="salas__div">
+            <div class="salas__item--foto"><img src="assets/imagenes/sala-clasica.jpg" alt="vista de la sala Clasica">
+            </div>
+            <div class="salas__item--titulo">
+                <p>Nombre sala</p>
+            </div>
+            <div class="salas__item--info">
+                <p class="salas__p--clasica">Clásica</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Capacidad</p>
+            </div>
+            <div class="salas__item--info">
+                <p>100 personas</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Descripción</p>
+            </div>
+            <div class="salas__item--info">
+                <p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador
+                    elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase
+                    de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor
+                    privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de
+                    menores de 12 años.</p>
+            </div>
+        </div>
+        <div class="salas__div">
+            <div class="salas__item--foto"><img src="assets/imagenes/sala-infantil.jpg" alt="vista de la sala Standard">
+            </div>
+            <div class="salas__item--titulo">
+                <p>Nombre sala</p>
+            </div>
+            <div class="salas__item--info">
+                <p class="salas__p--infantil">Standard</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Capacidad</p>
+            </div>
+            <div class="salas__item--info">
+                <p>250 personas</p>
+            </div>
+            <div class="salas__item--titulo">
+                <p>Descripción</p>
+            </div>
+            <div class="salas__item--info">
+                <p>Nuestra sala VIP, cuenta con butacas reclinables con botones eléctricos para que cada expectador
+                    elija su posición ideal y así disfrute de su película preferida como si estuviera en primera clase
+                    de un viaje en avión. Además, menos cantidad de butacas y más espacio entre las mismas otorgan mayor
+                    privacidad, y cada butaca cuenta con bandeja para los snacks. NO está permitido el ingreso de
+                    menores de 12 años.</p>
+            </div>
+        </div>
+    </section>
+    <section class="rojo">
+        <section class="section__titulo section__titulo--snacks">
+            <h2><i class="fa-solid fa-cookie-bite"></i>Snacks</h2>
+        </section>
+        <section class="section__titulo section__titulo--intro">
+            <p class="section__titulo__p">Tentate con nuestros snacks. Acá te mostramos las opciones en combos. Además, en la entrada al complejo
+                tenés un kiosko lleno de golosinas para elegir.</p>
+            <p class="section__titulo__p"><i class="fa-solid fa-circle-exclamation"></i>Los snacks sólo se pueden adquirir una vez seleccionadas
+                las entradas. No se venden por separado.</p>
+        </section>
 
-<section class="main snacks">
-    <div class="snacks__item">
-        <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-    <div class="snacks__item">
-        <img src="assets/imagenes/popcorn.png" alt="Foto de cartón de pochoclos">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Popcorn</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-    <div class="snacks__item">
-        <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-    <div class="snacks__item">
-        <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-    <div class="snacks__item">
-        <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-    <div class="snacks__item">
-        <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
-        <div class="snacks__item--contenido">
-            <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
-            <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mayo Hellmann y papas pay, acompañado de gaseosa a elección.</p>
-        </div>
-    </div>
-</section>
-</section>
-<footer class="footer">
-<div class="contacto--form"></div>
-<div class="contacto--datos"></div>
-</footer>
-<section class="descripcion">
-    <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p> 
-    <h2>Primer y segunda entrega</h2>
-    <p>En las dos primeras entregas, una vez que el usuario hace click en el botón de comprar entradas, interactuamos con él a través de prompt y alert, sin modificar el html.</p>
-    <form>
-        <button class="boton" onclick="ejecutar();">Comprar entradas</button>
-    </form>
-    <h2>Idea general del proyecto</h2>
-    <p>Acá explicamos con un poco de detalle cuál es la idea del proyecto final</p>
-    <p>Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
-    <ol>
-        <li>Película</li>
-        <li>Tipo de sala (premium o clásica) - Si hubiera 2 salas para la misma película</li>
-        <li>Función (fecha y hora)</li>
-        <li>Cantidad de entradas</li>
-        <li>Asientos</li>
-    </ol>
-    <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la ubicación del asiento, la entrada tendrá un valor específico.</p>
-    <p>Acá se puede ver la idea desarrollada hasta el momento (varios "checkboxes" dentro de un form). Cuando se hace click en un círculo, cambia de color.</p>
-    <section class="platea">
-        <div class="fila">
-            <input type="checkbox" class="asiento" id="f1-c1"></input>
-            <input type="checkbox" class="asiento" id="f1-c2"></input>
-            <input type="checkbox" class="asiento" id="f1-c3"></input>
-            <input type="checkbox" class="asiento" id="f1-c4"></input>
-            <input type="checkbox" class="asiento" id="f1-c5"></input>
-            <input type="checkbox" class="asiento" id="f1-c6"></input>
-            <input type="checkbox" class="asiento" id="f1-c7"></input>
-            <input type="checkbox" class="asiento" id="f1-c8"></input>
-            <input type="checkbox" class="asiento" id="f1-c9"></input>
-            <input type="checkbox" class="asiento" id="f1-c10"></input>
-        </div>
-        <div class="fila">
-            <input type="checkbox" class="asiento" id="f2-c1"></input>
-            <input type="checkbox" class="asiento" id="f2-c2"></input>
-            <input type="checkbox" class="asiento" id="f2-c3"></input>
-            <input type="checkbox" class="asiento" id="f2-c4"></input>
-            <input type="checkbox" class="asiento" id="f2-c5"></input>
-            <input type="checkbox" class="asiento" id="f2-c6"></input>
-            <input type="checkbox" class="asiento" id="f2-c7"></input>
-            <input type="checkbox" class="asiento" id="f2-c8"></input>
-            <input type="checkbox" class="asiento" id="f2-c9"></input>
-            <input type="checkbox" class="asiento" id="f2-c10"></input>
-        </div>
-     </section>   
-    <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.</p>
+        <section class="main snacks">
+            <div class="snacks__item">
+                <img src="assets/imagenes/popcornYbebida.png" alt="Foto de balde de pochoclo y 2 vasos de bebida">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Pochoclo 'entre dos'</p>
+                    <p class="snacks__p">Balde de pochoclos para compartir, y dos vasos de gaseosa a elección.</p>
+                </div>
+            </div>
+            <div class="snacks__item">
+                <img src="assets/imagenes/popcorn.png" alt="Foto de cartón de pochoclos">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Popcorn Vintage</p>
+                    <p class="snacks__p">Cartón de nuestro exquisito pochoclo Vintage. Puede ser dulce o salado. Simple o bañado en manteca derretida.</p>
+                </div>
+            </div>
+            <div class="snacks__item">
+                <img src="assets/imagenes/chipa.png" alt="Foto de bandeja de chipa y 2 vasos de jugo de naranja">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Chipa para compartir</p>
+                    <p class="snacks__p">Bandeja de chipá (pan de queso) para compartir. Trae 10 unidades. Acompañado de 2 vasos de jugo de naranja recién exprimido.</p>
+                </div>
+            </div>
+            <div class="snacks__item">
+                <img src="assets/imagenes/hotdog.png" alt="Foto de hotdogs como se venden en el vintage bar">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Pancho a la Vintage</p>
+                    <p class="snacks__p">Salchicha de primera calidad en panes esponjosos, con mostaza y ketchup, acompañado de gaseosa a elección.</p>
+                </div>
+            </div>
+            <div class="snacks__item">
+                <img src="assets/imagenes/barritas.png" alt="Barritas de cereal y jugo de naranja">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Cereales con naranja</p>
+                    <p class="snacks__p">Dos barras de cereal con chips de chocolate y un vaso de jugo de naranja recién exprimido.</p>
+                </div>
+            </div>
+            <div class="snacks__item">
+                <img src="assets/imagenes/nachos.png" alt="Foto de bandeja de nachos con cheddar y bebida">
+                <div class="snacks__item--contenido">
+                    <p class="snacks__p snacks__p--nombre">Nachos del futuro</p>
+                    <p class="snacks__p">Bandeja de nachos con mucho cheddar para untar. Acompañada de un vaso de gaseosa a elección.</p>
+                </div>
+            </div>
+        </section>
+    </section>
+    <footer class="footer">
+        <div class="contacto--form"></div>
+        <div class="contacto--datos"></div>
+    </footer>
+    <section class="descripcion">
+        <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p>
+        <h2>Primer y segunda entrega</h2>
+        <p>En las dos primeras entregas, una vez que el usuario hace click en el botón de comprar entradas,
+            interactuamos con él a través de prompt y alert, sin modificar el html.</p>
+        <form>
+            <button class="boton" onclick="ejecutar();">Comprar entradas</button>
+        </form>
+        <h2>Idea general del proyecto</h2>
+        <p>Acá explicamos con un poco de detalle cuál es la idea del proyecto final</p>
+        <p>Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
+        <ol>
+            <li>Película</li>
+            <li>Tipo de sala (premium o clásica) - Si hubiera 2 salas para la misma película</li>
+            <li>Función (fecha y hora)</li>
+            <li>Cantidad de entradas</li>
+            <li>Asientos</li>
+        </ol>
+        <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una
+            especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la
+            ubicación del asiento, la entrada tendrá un valor específico.</p>
+        <p>Acá se puede ver la idea desarrollada hasta el momento (varios "checkboxes" dentro de un form). Cuando se
+            hace click en un círculo, cambia de color.</p>
+        <section class="platea">
+            <div class="fila">
+                <input type="checkbox" class="asiento" id="f1-c1"></input>
+                <input type="checkbox" class="asiento" id="f1-c2"></input>
+                <input type="checkbox" class="asiento" id="f1-c3"></input>
+                <input type="checkbox" class="asiento" id="f1-c4"></input>
+                <input type="checkbox" class="asiento" id="f1-c5"></input>
+                <input type="checkbox" class="asiento" id="f1-c6"></input>
+                <input type="checkbox" class="asiento" id="f1-c7"></input>
+                <input type="checkbox" class="asiento" id="f1-c8"></input>
+                <input type="checkbox" class="asiento" id="f1-c9"></input>
+                <input type="checkbox" class="asiento" id="f1-c10"></input>
+            </div>
+            <div class="fila">
+                <input type="checkbox" class="asiento" id="f2-c1"></input>
+                <input type="checkbox" class="asiento" id="f2-c2"></input>
+                <input type="checkbox" class="asiento" id="f2-c3"></input>
+                <input type="checkbox" class="asiento" id="f2-c4"></input>
+                <input type="checkbox" class="asiento" id="f2-c5"></input>
+                <input type="checkbox" class="asiento" id="f2-c6"></input>
+                <input type="checkbox" class="asiento" id="f2-c7"></input>
+                <input type="checkbox" class="asiento" id="f2-c8"></input>
+                <input type="checkbox" class="asiento" id="f2-c9"></input>
+                <input type="checkbox" class="asiento" id="f2-c10"></input>
+            </div>
+        </section>
+        <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.
+        </p>
 
-</section>
-<script src="scripts/main.js"></script>    
+    </section>
+    <script src="scripts/main.js"></script>
 </body>
+
 </html>

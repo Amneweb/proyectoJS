@@ -1,141 +1,54 @@
-:root {
-    --source: 'Source Serif 4', serif;
-    --poppins: 'Poppins', sans-serif;
-    --oswald: 'Oswald', sans-serif;
-    --logo: 'Fascinate', cursive;
-    --size-p: 16px;
-    --size-h1: 3em;
-    --size-h2: 3em;
-    --size-h3: 2em;
-    --weight-h1: 900;
-    --weight-h: 700;
-    --weight-p: 400;
-    --weight-p-bold: 600;
-    --rojo-butaca: #cc2d2c;
-    --hunyadi-yellow: #E3A446ff;
-    --smoky-black: #080402ff;
-}
+//************* secciones de la pagina **********
+//------ IMAGEN INICIAL --------
+.hero {
+    background-image: url(../../assets/imagenes/telon-cine.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    min-height: 600px;
 
-html,
-body,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-p,
-li {
-    font-family: var(--poppins);
-    font-weight: var(--weight-p);
-    font-size: var(--size-p);
-}
-
-h1 {
-    font-family: var(--source);
-    font-style: italic;
-    font-weight: var(--weight-h1);
-    font-size: var(--size-h2);
-}
-
-h2,
-h3,
-h4,
-h5 {
-    font-family: var(--oswald);
-    font-weight: var(--weight-h);
-    text-transform: uppercase;
-}
-
-body {
-    background-color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-@for $i from 2 through 5 {
-    h#{$i} {
-        font-size:var(--size-h#{$i})
-    }
-}
-
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: var(--smoky-black);
-    display: flex;
-    justify-content: space-between;
-}
-
-.nav {
-    &__ul {
-        list-style-type: none;
-
-        li {
-            display: inline-block;
-            font-family: var(--oswald);
-            padding: 20px;
-            font-size:20px;
-        }
+    &__div {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
-    &__a {
-        padding: 10px;
-        text-decoration: none;
-        color: white;
-        display: block;
+    &__p--principal {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: calc(var(--size-h1)*1.2);
+        font-family: var(--oswald);
+        font-weight: var(--weight-p-bold);
 
-        &:hover {
+        a {
+            border: dotted 10px white;
+            display: block;
             color: var(--rojo-butaca);
+            padding: 20px 30px;
+
+            &:hover {
+                color: white;
+                border: dotted 10px var(--rojo-butaca);
+            }
         }
 
-        i {
-            margin-right: 20px;
-        }
+
     }
 
-    &__a--entradas {
-        background-color: var(--rojo-butaca);
-        color: white;
-        padding: 20px 50px 20px 50px;
-        border-radius: 5px;
-
-        &:hover {
-            background-color: white;
-            color: var(--rojo-butaca);
-            animation: transicion-entradas 0.5s;
-        }
-
-        i {
-            margin-right: 20px;
-        }
-    }
-}
-
-@keyframes transicion-entradas {
-    from {
-        background: var(--rojo-butaca);
-        color: var(--licorice);
-    }
-
-    to {
-        background: white;
+    &__p--secundario {
+        font-style: italic;
+        font-size: var(--size-h3);
+        text-align: center;
+        font-family: var(--normal);
+        margin-top: 20px;
         color: var(--rojo-butaca);
     }
 }
 
-.descripcion {
-    margin: 20px 100px 0 100px;
-}
-
+//------ COMUN A TODAS LAS SECCIONES --------
 .main {
     display: flex;
     padding: 80px 50px 80px 50px;
@@ -151,31 +64,30 @@ a {
 }
 
 .bienvenidos {
+    display: flex;
     margin: 50px;
-    background-color: white;
-    border: dotted 5px var(--rojo-butaca);
     padding: 50px;
+    border: dotted 5px var(--rojo-butaca);
     align-items: center;
     background-image: url(../../assets/imagenes/estrellaVintageTopRight.png);
     background-size: 100px 100px;
     background-repeat: no-repeat;
     background-position: top right;
 
-    h1 {
-        color: black;
+    &__h1 {
+        width: 80%;
     }
-}
 
-.vintage {
-    font-family: var(--source);
-    font-style: italic;
-    font-size: 2em;
-}
+    &__p--vintage {
+        font-family: var(--source);
+        font-style: italic;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
 
-.epocas {
-    font-style: italic;
-    font-weight: bold;
-    padding: 5px;
+    &__span {
+        color: var(--hunyadi-yellow);
+    }
 }
 
 .negro {
@@ -227,6 +139,9 @@ a {
             color: var(--hunyadi-yellow);
         }
     }
+    &__p {
+        color:#eeeeee;
+    }
 
 }
 
@@ -235,49 +150,76 @@ a {
         width: 30%;
         position: relative;
 
-        &:hover .overlay {
+        &:hover .cartelera__div--overlay {
             height: 100%;
-        }
-
-        img {
-            width: 100%;
-            display: block;
-            //object-fit: cover; 
-            height: auto;
         }
     }
 
+    &__img {
+        width: 100%;
+        display: block;
+        //object-fit: cover; 
+        height: auto;
+    }
+
+    &__div--overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--rojo-butaca);
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+    }
+
     .text {
-        padding: 20px;
+        padding: 50px 20px 20px 20px;
         display: grid;
+        width: 100%;
         grid-template-columns: 30% 65%;
         row-gap: 10px;
         color: white;
         font-size: 0.8em;
-        position: absolute;
+        //position: absolute;
 
-        &--item--left {
-            font-family: var(--oswald);
-            text-transform: uppercase;
-            font-weight: var(--weight-h1);
+        &--item {
+            color: #eeeeee;
+
+
+            &--left {
+                font-family: var(--oswald);
+                text-transform: uppercase;
+                font-weight: var(--weight-h1);
+            }
+            &--trama {
+                font-size:1em;
+                text-align: justify;
+            }
         }
-
+    }
+    &__boton {
+        //background-color:#eeeeee;
+        width:80%;
+        margin:auto;
+        border-radius: 5px;
+        //color:var(--rojo-butaca);
+        color:#eeeeee;
+        font-family:var(--oswald);
+        font-size: var(--size-p);
+        font-weight: 700;
+        text-transform: uppercase;
+        padding:10px;
+        border:solid 1px #eeeeee;
+        text-align: center;
+        //position:absolute;
     }
 
 
 }
 
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--rojo-butaca);
-    overflow: hidden;
-    width: 100%;
-    height: 0;
-    transition: .5s ease;
-}
+
 
 %valoracion--comun {
     content: '';
@@ -346,8 +288,8 @@ a {
 
         p {
             font-family: var(--oswald);
-            font-size:1.1em;
-            text-transform:uppercase;
+            font-size: 1.1em;
+            text-transform: uppercase;
         }
     }
 
@@ -361,78 +303,7 @@ a {
         }
     }
 }
-
-
-.hero {
-    background-image: url(../../assets/imagenes/telon-cine.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    height: 100%;
-    min-height: 600px;
-
-    &__div {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: var(--rojo-butaca);
-    }
-
-    &__p--principal {
-        text-align: center;
-        text-transform: uppercase;
-        font-size: calc(var(--size-h1)*1.2);
-        font-family: var(--oswald);
-        font-weight: var(--weight-p-bold);
-        text-shadow: 1px 1px 4px #000000;
-
-        a {
-            border: dotted 10px white;
-            display: block;
-            color: var(--rojo-butaca); //var(--hunyadi-yellow); 
-            text-decoration: none;
-            padding: 20px 30px;
-
-            &:hover {
-                color: white;
-                border: dotted 10px var(--rojo-butaca);
-            }
-        }
-
-
-    }
-
-    &__p--secundario {
-        font-style: italic;
-        font-size: var(--size-h3);
-        text-align: center;
-        font-family: var(--normal);
-        margin-top: 20px;
-        color: var(--rojo-butacas);
-    }
-}
-
-
-.logo__p {
-    font-family: var(--logo);
-    font-size: var(--size-h1);
-    padding: 10px 20px 20px 20px;
-    color: white;
-
-    &::after {
-        content: '';
-        background-image: url(../../assets/imagenes/estrellaVintage.png);
-        width: 50px;
-        height: 50px;
-        background-size: 50px 50px;
-        background-repeat: no-repeat;
-        display: inline-block;
-        background-position: 0 0;
-        left: 0;
-    }
-}
+//---------- ENTRADAS (INICIALMENTE OCULTA)-------
 
 .select {
     background-color: white;
@@ -453,11 +324,6 @@ a {
 
 }
 
-.bienvenida {
-    background-color: var(--smoky-black);
-    color: white;
-    padding: 30px 100px;
-}
 
 .snacks {
     flex-wrap: wrap;
@@ -477,11 +343,17 @@ a {
     }
 
     &__p {
+color:#eeeeee;
         &--nombre {
-            font-family:var(--source);
+            font-family: var(--source);
             font-style: italic;
-            margin-bottom:30px;
-            font-size:var(--size-h3);
+            margin-bottom: 30px;
+            font-size: var(--size-h3);
         }
     }
+}
+
+//temporal - descripcion es la info sobre el proyecto
+.descripcion {
+    margin: 20px 100px 0 100px;
 }

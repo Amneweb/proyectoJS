@@ -1,9 +1,9 @@
 ejemplo-clase-0
 .hintrc
-styles/scss/_colores.scss
-paginas/index-1er-borrador.html
-styles/scss/_primeros-pasos.scss
-scripts/practicas.js
 extras
-scripts/borradores.js
+styles/scss/_colores.scss
+styles/scss/_primeros-pasos.scss
+paginas/index-1er-borrador.html
 paginas/selct.html
+scripts/practicas.js
+scripts/borradores.js
