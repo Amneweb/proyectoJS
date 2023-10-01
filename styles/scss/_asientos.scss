@@ -17,8 +17,14 @@
     &:checked {
         background-color:palegreen;
     }
+    &:disabled {
+        background-color:red;
+    }
 }
 .fila {
     width:100%;
+    display:flex;
+}
+.entradas__input {
     display:flex;
 }

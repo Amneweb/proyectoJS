@@ -57,79 +57,40 @@
         </div>
 
     </section>
-    <section class="main entradas"></section>
+    <section class="gris">
+    <section class="section__titulo section__titulo--entradas">
+        <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
+    </section>
+    <section class="main entradas">
+            <div class="entradas__select">
+              <select name="select__pelicula" id="select__pelicula">
+                <option class="select--disabled" selected disabled value="">Elegí la película</option>
+              </select>
+            </div>
+            <div class="entradas__select">
+              <select name="select__funcion" id="select__funcion">
+                
+              </select>
+            </div>
+            
+            
+    </section>
+
+    <div class="entradas__input">
+        <label for="entradas">¿Cuántas entradas querés comprar?</label>
+        <input type="number" id="entradas" name="entradas__input" class="select">
+        <input type="button" value="Enviar" name="entradas__button" class="select">
+    </div>
+    <div class="platea" id="platea"></div>
+</section>
     <section class="negro">
         <section class="section__titulo section__titulo--cartelera">
             <h2><i class="fa-solid fa-clapperboard"></i>cartelera</h2>
         </section>
         <section class="main cartelera">
-            <div class="cartelera__div--imagen">
-                <img class="cartelera__img" src="assets/imagenes/Indiana_Jones_y_el_templo_de_la_perdicion.webp"
-                    alt="poster de Indiana Jones">
-                <div class="cartelera__div--overlay">
-                    <div class="text">
-                        <p class="text--item text--item--left">Título</p>
-                        <p class="text--item">Indiana Jones</p>
-                        <p class="text--item text--item--left">Duración</p>
-                        <p class="text--item">2h 30m</p>
-                        <p class="text--item text--item--left">Director</p>
-                        <p class="text--item">Steven Spielberg</p>
-                        <p class="text--item text--item--left">Actores</p>
-                        <p class="text--item">Harrison Ford</p>
-                        <p class="text--item text--item--left">Género</p>
-                        <p class="text--item">Aventuras</p>
-                        <p class="text--item text--item--left">Edad</p>
-                        <p class="text--item">ATP</p>
-                        <p class="text--item text--item--left">Rating</p>
-                        <p class="text--item">7.5</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cartelera__div--imagen">
-                <img class="cartelera__img" src="assets/imagenes/africaMia.jpg" alt="poster de Africa Mía">
-                <div class="cartelera__div--overlay">
-                    <div class="text">
-                        <p class="text--item text--item--left">Título</p>
-                        <p class="text--item">Africa Mia</p>
-                        <p class="text--item text--item--left">Duración</p>
-                        <p class="text--item">2h 30m</p>
-                        <p class="text--item text--item--left">Director</p>
-                        <p class="text--item">Steven Spielberg</p>
-                        <p class="text--item text--item--left">Actores</p>
-                        <p class="text--item">Harrison Ford</p>
-                        <p class="text--item text--item--left">Género</p>
-                        <p class="text--item">Aventuras</p>
-                        <p class="text--item text--item--left">Edad</p>
-                        <p class="text--item">ATP</p>
-                        <p class="text--item text--item--left">Rating</p>
-                        <p class="text--item">7.5</p>
-                        <p class="text--item text--item--left">Trama</p>
-                        <p class="text--item text--item--trama">En 1935, Indiana Jones llega a la India, todavía parte del Imperio británico, y se le pide que encuentre una piedra mística. Entonces se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un palacio.</p>
-                        
-                    </div>
-                    <div class="cartelera__boton">elegir</div>
-                </div>
-            </div>
-            <div class="cartelera__div--imagen">
-                <img class="cartelera__img" src="assets/imagenes/toyStory.jpg" alt="póster de Toy Story">
-                <div class="cartelera__div--overlay">
-                    <div class="text">
-                        <p class="text--item text--item--left">Título</p>
-                        <p class="text--item">Toy Story</p>
-                        <p class="text--item text--item--left">Duración</p>
-                        <p class="text--item">2h 30m</p>
-                        <p class="text--item text--item--left">Director</p>
-                        <p class="text--item">Steven Spielberg</p>
-                        <p class="text--item text--item--left">Actores</p>
-                        <p class="text--item">Harrison Ford</p>
-                        <p class="text--item text--item--left">Género</p>
-                        <p class="text--item">Aventuras</p>
-                        <p class="text--item text--item--left">Edad</p>
-                        <p class="text--item">ATP</p>
-                        <p class="text--item text--item--left">Rating</p>
-                        <p class="text--item">7.5</p>
-                    </div>
-                </div>
+            <div class="cartelera__icono"><i class="fa-regular fa-circle-right"></i></div>
+            <div class="cartelera__contenedor">
+                
             </div>
         </section>
     </section>
@@ -245,7 +206,7 @@
             <div class="snacks__item">
                 <img src="assets/imagenes/chipa.png" alt="Foto de bandeja de chipa y 2 vasos de jugo de naranja">
                 <div class="snacks__item--contenido">
-                    <p class="snacks__p snacks__p--nombre">Chipa para compartir</p>
+                    <p class="snacks__p snacks__p--nombre">Chipá anaranjado</p>
                     <p class="snacks__p">Bandeja de chipá (pan de queso) para compartir. Trae 10 unidades. Acompañado de 2 vasos de jugo de naranja recién exprimido.</p>
                 </div>
             </div>
@@ -266,7 +227,7 @@
             <div class="snacks__item">
                 <img src="assets/imagenes/nachos.png" alt="Foto de bandeja de nachos con cheddar y bebida">
                 <div class="snacks__item--contenido">
-                    <p class="snacks__p snacks__p--nombre">Nachos del futuro</p>
+                    <p class="snacks__p snacks__p--nombre">Ignacio's Cheddar </p>
                     <p class="snacks__p">Bandeja de nachos con mucho cheddar para untar. Acompañada de un vaso de gaseosa a elección.</p>
                 </div>
             </div>
@@ -305,7 +266,7 @@
                 <input type="checkbox" class="asiento" id="f1-c2"></input>
                 <input type="checkbox" class="asiento" id="f1-c3"></input>
                 <input type="checkbox" class="asiento" id="f1-c4"></input>
-                <input type="checkbox" class="asiento" id="f1-c5"></input>
+                <input type="checkbox" class="asiento" disabled id="f1-c5"></input>
                 <input type="checkbox" class="asiento" id="f1-c6"></input>
                 <input type="checkbox" class="asiento" id="f1-c7"></input>
                 <input type="checkbox" class="asiento" id="f1-c8"></input>
