@@ -400,29 +400,31 @@ asientosParticular = funcion.asientosFuncion;
 console.log(asientosParticular);
 //funcion para dibujar la platea
 let platea = document.getElementById("platea");
-let fila=new Array;
-let columna = new Array;
-let asiento = new Array;
-for (let x = 0; x < asientosParticular.length; x++) {
-    fila[x] = document.createElement("div");
-    fila[x].className = "fila";
-    fila[x].id = "fila" + (x + 1);
-    platea.appendChild(fila[x]);
-    }
+
+//function prueba() {
+let fila;
+let lugar;
+alert ('fila: '+fila+'lugar: '+lugar+'platea: '+platea);
+    
     for (let x = 0; x < asientosParticular.length; x++) {
-        fila[x]=getElementById("fila" + (x + 1));
+    fila = document.createElement("div");
+    fila.className="fila";
+    fila.id= `fila${x+1}`; 
+   
     for (let y = 0; y < asientosParticular[x].length; y++) {
-        asiento = document.createElement("input");
-        asiento.type = "checkbox";
-        asiento.className = "asiento";
-        asiento.id = `f${x}-c${y}`;
+       
+        lugar = document.createElement("input");
+        lugar.type = "checkbox";
+        lugar.className = "asiento";
+        lugar.id = `f${x}-c${y}`;
         if (asientosParticular[x][y] === 1) {
-            asiento.disabled = true;
+            lugar.disabled = true;
         }
         console.log(`fila${x+1}`);
-        
-        fila[x].appendChild(asiento);
+        fila.appendChild(lugar);
     }
+    platea.appendChild(fila);
+//}
 }
 {/* <div class="fila">
                 <input type="checkbox" class="asiento" id="f1-c1"></input>
