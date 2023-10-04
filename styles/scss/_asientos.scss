@@ -11,15 +11,24 @@
     border-radius:50%;
     cursor:pointer;
     appearance: none;
-    &:hover {
-        background-color:lightcyan;
-    }
+    
     &:checked {
         background-color:palegreen;
     }
-    &:disabled {
-        background-color:red;
+    
+}
+.libre {
+    &:hover {
+        background-color:lightcyan;
     }
+}
+.ocupado {
+    background-color:red;
+}
+.indeterminado {
+    /*background-color:grey;*/
+    border-color:lighten($color: grey, $amount: 1);
+    background-color:white;
 }
 .fila {
     width:100%;

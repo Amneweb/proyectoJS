@@ -575,14 +575,21 @@ input {
   cursor: pointer;
   appearance: none;
 }
-.asiento:hover {
-  background-color: lightcyan;
-}
 .asiento:checked {
   background-color: palegreen;
 }
-.asiento:disabled {
+
+.libre:hover {
+  background-color: lightcyan;
+}
+
+.ocupado {
   background-color: red;
+}
+
+.indeterminado {
+  /*background-color:grey;*/
+  border-color: #838383;
 }
 
 .fila {

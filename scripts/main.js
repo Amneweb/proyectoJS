@@ -399,33 +399,131 @@ for (let x = 0; x < filasFuncion; x++) {
 asientosParticular = funcion.asientosFuncion;
 console.log(asientosParticular);
 //funcion para dibujar la platea
-let platea = document.getElementById("platea");
 
-//function prueba() {
+//script 1 para capturar cuando algún asiento es seleccionado
+pruebaSeleccion = function() { //armé una función para encerrar el código y probar otro sistema 
+const entradasPrueba=2;
+ const platea = document.getElementById("platea");
+platea.addEventListener("click",(event)=>{
+idSeleccionado=event.target.id;
+if (event.target.classList.contains("indeterminado")) {
+    alert("Ya tenés "+entradasPrueba+" asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+} else {
+
+event.target.className="asiento elegido";
+
+const Elegidos=platea.querySelectorAll('input[type="checkbox"]:checked');
+let cantidadElegidos=Elegidos.length;
+//let Libres=platea.querySelectorAll(".libre");
+ //   console.log(Libres);
+//alert(cantidadElegidos);
+if (cantidadElegidos===entradasPrueba) {
+    console.log("si, elegidos = entradas");
+    const Libres=platea.querySelectorAll(".libre");
+    console.log(Libres);
+   Libres.forEach((element) => {element.className="asiento libre indeterminado";
+    //element.disabled=true;
+element.indeterminate=true;
+});
+}
+} 
+});
+}
+
+//script 2 para capturar cuando algún asiento es seleccionado
+
+const entradasPrueba=2;
+ const platea = document.getElementById("platea");
+platea.addEventListener("click", (event) => {
+    idSeleccionado = event.target.id;
+    if (event.target.classList.contains("indeterminado")) {
+        //código de lo que pasa si hago click en asiento indeterminado
+        event.target.checked = false;
+        alert("Ya tenés " + entradasPrueba + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+    } else {
+if (!event.target.classList.contains("elegido")) {
+//código de lo que pasa si hago click en asiento libre
+        event.target.classList.replace("libre", "elegido");
+
+        const Elegidos = platea.querySelectorAll('input[type="checkbox"]:checked');
+        let cantidadElegidos = Elegidos.length;
+        //let Libres=platea.querySelectorAll(".libre");
+        //   console.log(Libres);
+        //alert(cantidadElegidos);
+        if (cantidadElegidos === entradasPrueba) {
+            const Libres = platea.querySelectorAll(".libre");
+            console.log(Libres);
+            Libres.forEach((element) => {
+                element.classList.replace("libre", "indeterminado");
+                //element.disabled=true;
+                element.indeterminate = true;
+            });
+        }
+    } else {
+        //código de lo que pasa si hago click en asiento elegido
+        const Indeterminados = platea.querySelectorAll(".indeterminado");
+        alert ("asiento liberado :)");
+        event.target.classList.replace("elegido", "libre");
+        Indeterminados.forEach((element) => {
+            element.classList.replace("indeterminado", "libre");
+            //element.disabled=true;
+            element.indeterminate = false;
+        });
+
+
+    }
+    }
+});
+
+
+
 let fila;
 let lugar;
-alert ('fila: '+fila+'lugar: '+lugar+'platea: '+platea);
-    
-    for (let x = 0; x < asientosParticular.length; x++) {
-    fila = document.createElement("div");
-    fila.className="fila";
-    fila.id= `fila${x+1}`; 
-   
-    for (let y = 0; y < asientosParticular[x].length; y++) {
-       
-        lugar = document.createElement("input");
-        lugar.type = "checkbox";
-        lugar.className = "asiento";
-        lugar.id = `f${x}-c${y}`;
-        if (asientosParticular[x][y] === 1) {
-            lugar.disabled = true;
-        }
-        console.log(`fila${x+1}`);
-        fila.appendChild(lugar);
+
+    asientosParticular.forEach((arrayFila, indiceFila)=>{
+fila=document.createElement("div");
+fila.className="fila";
+fila.id=`fila${indiceFila+1}`;
+arrayFila.forEach((valor,indiceColumna)=>{
+    lugar = document.createElement("input");
+    lugar.type = "checkbox";
+    lugar.className = "asiento";
+    lugar.id = `f${indiceFila}-c${indiceColumna}`;
+    if (valor === 1) {
+        lugar.disabled = true;
+        lugar.className="asiento ocupado";
+    } else {
+        lugar.className="asiento libre";
     }
-    platea.appendChild(fila);
-//}
-}
+    fila.appendChild(lugar);
+});
+platea.appendChild(fila);
+
+});
+
+
+    //for (let x = 0; x < asientosParticular.length; x++) {
+//     fila = document.createElement("div");
+//     fila.className="fila";
+//     fila.id= `fila${x+1}`; 
+   
+//     for (let y = 0; y < asientosParticular[x].length; y++) {
+       
+//         lugar = document.createElement("input");
+//         lugar.type = "checkbox";
+//         lugar.className = "asiento";
+//         lugar.id = `f${x}-c${y}`;
+//         if (asientosParticular[x][y] === 1) {
+//             lugar.disabled = true;
+//             lugar.className="asiento ocupado";
+//         } else {
+//             lugar.className="asiento libre"
+//         }
+//         fila.appendChild(lugar);
+//     }
+//     platea.appendChild(fila);
+
+// }
 {/* <div class="fila">
                 <input type="checkbox" class="asiento" id="f1-c1"></input>
                 <input type="checkbox" class="asiento" id="f1-c2"></input>
