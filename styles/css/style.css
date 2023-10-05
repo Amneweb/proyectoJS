@@ -459,6 +459,19 @@ input {
   }
 }
 
+.entradas__datospeli {
+  width: 40%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.datospeli__item {
+  padding: 20px;
+}
+.datospeli__item--left {
+  font-family: var(--oswald);
+}
+
 .salas__p--infantil::after, .salas__p--clasica::after, .salas__p--premium::after {
   content: "";
   display: inline;
@@ -590,6 +603,7 @@ input {
 .indeterminado {
   /*background-color:grey;*/
   border-color: #838383;
+  background-color: white;
 }
 
 .fila {

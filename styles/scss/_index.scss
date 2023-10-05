@@ -288,6 +288,21 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
 
 
 }
+.entradas__datospeli {
+    width:40%;
+    display:grid;
+    grid-template-columns:20% 80%;
+   
+}
+.datospeli {
+    &__item {
+        padding:20px;
+        &--left{
+            font-family: var(--oswald);
+        }
+    }
+}
+
 
 
 
