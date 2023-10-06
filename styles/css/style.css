@@ -357,6 +357,13 @@ input {
   color: #eeeeee;
 }
 
+.entradas__datospeli, .cartelera__datospeli {
+  display: grid;
+  grid-template-columns: 25% 70%;
+  padding: 20px;
+  row-gap: 10px;
+}
+
 .cartelera__contenedor {
   width: 100%;
   display: flex;
@@ -394,27 +401,6 @@ input {
   width: 100%;
   height: 0;
   transition: 0.5s ease;
-}
-.cartelera .text {
-  padding: 50px 20px 20px 20px;
-  display: grid;
-  width: 100%;
-  grid-template-columns: 25% 65%;
-  row-gap: 10px;
-  color: white;
-  font-size: 0.8em;
-}
-.cartelera .text--item {
-  color: #eeeeee;
-}
-.cartelera .text--item--left {
-  font-family: var(--oswald);
-  text-transform: uppercase;
-  font-weight: var(--weight-h1);
-}
-.cartelera .text--item--trama {
-  font-size: 1em;
-  text-align: justify;
 }
 .cartelera__boton {
   width: 80%;
@@ -459,17 +445,40 @@ input {
   }
 }
 
+.entradas__selectores {
+  width: 30%;
+}
+
+.entradas__imagen {
+  width: 20%;
+  overflow: hidden;
+}
+.entradas__imagen img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .entradas__datospeli {
+  border-radius: 10px;
   width: 40%;
-  display: grid;
-  grid-template-columns: 20% 80%;
 }
 
 .datospeli__item {
-  padding: 20px;
+  color: #eeeeee;
 }
 .datospeli__item--left {
   font-family: var(--oswald);
+  font-weight: var(--weight-h);
+}
+.datospeli__item--right {
+  font-family: var(--poppins);
+}
+
+.entradas__cantidad {
+  display: none;
 }
 
 .salas__p--infantil::after, .salas__p--clasica::after, .salas__p--premium::after {
@@ -551,7 +560,7 @@ input {
 }
 .snacks__item {
   background-color: rgba(255, 255, 255, 0.1);
-  width: 30%;
+  width: 22%;
 }
 .snacks__item img {
   max-width: 100%;

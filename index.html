@@ -27,7 +27,7 @@
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-people-roof"></i>salas</a></li>
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-cookie-bite"></i>snacks</a></li>
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-address-card"></i>contacto</a></li>
-                <li><a href="#" class="nav__a--entradas" onclick="ejecutar();"><i
+                <li><a href="#" class="nav__a--entradas"><i
                             class="fa-solid fa-ticket"></i>entradas</a></li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@
     <section class="hero">
         <div class="hero__div">
             <p class="hero__p--principal">
-                <a href="#" onclick="ejecutar();">Comprá tus entradas</a>
+                <a href="#">Comprá tus entradas</a>
             </p>
             <p class="hero__p--secundario">
                 Y volvé a mirar tus pelis favoritas en pantalla grande
@@ -73,20 +73,19 @@
                 
               </select>
             </div>
-            
+            <div class="entradas__cantidad">
+                <input type="number" id="entradas" name="entradas__input" class="select" placeholder="¿Cuántas entradas querés?">
+                <input type="button" value="Enviar" name="entradas__button" class="select">
+            </div>
         </div>
-        <div class="entradas__imgpeli"></div>
+        <div class="entradas__imagen"></div>
         <div class="entradas__datospeli">
-            Elegí la peli con el menú desplegable de la izquierda.
+            
         </div>     
             
     </section>
 
-    <div class="entradas__input">
-        <label for="entradas">¿Cuántas entradas querés comprar?</label>
-        <input type="number" id="entradas" name="entradas__input" class="select">
-        <input type="button" value="Enviar" name="entradas__button" class="select">
-    </div>
+    
     <div class="platea" id="platea"></div>
 </section>
     <section class="negro">

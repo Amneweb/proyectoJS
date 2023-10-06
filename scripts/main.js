@@ -10,6 +10,13 @@
  */
 const formatearDia = (anio, mes, dia) => new Date(anio, mes, dia).toLocaleDateString();
 /**
+ * @abstract Para truncar un string a un máximo de caracteres
+ * @param {string} palabra la palabra que eventualmente quiero acortar
+ * @param {number} caracteres la cantidad de caracteres máxima
+ * @returns la palabra cortada
+ */
+const acortarPalabra = (palabra,caracteres)=> palabra.length >caracteres ? palabra.substring(0,caracteres)+"...":palabra;
+/**
  *
  * @abstract Para contar asientos libres en cada fila de la sala de cine (en un vector de ceros y unos, cuenta la cantidad de ceros) Esta misma función se puede usar para contar la cantidad de lugares en que un valor determinado aparece en un vector
  * @param {array} vector El array de 0 y 1 (en este caso es el array con los asientos libres (0) y ocupados (1))
@@ -135,6 +142,46 @@ function asientosContiguos(entradas, asientosParticular) {
     }
     return alertaFilas = "las filas con " + entradas + " o más asientos libres contiguos son: " + filasConAsientosContiguos.join();
 }
+
+
+function armarDatosPeli (PELIELEGIDA,datospeli) {
+    datospeli.innerHTML="";
+    const FRAGMENTO = new DocumentFragment();
+    const TITULOS = [
+        "nombre",
+        "duración",
+        "director",
+        "año",
+        "actores",
+        "género",
+        "edad",
+        "rating",
+        "trama"
+    ];
+    const CONTENIDO = [
+        PELIELEGIDA.nombre,
+        PELIELEGIDA.duracion,
+        PELIELEGIDA.director,
+        PELIELEGIDA.anio,
+        PELIELEGIDA.actor,
+        PELIELEGIDA.genero,
+        PELIELEGIDA.edad,
+        PELIELEGIDA.rating,
+        PELIELEGIDA.resumen
+    ]
+    TITULOS.forEach((titulo,llave)=>{
+        const itemTitulo = document.createElement('div');
+        itemTitulo.classList.add("datospeli__item", "datospeli__item--left");
+        itemTitulo.textContent = titulo.toUpperCase();
+FRAGMENTO.append(itemTitulo);
+const itemContenido = document.createElement('div');
+itemContenido.classList.add("datospeli__item", "datospeli__item--right");
+        itemContenido.textContent = CONTENIDO[llave];
+        FRAGMENTO.append(itemContenido);      
+    });
+    return FRAGMENTO;
+}
+
 // //////// VARIABLES /////////  //
 let asientos = new Array();
 const salas = new Array();
@@ -225,32 +272,25 @@ funciones = [
 
 const selectorPeliculas = document.querySelector("#select__pelicula");
 pelis.forEach((elemento) => {
+console.log(elemento);
  const   peliculaEnCartelera = document.createElement("div");
     peliculaEnCartelera.className = "cartelera__div--imagen";
-    peliculaEnCartelera.innerHTML = `<img class="cartelera__img" src="assets/imagenes/peliculas/${elemento.id}.jpg"
-    alt="Póster de ${elemento.nombre}">
-    <div class="cartelera__div--overlay">
-                    <div class="text">
-                        <p class="text--item text--item--left">Título</p>
-                        <p class="text--item">${elemento.nombre}</p>
-                        <p class="text--item text--item--left">Duración</p>
-                        <p class="text--item">${elemento.duracion}</p>
-                        <p class="text--item text--item--left">Director</p>
-                        <p class="text--item">${elemento.director}</p>
-                        <p class="text--item text--item--left">Actores</p>
-                        <p class="text--item">${elemento.actor}</p>
-                        <p class="text--item text--item--left">Género</p>
-                        <p class="text--item">${elemento.genero}</p>
-                        <p class="text--item text--item--left">Edad</p>
-                        <p class="text--item">${elemento.edad}</p>
-                        <p class="text--item text--item--left">Rating</p>
-                        <p class="text--item">${elemento.rating}</p>
-                        <p class="text--item text--item--left">Trama</p>
-                        <p class="text--item text--item--trama">${elemento.resumen}</p>    
-                    </div>
-                    <div class="cartelera__boton">elegir</div>
-                </div>
-    `;
+    const poster=document.createElement("img");
+    poster.src=`assets/imagenes/peliculas/${elemento.id}.jpg`;
+    poster.className="cartelera__img";
+    peliculaEnCartelera.append(poster);
+    const overlay=document.createElement("div");
+    overlay.className="cartelera__div--overlay";
+    const texto=document.createElement("div");
+    texto.className="cartelera__datospeli";
+    texto.append(armarDatosPeli(elemento,texto));
+    overlay.append(texto);
+    peliculaEnCartelera.append(overlay);
+    
+ 
+    //                 <div class="cartelera__boton">elegir</div>
+    //             </div>
+    // `;
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
     //------- llenar los select para comprar entradas
   const  optionPelicula = document.createElement("option");
@@ -267,7 +307,7 @@ pelis.forEach((elemento) => {
 const selectorFunciones = document.getElementById("select__funcion");
 selectorPeliculas.addEventListener("change", (event) => {
     seleccionarPeli = event.target.value;
-    const PROPIEDADES = window.getComputedStyle(selectorFunciones);
+    let PROPIEDADES = window.getComputedStyle(selectorFunciones);
     if (PROPIEDADES.display === "none") { selectorFunciones.style["display"] = "block"; }
     console.log(PROPIEDADES.display);
     //guardamos el objeto de la pelicula elegida con todos sus datos en una constante
@@ -275,43 +315,21 @@ selectorPeliculas.addEventListener("change", (event) => {
 
 //----- mostramos la info de la peli seleccionada a la derecha del selector
 const datospeli = document.querySelector(".entradas__datospeli");
+datospeli.style["background-color"] = "var(--rojo-butaca)";
+
 datospeli.innerHTML="";
 console.log (datospeli);
-function armarDatosPeli (PELIELEGIDA) {
-    datospeli.innerHTML="";
-    console.log("adentro de funcion armar datos peli");
-    const FRAGMENTO = new DocumentFragment();
-    const TITULOS = ["nombre","duración","director","año","actores","género","edad","rating","trama"];
-    const CONTENIDO = [
-        PELIELEGIDA.nombre,
-        PELIELEGIDA.duracion,
-        PELIELEGIDA.director,
-        PELIELEGIDA.anio,
-        PELIELEGIDA.actor,
-        PELIELEGIDA.genero,
-        PELIELEGIDA.edad,
-        PELIELEGIDA.rating,
-        PELIELEGIDA.resumen
-    ]
-    TITULOS.forEach((titulo,llave)=>{
-        const itemTitulo = document.createElement('div');
-        itemTitulo.className="datospeli datospeli__item datospeli__item--left";
-        itemTitulo.textContent = titulo.toUpperCase();
-FRAGMENTO.append(itemTitulo);
-const itemContenido = document.createElement('div');
-itemContenido.className="datospeli datospeli__item datospeli__item--right";
-        itemContenido.textContent = CONTENIDO[llave];
-        FRAGMENTO.append(itemContenido);      
-    });
-    return FRAGMENTO;
-}
+
 //const infopeli=armarDatosPeli(PELIELEGIDA);
 //console.log("infopeli"+infopeli);
-datospeli.appendChild(armarDatosPeli(PELIELEGIDA));
+datospeli.appendChild(armarDatosPeli(PELIELEGIDA,datospeli));
+const imagenpeli=document.querySelector(".entradas__imagen"); 
+imagenpeli.innerHTML=`<img src="assets/imagenes/peliculas/${PELIELEGIDA.id}.jpg" alt="Poster película elegida">`;
     
     //filtra el array de funciones en base a la película seleccionada
     //agregamos la primer opcion que es disabled pero muestra la peli elegida - para asegurarnos de que el programa pasó la info correcta
-    selectorFunciones.innerHTML = `<option class="select--disabled" selected disabled value="">Elgí la función para la película ${PELIELEGIDA.nombre}</option>`;
+    const mostrarNombreCorto = acortarPalabra(PELIELEGIDA.nombre,12);
+    selectorFunciones.innerHTML = `<option class="select--disabled" selected disabled value="">Elegí la función para la película ${mostrarNombreCorto}</option>`;
     let funcionesPeliSeleccionada = funciones.filter((peliculaId) => peliculaId.pelicula == seleccionarPeli);
 
     //generamos un nuevo option por cada función
@@ -326,6 +344,9 @@ let seleccionarFuncion;
 selectorFunciones.addEventListener("change", (event) => {
     seleccionarFuncion = event.target.value;
     console.log(event.target.value);
+    const inputCantidad = document.querySelector(".entradas__cantidad");
+    let PROPIEDADES = window.getComputedStyle(inputCantidad);
+    if (PROPIEDADES.display === "none") { inputCantidad.style["display"] = "block"; }
 });
 //console.log('funcion seleccionada' + seleccionarFuncion);
 //buscamos la funcion, asignamos asientos ocupados aleatoriamente, obtenemos los asientos y los mostramos

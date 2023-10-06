@@ -170,7 +170,12 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
     }
 
 }
-
+%contenedor-datospeli{
+    display:grid;
+    grid-template-columns:25% 70%;
+    padding:20px;
+    row-gap:10px;
+}
 .cartelera {
     &__contenedor {
         width:100%;
@@ -215,31 +220,35 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
         transition: .5s ease;
     }
 
-    .text {
-        padding: 50px 20px 20px 20px;
-        display: grid;
-        width: 100%;
-        grid-template-columns: 25% 65%;
-        row-gap: 10px;
-        color: white;
-        font-size: 0.8em;
-        //position: absolute;
-
-        &--item {
-            color: #eeeeee;
-
-
-            &--left {
-                font-family: var(--oswald);
-                text-transform: uppercase;
-                font-weight: var(--weight-h1);
-            }
-            &--trama {
-                font-size:1em;
-                text-align: justify;
-            }
-        }
+    &__datospeli {
+        @extend %contenedor-datospeli;
     }
+
+    // .text {
+    //     padding: 50px 20px 20px 20px;
+    //     display: grid;
+    //     width: 100%;
+    //     grid-template-columns: 25% 65%;
+    //     row-gap: 10px;
+    //     color: white;
+    //     font-size: 0.8em;
+    //     //position: absolute;
+
+    //     &--item {
+    //         color: #eeeeee;
+
+
+    //         &--left {
+    //             font-family: var(--oswald);
+    //             text-transform: uppercase;
+    //             font-weight: var(--weight-h1);
+    //         }
+    //         &--trama {
+    //             font-size:1em;
+    //             text-align: justify;
+    //         }
+    //     }
+    // }
     &__boton {
         //background-color:#eeeeee;
         width:80%;
@@ -288,19 +297,41 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
 
 
 }
-.entradas__datospeli {
-    width:40%;
-    display:grid;
-    grid-template-columns:20% 80%;
-   
+.entradas__selectores {
+    width:30%;
 }
-.datospeli {
+.entradas__imagen {
+width:20%;
+overflow:hidden;
+img {
+    width:100%;
+    max-width:100%;
+    height:auto;
+    object-fit:cover;
+    border-radius:10px;
+}
+}
+.entradas__datospeli {
+    border-radius:10px;
+    width:40%;
+   @extend %contenedor-datospeli;  
+}
+.datospeli { 
+    
     &__item {
-        padding:20px;
+        color:#eeeeee;
         &--left{
             font-family: var(--oswald);
+            font-weight:var(--weight-h);
         }
+        &--right {
+            font-family:var(--poppins);
+        }
+
     }
+}
+.entradas__cantidad {
+    display:none;
 }
 
 
@@ -416,7 +447,7 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
 
     &__item {
         background-color: rgba(255, 255, 255, 0.1);
-        width: 30%;
+        width: 22%;
 
         img {
             max-width: 100%;
