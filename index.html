@@ -62,22 +62,24 @@
         <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
     </section>
     <section class="main entradas">
-        <div class="entradas__selectores">
-            <div class="entradas__select">
-              <select name="select__pelicula" id="select__pelicula">
-                <option class="select--disabled" selected disabled value="">Elegí la película</option>
-              </select>
+        <form action="" id="selectores">
+            <div class="entradas__selectores">
+                <div class="entradas__select">
+                <select name="select__pelicula" id="select__pelicula">
+                    <option class="select--disabled" selected disabled value="">Elegí la película</option>
+                </select>
+                </div>
+                <div class="entradas__select">
+                <select name="select__funcion" id="select__funcion">
+                    
+                </select>
+                </div>
+                <div class="entradas__cantidad">
+                    <input type="number" id="entradas" name="entradas__input" class="select" placeholder="¿Cuántas entradas querés?">
+                    <input type="button" value="Enviar" name="entradas__button" class="select">
+                </div>
             </div>
-            <div class="entradas__select">
-              <select name="select__funcion" id="select__funcion">
-                
-              </select>
-            </div>
-            <div class="entradas__cantidad">
-                <input type="number" id="entradas" name="entradas__input" class="select" placeholder="¿Cuántas entradas querés?">
-                <input type="button" value="Enviar" name="entradas__button" class="select">
-            </div>
-        </div>
+        </form>
         <div class="entradas__imagen"></div>
         <div class="entradas__datospeli">
             
