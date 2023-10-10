@@ -24,7 +24,8 @@
 	background-color: #fff;
   margin:5px;
 }
-select {
+select#select__pelicula,
+select#select__funcion {
 @extend %inputs;
 	@extend %flecha;
 	background-repeat: no-repeat, repeat;
@@ -38,7 +39,8 @@ select {
   select::-ms-expand {
     display: none;
   }
-  input {
+  input#entradas,
+  input#boton__entradas {
 @extend %inputs;
   }
 
