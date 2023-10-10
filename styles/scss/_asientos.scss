@@ -1,8 +1,9 @@
 .platea {
     width:auto;
-    background-color: aqua;
-    border:1px solid lightseagreen;
+    background-color: white;
+    border:1px solid #cccccc;
     height:auto;
+    padding:0 30px 30px 30px;
 }
 .asiento {
     width:20px;
@@ -37,4 +38,11 @@
 }
 .entradas__input {
     display:flex;
+}
+.pantalla {
+    font-family: var(--oswald);
+    border-bottom:1px solid black;
+    margin-bottom:10px;
+    padding:10px;
+    text-align: center;
 }
