@@ -315,6 +315,7 @@ const divSelectorFunciones = document.querySelector("#entradas__funcion");
 const propiedadesPlatea = window.getComputedStyle(platea);
 const inputCantidad = document.querySelector(".entradas__cantidad");
 const propiedadesCantidad = window.getComputedStyle(inputCantidad);
+const imagenpeli = document.querySelector(".entradas__imagen");
 pelis.forEach((elemento) => {
     /** 
      * 1era parte: armamos la cartelera
@@ -379,7 +380,7 @@ selectorPeliculas.addEventListener("change", (event) => { //abre el primer input
     datospeli.style["background-color"] = "var(--rojo-butaca)";
     datospeli.innerHTML = "";
     datospeli.appendChild(armarDatosPeli(PELIELEGIDA, datospeli));
-    const imagenpeli = document.querySelector(".entradas__imagen");
+    
     imagenpeli.innerHTML = `<img src="assets/imagenes/peliculas/${PELIELEGIDA.id}.jpg" alt="Poster película elegida">`;
     /**
      * 
@@ -429,16 +430,19 @@ function enviarFormularioSelector(event) {
     console.log("dentro de enviar Forumulario");
     event.preventDefault();
 
+
     if (propiedadesPlatea.display && propiedadesPlatea.display != "none") {
         platea.style["display"] = "none";
     }
     datospeli.style["display"] = "none";
+    imagenpeli.style["display"] = "none";
+
 
     let formulario = event.target;
     inputs = formulario.elements;
 
     const FUNCIONELEGIDA = funciones.find((element) => element.id === inputs[1].value);
-    PELIELEGIDA = inputs[0].value;
+    PELIELEGIDA__FORM = inputs[0].value;
 
     asientosFuncionElegida = simularOcupacion(FUNCIONELEGIDA);
 
@@ -446,6 +450,8 @@ function enviarFormularioSelector(event) {
 
     //script para dibujar la platea y capturar cuando algún asiento es seleccionado
     const entradasRequeridas = parseInt(inputs[2].value);
+    
+
     if (entradasRequeridas <= totalLibres) {
         dibujarPlatea(asientosFuncionElegida, platea);
         platea.style["display"] = "block";
@@ -477,7 +483,7 @@ function enviarFormularioSelector(event) {
                 } else {
                     //código de lo que pasa si hago click en asiento elegido
                     const Indeterminados = platea.querySelectorAll(".indeterminado");
-                    alert("asiento liberado :)");
+                    //alert("asiento liberado :)");
                     event.target.classList.replace("elegido", "libre");
                     Indeterminados.forEach((element) => {
                         element.classList.replace("indeterminado", "libre");
@@ -489,6 +495,25 @@ function enviarFormularioSelector(event) {
                 }
             }
         });
+
+        const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
+        formularioSelector.innerHTML="";
+
+        console.log(formularioSelector);
+        console.log(formulario);
+        ENTRADAS_RESUMEN.innerHTML=`<h3>resumen de lo solicitado</h3>
+        <div class="resumen__datospeli">
+            <div class="datospeli__item datospeli__item--left">película </div>
+            <div class="datospeli__item datospeli__item--right">${PELIELEGIDA.nombre}</div>
+            <div class="datospeli__item datospeli__item--left">duración</div>
+            <div class="datospeli__item datospeli__item--right">${PELIELEGIDA.duracion}</div>
+            <div class="datospeli__item datospeli__item--left">sala</div>
+            <div class="datospeli__item datospeli__item--right">${FUNCIONELEGIDA.sala}</div>
+            <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
+            <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
+            <div class="datospeli__item datospeli__item--left">asientos</div>
+            <div class="datospeli__item datospeli__item--right asientos__elegidos">Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</div>
+        </div>`;
     } else { alert("Lo sentimos, la sala no cuenta con la capacidad de asientos solicitada") }
 }
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  

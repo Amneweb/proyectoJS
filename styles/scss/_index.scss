@@ -223,31 +223,6 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
         @extend %contenedor-datospeli;
     }
 
-    // .text {
-    //     padding: 50px 20px 20px 20px;
-    //     display: grid;
-    //     width: 100%;
-    //     grid-template-columns: 25% 65%;
-    //     row-gap: 10px;
-    //     color: white;
-    //     font-size: 0.8em;
-    //     //position: absolute;
-
-    //     &--item {
-    //         color: #eeeeee;
-
-
-    //         &--left {
-    //             font-family: var(--oswald);
-    //             text-transform: uppercase;
-    //             font-weight: var(--weight-h1);
-    //         }
-    //         &--trama {
-    //             font-size:1em;
-    //             text-align: justify;
-    //         }
-    //     }
-    // }
     &__boton {
         //background-color:#eeeeee;
         width:80%;
@@ -296,6 +271,7 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
 
 
 }
+
 .entradas__selectores {
     width:100%;
 }
@@ -314,6 +290,13 @@ img {
     border-radius:10px;
     width:40%;
    @extend %contenedor-datospeli;  
+}
+.resumen__datospeli {
+    @extend %contenedor-datospeli;
+    text-align: left;
+    .datospeli__item{
+        color:var(--smoky-black);
+    }
 }
 .datospeli { 
     

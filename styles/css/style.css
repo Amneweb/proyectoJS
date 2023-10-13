@@ -344,7 +344,7 @@ select::-ms-expand {
   color: #eeeeee;
 }
 
-.entradas__datospeli, .cartelera__datospeli {
+.resumen__datospeli, .entradas__datospeli, .cartelera__datospeli {
   display: grid;
   grid-template-columns: 25% 70%;
   padding: 20px;
@@ -451,6 +451,13 @@ select::-ms-expand {
 .entradas__datospeli {
   border-radius: 10px;
   width: 40%;
+}
+
+.resumen__datospeli {
+  text-align: left;
+}
+.resumen__datospeli .datospeli__item {
+  color: var(--smoky-black);
 }
 
 .datospeli__item {
@@ -580,7 +587,7 @@ select::-ms-expand {
 .asiento {
   width: 20px;
   height: 20px;
-  border: solid 1px black;
+  border: solid 1px;
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -590,12 +597,16 @@ select::-ms-expand {
   background-color: palegreen;
 }
 
+.libre {
+  border-color: rgb(4, 163, 39);
+}
 .libre:hover {
-  background-color: lightcyan;
+  background-color: rgb(49, 245, 91);
 }
 
 .ocupado {
-  background-color: red;
+  background-color: #cccccc;
+  border-color: #cccccc;
 }
 
 .indeterminado {

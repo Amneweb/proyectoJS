@@ -8,7 +8,7 @@
 .asiento {
     width:20px;
     height:20px;
-    border:solid 1px black;
+    border:solid 1px;
     background-color: white;
     border-radius:50%;
     cursor:pointer;
@@ -20,12 +20,14 @@
     
 }
 .libre {
+    border-color:rgb(4, 163, 39);
     &:hover {
-        background-color:lightcyan;
+        background-color:rgb(49, 245, 91);
     }
 }
 .ocupado {
-    background-color:red;
+    background-color:#cccccc;
+    border-color:#cccccc;
 }
 .indeterminado {
     /*background-color:grey;*/
