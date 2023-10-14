@@ -451,48 +451,7 @@ function enviarFormularioSelector(event) {
     
 
     if (entradasRequeridas <= totalLibres) {
-        dibujarPlatea(asientosFuncionElegida, platea);
-        platea.style["display"] = "block";
-        platea.addEventListener("click", (event) => {
-            idSeleccionado = event.target.id;
-            console.log("asiento seleccionado: " + idSeleccionado);
-            if (event.target.classList.contains("indeterminado")) {
-                //código de lo que pasa si hago click en asiento indeterminado
-                event.target.checked = false;
-                alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
-            } else {
-                if (!event.target.classList.contains("elegido")) {
-                    //código de lo que pasa si hago click en asiento libre
-                    event.target.classList.replace("libre", "elegido");
-
-                    const Elegidos = platea.querySelectorAll('input[type="checkbox"]:checked');
-                    let cantidadElegidos = Elegidos.length;
-                    //let Libres=platea.querySelectorAll(".libre");
-                    //   console.log(Libres);
-                    //alert(cantidadElegidos);
-                    if (cantidadElegidos === entradasRequeridas) {
-                        const Libres = platea.querySelectorAll(".libre");
-                        Libres.forEach((element) => {
-                            element.classList.replace("libre", "indeterminado");
-                            //element.disabled=true;
-                            element.indeterminate = true;
-                        });
-                    }
-                } else {
-                    //código de lo que pasa si hago click en asiento elegido
-                    const Indeterminados = platea.querySelectorAll(".indeterminado");
-                    //alert("asiento liberado :)");
-                    event.target.classList.replace("elegido", "libre");
-                    Indeterminados.forEach((element) => {
-                        element.classList.replace("indeterminado", "libre");
-                        //element.disabled=true;
-                        element.indeterminate = false;
-                    });
-
-
-                }
-            }
-        });
+        
 
         const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
         formularioSelector.innerHTML="";
@@ -512,6 +471,58 @@ function enviarFormularioSelector(event) {
             <div class="datospeli__item datospeli__item--left">asientos</div>
             <div class="datospeli__item datospeli__item--right asientos__elegidos">Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</div>
         </div>`;
+
+        dibujarPlatea(asientosFuncionElegida, platea);
+        platea.style["display"] = "block";
+        let COORDENADAS_ASIENTOS = "";
+        const MOSTRAR_ASIENTOS = document.querySelector (".asientos__elegidos");
+        platea.addEventListener("click", (event) => {
+            idSeleccionado = event.target.id;
+            COORDENADAS_ASIENTOS += reemplazarCoordenadas(idSeleccionado)+"<br>";
+            
+            function reemplazarCoordenadas(id) {
+                let reemplazado = id.replace("f","Fila: ");
+                reemplazado = reemplazado.replace("-c"," Butaca: ");
+                return reemplazado;
+            }
+            console.log("asiento seleccionado: " + idSeleccionado);
+            if (event.target.classList.contains("indeterminado")) {
+                //código de lo que pasa si hago click en asiento indeterminado
+                event.target.checked = false;
+                alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+            } else {
+                if (!event.target.classList.contains("elegido")) {
+                    //código de lo que pasa si hago click en asiento libre
+                    event.target.classList.replace("libre", "elegido");
+
+                    const Elegidos = platea.querySelectorAll('input[type="checkbox"]:checked');
+                    let cantidadElegidos = Elegidos.length;
+                    
+                    if (cantidadElegidos === entradasRequeridas) {
+                        const Libres = platea.querySelectorAll(".libre");
+                        MOSTRAR_ASIENTOS.innerHTML=COORDENADAS_ASIENTOS;
+                        console.log(COORDENADAS_ASIENTOS);
+                        Libres.forEach((element) => {
+                            element.classList.replace("libre", "indeterminado");
+                            //element.disabled=true;
+                            element.indeterminate = true;
+                        });
+                    }
+                } else {
+                    //código de lo que pasa si hago click en asiento elegido
+                    const Indeterminados = platea.querySelectorAll(".indeterminado");
+                    MOSTRAR_ASIENTOS.innerText="Asiento/s liberados. Seleccionar uno o más asientos para llegar a la cantidad de entradas.";
+                    event.target.classList.replace("elegido", "libre");
+                    Indeterminados.forEach((element) => {
+                        element.classList.replace("indeterminado", "libre");
+                        //element.disabled=true;
+                        element.indeterminate = false;
+                    });
+
+
+                }
+            }
+        });
     } else { alert("Lo sentimos, la sala no cuenta con la capacidad de asientos solicitada") }
 }
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
