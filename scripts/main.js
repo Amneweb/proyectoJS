@@ -431,9 +431,6 @@ function enviarFormularioSelector(event) {
     event.preventDefault();
 
 
-    if (propiedadesPlatea.display && propiedadesPlatea.display != "none") {
-        platea.style["display"] = "none";
-    }
     datospeli.style["display"] = "none";
     imagenpeli.style["display"] = "none";
 
@@ -443,6 +440,7 @@ function enviarFormularioSelector(event) {
 
     const FUNCIONELEGIDA = funciones.find((element) => element.id === inputs[1].value);
     PELIELEGIDA__FORM = inputs[0].value;
+    PELIELEGIDA = pelis.find((element) => element.id === PELIELEGIDA__FORM);
 
     asientosFuncionElegida = simularOcupacion(FUNCIONELEGIDA);
 
