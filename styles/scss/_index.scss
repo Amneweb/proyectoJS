@@ -455,3 +455,34 @@ color:#eeeeee;
 .descripcion {
     margin: 20px 100px 0 100px;
 }
+.asientos__elegidos {
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    row-gap: 5px;
+    p{
+    border:solid 1px var(--smoky-black);
+    border-radius:5px;
+    padding:10px;
+    font-size:1em;
+}
+}
+#botones {
+    display:flex;
+}
+.boton {
+    @extend %inputs;
+    &:hover {
+        background-color:white;
+    }
+    &__aceptar {
+        background-color:palegreen;
+        border-color:rgb(4, 163, 39);
+        width:50%;
+    }
+    &__cambiar {
+        background-color:#cccccc;
+        border-color:grey;
+        width:50%;
+    }
+}

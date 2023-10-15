@@ -359,7 +359,6 @@ pelis.forEach((elemento) => {
 selectorPeliculas.addEventListener("change", (event) => { //abre el primer input select: peliculas 
     seleccionarPeli = event.target.value;
     const propiedadesFunciones = window.getComputedStyle(divSelectorFunciones);
-    console.log(propiedadesFunciones);
     if (propiedadesFunciones.display === "none") {
         divSelectorFunciones.style["display"] = "block";
     }
@@ -427,7 +426,6 @@ formularioSelector.addEventListener("submit", enviarFormularioSelector);
 //     } 
 // });
 function enviarFormularioSelector(event) {
-    console.log("dentro de enviar Forumulario");
     event.preventDefault();
 
 
@@ -456,8 +454,6 @@ function enviarFormularioSelector(event) {
         const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
         formularioSelector.innerHTML="";
 
-        console.log(formularioSelector);
-        console.log(formulario);
         ENTRADAS_RESUMEN.innerHTML=`<h3>resumen de lo solicitado</h3>
         <div class="resumen__datospeli">
             <div class="datospeli__item datospeli__item--left">película </div>
@@ -465,7 +461,7 @@ function enviarFormularioSelector(event) {
             <div class="datospeli__item datospeli__item--left">duración</div>
             <div class="datospeli__item datospeli__item--right">${PELIELEGIDA.duracion}</div>
             <div class="datospeli__item datospeli__item--left">sala</div>
-            <div class="datospeli__item datospeli__item--right">${FUNCIONELEGIDA.sala}</div>
+            <div class="datospeli__item datospeli__item--right">${salas[FUNCIONELEGIDA.sala].nombre}</div>
             <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
             <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
             <div class="datospeli__item datospeli__item--left">asientos</div>
@@ -478,14 +474,17 @@ function enviarFormularioSelector(event) {
         const MOSTRAR_ASIENTOS = document.querySelector (".asientos__elegidos");
         platea.addEventListener("click", (event) => {
             idSeleccionado = event.target.id;
-            COORDENADAS_ASIENTOS += reemplazarCoordenadas(idSeleccionado)+"<br>";
             
-            function reemplazarCoordenadas(id) {
-                let reemplazado = id.replace("f","Fila: ");
-                reemplazado = reemplazado.replace("-c"," Butaca: ");
-                return reemplazado;
+            
+            function coordenadas(id) {
+                let guion = id.indexOf("-");
+                let nrofila = parseInt(id.slice(1,guion));
+                nrofila++;
+                let nrocolumna=parseInt(id.slice((guion+2),id.length));
+                nrocolumna++;
+                let coordenadas_asientos = "Fila: "+nrofila+" Butaca: "+nrocolumna;
+                return coordenadas_asientos;
             }
-            console.log("asiento seleccionado: " + idSeleccionado);
             if (event.target.classList.contains("indeterminado")) {
                 //código de lo que pasa si hago click en asiento indeterminado
                 event.target.checked = false;
@@ -500,17 +499,32 @@ function enviarFormularioSelector(event) {
                     
                     if (cantidadElegidos === entradasRequeridas) {
                         const Libres = platea.querySelectorAll(".libre");
-                        MOSTRAR_ASIENTOS.innerHTML=COORDENADAS_ASIENTOS;
-                        console.log(COORDENADAS_ASIENTOS);
                         Libres.forEach((element) => {
                             element.classList.replace("libre", "indeterminado");
                             //element.disabled=true;
                             element.indeterminate = true;
                         });
+                        Elegidos.forEach((elegido,llave)=>COORDENADAS_ASIENTOS+="<p>Asiento "+(llave+1)+" <i class='fa-solid fa-right-long'></i> "+coordenadas(elegido.id)+"</p>");
+                        MOSTRAR_ASIENTOS.innerHTML=COORDENADAS_ASIENTOS;
+                        const BOTONES = document.createElement("div");
+                        BOTONES.id="botones";
+                        BOTON_ACEPTAR =document.createElement("input");
+                        BOTON_ACEPTAR.classList.add("boton__aceptar","boton");
+                        BOTON_ACEPTAR.setAttribute("value","CONFIRMAR");
+                        BOTON_ACEPTAR.setAttribute("type","button");
+                        BOTON_CAMBIAR=document.createElement("input");
+                        BOTON_CAMBIAR.classList.add("boton__cambiar","boton");
+                        BOTON_CAMBIAR.setAttribute("value","MODIFICAR");
+                        BOTON_CAMBIAR.setAttribute("type","button");
+                        BOTONES.append(BOTON_ACEPTAR);
+                        BOTONES.append(BOTON_CAMBIAR);
+                        ENTRADAS_RESUMEN.appendChild(BOTONES);
                     }
                 } else {
                     //código de lo que pasa si hago click en asiento elegido
                     const Indeterminados = platea.querySelectorAll(".indeterminado");
+                    COORDENADAS_ASIENTOS="";
+                    document.querySelector("#botones").remove();
                     MOSTRAR_ASIENTOS.innerText="Asiento/s liberados. Seleccionar uno o más asientos para llegar a la cantidad de entradas.";
                     event.target.classList.replace("elegido", "libre");
                     Indeterminados.forEach((element) => {
