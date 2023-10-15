@@ -17,6 +17,10 @@
   --smoky-black: #080402ff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 p,

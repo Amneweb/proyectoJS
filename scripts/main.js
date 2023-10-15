@@ -416,7 +416,7 @@ selectorPeliculas.addEventListener("change", (event) => { //abre el primer input
         }
     }); //cierra el segundo input select: funcion
 }); //cierra el primer input select: peliculas
-let funcionSeleccionada;
+
 let inputs;
 const formularioSelector = document.querySelector("#selectores");
 formularioSelector.addEventListener("submit", enviarFormularioSelector);
