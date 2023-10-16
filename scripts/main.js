@@ -199,15 +199,41 @@ function armarDatosPeli(PELIELEGIDA, datospeli) {
     });
     return FRAGMENTO;
 }
-
+//<div class="snacks__item">
+//                <img src="assets/imagenes/popcornYbebida.png" alt="Foto de balde de pochoclo y 2 vasos de bebida">
+ //               <div class="snacks__item--contenido">
+ //                   <p class="snacks__p snacks__p--nombre">Pochoclo 'entre dos'</p>
+  //                  <p class="snacks__p">Balde de pochoclos para compartir, y dos vasos de gaseosa a elección.</p>
+  //              </div>
+  //          </div>
 function dibujarSnacks(Snack) {
-
+const FRAGMENTO = new DocumentFragment();
+const snacks__item = document.createElement("div");
+snacks__item.classList.add("snacks__item");
+const snacks__img=document.createElement("img");
+snacks__img.setAttribute("src",`assets/imagenes/${Snack.id}.png`);
+snacks__img.setAttribute("alt",`Foto de ${Snack.nombre}`);
+const snacks__contenido=document.createElement("div");
+snacks__contenido.classList.add("snacks__item--contenido");
+const snacks__p=[];
+snacks__p[0]=document.createElement("p");
+snacks__p[0].classList.add("snacks__p","snacks__p--nombre");
+snacks__p[0].innerText=`${Snack.nombre}`;
+snacks__p[1]=document.createElement("p");
+snacks__p[1].classList.add("snacks__p");
+snacks__p[1].innerText=`${Snack.descripcion}`;
+snacks__p.forEach((element)=>snacks__contenido.append(element));
+snacks__item.append(snacks__img);
+snacks__item.append(snacks__contenido);
+FRAGMENTO.append(snacks__item);
+return FRAGMENTO;
 }
 
 // //////// VARIABLES /////////  //
 let asientos = new Array();
-const salas = new Array();
+let salas = new Array();
 let pelis = new Array();
+let snacks=new Array();
 const PRECIOBASE = 3000; //valor de precio indicado desde el backend
 let funciones = new Array();
 
@@ -269,7 +295,8 @@ snacks = [
     new Snack("sn_003", "Chipá anaranjado", "Bandeja de chipá (pan de queso) para compartir. Trae 10 unidades. Acompañado de 2 vasos de jugo de naranja recién exprimido.", "1800", 2500),
     new Snack("sn_004", "Pancho a la Vintage", "Salchicha de primera calidad en panes esponjosos, con mostaza y ketchup, acompañado de gaseosa a elección.", "2500", 800),
     new Snack("sn_005", "Cereales con naranja", "Dos barras de cereal con chips de chocolate y un vaso de jugo de naranja recién exprimido.", "1500", 800),
-    new Snack("sn_006", "Ignacio's Cheddar", "Bandeja de nachos con mucho cheddar para untar. Acompañada de un vaso de gaseosa a elección.", "2200", 3000)
+    new Snack("sn_006", "Ignacio's Cheddar", "Bandeja de nachos con mucho cheddar para untar. Acompañada de un vaso de gaseosa a elección.", "2200", 3000),
+    new Snack("sn_007", "Frutas saludables", "Ensalada de fruta recién hecha, con todas las frutas que te imaginás, y más.", "2200", 500)
 ]
 
 //*********** Funciones (día y hora en la que se proyecta un película) */
@@ -371,6 +398,7 @@ pelis.forEach((elemento) => {
     optionPelicula.innerText = elemento.nombre;
     selectorPeliculas.appendChild(optionPelicula);
 });
+snacks.forEach ((element)=> sectionSnacks.appendChild(dibujarSnacks(element)));
 /**
  * 
  * @abstract primer interacción con el usuario, se elige la película. Una vez elegida la película empieza a armarse el DOM dinámicamente
