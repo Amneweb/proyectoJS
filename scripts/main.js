@@ -200,6 +200,10 @@ function armarDatosPeli(PELIELEGIDA, datospeli) {
     return FRAGMENTO;
 }
 
+function dibujarSnacks(Snack) {
+
+}
+
 // //////// VARIABLES /////////  //
 let asientos = new Array();
 const salas = new Array();
@@ -246,6 +250,26 @@ pelis = [
     new Pelicula("2309052000_TIT", "Titanic", 1997, "Leonardo Di Caprio, Kate Winslett", "Romance, Drama", "PG-13", "James Cameron", "Una aristócrata de diecisiete años se enamora de un amable pero pobre artista a bordo del lujoso y desafortunado R.M.S. Titanic.", "3h 14m", 7.9),
     new Pelicula("2309040102_AFR", "Africa mía", 1985, "Robert Redford, Maryl Streep", "Romance, Drama, Biografía", "GP-13", "Sydney Pollack", "En la Kenia colonial del siglo XX, una baronesa danesa, propietaria de una plantación, mantiene una apasionada relación amorosa con un cazador de espíritu libre.", "2h 41m", 7.1),
     new Pelicula("2310020824_KAR", "Karate Kid", 1984, "Ralph Macchio, Pat Morita", "Acción, Drama, Familiar", "ATP", "John G. Avildsen", "Un maestro de artes marciales acepta instruir a un adolescente acosado.", "2h 6m", 7.5)
+]
+
+//*********** Snacks */
+class Snack {
+    constructor(id, nombre, descripcion, calorias, precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.calorias = calorias;
+        this.precio = precio;
+    }
+}
+
+snacks = [
+    new Snack("sn_001", "Pochoclo 'entre dos", "Balde de pochoclos para compartir, y dos vasos de gaseosa a elección.", "1500", 2000),
+    new Snack("sn_002", "Popcorn Vintage", "Cartón de nuestro exquisito pochoclo Vintage. Puede ser dulce o salado. Simple o bañado en manteca derretida.", "1000", 1200),
+    new Snack("sn_003", "Chipá anaranjado", "Bandeja de chipá (pan de queso) para compartir. Trae 10 unidades. Acompañado de 2 vasos de jugo de naranja recién exprimido.", "1800", 2500),
+    new Snack("sn_004", "Pancho a la Vintage", "Salchicha de primera calidad en panes esponjosos, con mostaza y ketchup, acompañado de gaseosa a elección.", "2500", 800),
+    new Snack("sn_005", "Cereales con naranja", "Dos barras de cereal con chips de chocolate y un vaso de jugo de naranja recién exprimido.", "1500", 800),
+    new Snack("sn_006", "Ignacio's Cheddar", "Bandeja de nachos con mucho cheddar para untar. Acompañada de un vaso de gaseosa a elección.", "2200", 3000)
 ]
 
 //*********** Funciones (día y hora en la que se proyecta un película) */
@@ -316,6 +340,7 @@ const propiedadesPlatea = window.getComputedStyle(platea);
 const inputCantidad = document.querySelector(".entradas__cantidad");
 const propiedadesCantidad = window.getComputedStyle(inputCantidad);
 const imagenpeli = document.querySelector(".entradas__imagen");
+const sectionSnacks = document.querySelector(".snacks");
 pelis.forEach((elemento) => {
     /** 
      * 1era parte: armamos la cartelera
