@@ -473,11 +473,7 @@ selectorPeliculas.addEventListener("change", (event) => { //abre el primer input
 let inputs;
 const formularioSelector = document.querySelector("#selectores");
 formularioSelector.addEventListener("submit", enviarFormularioSelector);
-// formularioSelector.addEventListener("keypress",function(e){
-//     if(e.keycode===13) {
-//         e.preventDefault();
-//     } 
-// });
+
 function enviarFormularioSelector(event) {
     event.preventDefault();
 
@@ -506,7 +502,7 @@ function enviarFormularioSelector(event) {
 
         const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
         formularioSelector.innerHTML="";
-
+totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
         ENTRADAS_RESUMEN.innerHTML=`<h3>resumen de lo solicitado</h3>
         <div class="resumen__datospeli">
             <div class="datospeli__item datospeli__item--left">película </div>
@@ -517,8 +513,12 @@ function enviarFormularioSelector(event) {
             <div class="datospeli__item datospeli__item--right">${salas[FUNCIONELEGIDA.sala].nombre}</div>
             <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
             <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
+            <div class="datospeli__item datospeli__item--left">precio unitario</div>
+            <div class="datospeli__item datospeli__item--right">${FUNCIONELEGIDA.precio}</div>
             <div class="datospeli__item datospeli__item--left">asientos</div>
             <div class="datospeli__item datospeli__item--right asientos__elegidos">Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</div>
+            <div class="datospeli__item datospeli__item--left">total a pagar</div>
+            <div class="datospeli__item datospeli__item--right">${totalApagarEntradas}</div>
         </div>`;
 
         dibujarPlatea(asientosFuncionElegida, platea);
@@ -554,7 +554,7 @@ function enviarFormularioSelector(event) {
                         const Libres = platea.querySelectorAll(".libre");
                         Libres.forEach((element) => {
                             element.classList.replace("libre", "indeterminado");
-                            //element.disabled=true;
+                    
                             element.indeterminate = true;
                         });
                         Elegidos.forEach((elegido,llave)=>COORDENADAS_ASIENTOS+="<p>Asiento "+(llave+1)+" <i class='fa-solid fa-right-long'></i> "+coordenadas(elegido.id)+"</p>");
