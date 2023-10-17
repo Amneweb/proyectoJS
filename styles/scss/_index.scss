@@ -426,8 +426,8 @@ img {
 .snacks {
     //flex-wrap: wrap;
     //row-gap: 30px;
-    display:flex;
     width:100%;
+    display:flex;
     overflow-x:auto;
         scroll-snap-type: x mandatory;
         -ms-overflow-style: none;
@@ -439,7 +439,8 @@ img {
     &__item {
         background-color: rgba(255, 255, 255, 0.1);
         width: 22%;
-
+        min-width:20%;
+        margin:10px;
         img {
             max-width: 100%;
         }

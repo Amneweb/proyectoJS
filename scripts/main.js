@@ -222,11 +222,14 @@ snacks__p[0].innerText=`${Snack.nombre}`;
 snacks__p[1]=document.createElement("p");
 snacks__p[1].classList.add("snacks__p");
 snacks__p[1].innerText=`${Snack.descripcion}`;
+snacks__contenido.append(snacks__img);
 snacks__p.forEach((element)=>snacks__contenido.append(element));
-snacks__item.append(snacks__img);
 snacks__item.append(snacks__contenido);
 FRAGMENTO.append(snacks__item);
 return FRAGMENTO;
+}
+function borrarTodo() {
+
 }
 
 // //////// VARIABLES /////////  //
@@ -234,8 +237,19 @@ let asientos = new Array();
 let salas = new Array();
 let pelis = new Array();
 let snacks=new Array();
+let carrito = [];
 const PRECIOBASE = 3000; //valor de precio indicado desde el backend
 let funciones = new Array();
+const selectorPeliculas = document.querySelector("#select__pelicula");
+const datospeli = document.querySelector(".entradas__datospeli");
+const selectorFunciones = document.querySelector("#select__funcion");
+const platea = document.querySelector("#platea");
+const divSelectorFunciones = document.querySelector("#entradas__funcion");
+const propiedadesPlatea = window.getComputedStyle(platea);
+const inputCantidad = document.querySelector(".entradas__cantidad");
+const propiedadesCantidad = window.getComputedStyle(inputCantidad);
+const imagenpeli = document.querySelector(".entradas__imagen");
+const sectionSnacks = document.querySelector(".snacks");
 
 // //////// OBJETOS ///////////  //
 //*********** Salas */
@@ -290,7 +304,7 @@ class Snack {
 }
 
 snacks = [
-    new Snack("sn_001", "Pochoclo 'entre dos", "Balde de pochoclos para compartir, y dos vasos de gaseosa a elección.", "1500", 2000),
+    new Snack("sn_001", "Pochoclo 'entre dos'", "Balde de pochoclos para compartir, y dos vasos de gaseosa a elección.", "1500", 2000),
     new Snack("sn_002", "Popcorn Vintage", "Cartón de nuestro exquisito pochoclo Vintage. Puede ser dulce o salado. Simple o bañado en manteca derretida.", "1000", 1200),
     new Snack("sn_003", "Chipá anaranjado", "Bandeja de chipá (pan de queso) para compartir. Trae 10 unidades. Acompañado de 2 vasos de jugo de naranja recién exprimido.", "1800", 2500),
     new Snack("sn_004", "Pancho a la Vintage", "Salchicha de primera calidad en panes esponjosos, con mostaza y ketchup, acompañado de gaseosa a elección.", "2500", 800),
@@ -333,24 +347,17 @@ funciones = [
     new Funcion("2309101901_TOY", 2, 23, 9, 2023, 1830)
 ];
 
+class Entrada {
+    constructor(funcion,asientos,total,cantidad) {
+        this.funcion=funcion;
+        this.asientos=asientos;
+        this.total=total;
+        this.cantidad=cantidad;
+}
+}
 // **** **** **** FIN DECLARACIONES **** **** **** /////////////////////
 
-// *************     Empieza la interacción con el usuario y armado del DOM  **********************//
-
-/* ---- para corregir 
-* hacer que los selectores y el input de entradas estén en un form
-* borrar la platea cada vez que se cammbia de función o película
-* el boton del form debe decir mostrar asientos
-* la platea no debería modificarse si sólo cambio la cantidad de entradas
-* pero sí debería borrarse si la cantidad de entradas es mayor que los asientos disponibles
-* cuando muestro la platea, debe aparecer arriba la info de la peli, las entradas, la función y el precio
-* evaluar el tema de contar 0, debería poder hacerse un reduce anidado
-* activar eventos en boton de cartelera (debe ir a las entradas con la peli ya elegida)
-* el div entradas debe estar oculto al abrur la pagina y se abre cuando hago click en los links de entradas
-* el div rojo con detalle de la peli debe moverse lateralmente o rotar cada vez que cambio de peli
-* los snacks deben generarse desde el javascript (crear objetos respectivos)
-* armar carrito con las entradas y snacks
-*/
+// ************* Armado del DOM  ****************************************//
 /** 
  * 
 * @abstract Con el código que sigue armamos el overlay de las películas en cartelera y las 'options' del selector de películas
@@ -358,16 +365,7 @@ funciones = [
  * @param {Element} peliculaEnCartelera div dentro de contenedor__peliculas, que va a contener la imagen de las películas y el overlay
  * 
 */
-const selectorPeliculas = document.querySelector("#select__pelicula");
-const datospeli = document.querySelector(".entradas__datospeli");
-const selectorFunciones = document.querySelector("#select__funcion");
-const platea = document.querySelector("#platea");
-const divSelectorFunciones = document.querySelector("#entradas__funcion");
-const propiedadesPlatea = window.getComputedStyle(platea);
-const inputCantidad = document.querySelector(".entradas__cantidad");
-const propiedadesCantidad = window.getComputedStyle(inputCantidad);
-const imagenpeli = document.querySelector(".entradas__imagen");
-const sectionSnacks = document.querySelector(".snacks");
+
 pelis.forEach((elemento) => {
     /** 
      * 1era parte: armamos la cartelera
@@ -398,7 +396,15 @@ pelis.forEach((elemento) => {
     optionPelicula.innerText = elemento.nombre;
     selectorPeliculas.appendChild(optionPelicula);
 });
+/** 
+ * 
+* @abstract Armamos el carousel de snacks
+ * @param {Array} snacks array de objetos
+ * 
+*/
 snacks.forEach ((element)=> sectionSnacks.appendChild(dibujarSnacks(element)));
+
+// *************     Empieza la interacción con el usuario  **********************//
 /**
  * 
  * @abstract primer interacción con el usuario, se elige la película. Una vez elegida la película empieza a armarse el DOM dinámicamente
@@ -455,9 +461,7 @@ selectorPeliculas.addEventListener("change", (event) => { //abre el primer input
      * 
      * @abstract asignamos evento al select de las funciones. El evento hace que el input de cantidad sea visible. Además se muestra el botón de enviar formulario.
      */
-    let funcionSeleccionada;
     selectorFunciones.addEventListener("change", (event) => { //abre segundo select: elegir funcion
-        funcionSeleccionada = event.target.value;
 
         if (propiedadesCantidad.display === "none") {
             inputCantidad.style["display"] = "block";
@@ -502,7 +506,7 @@ function enviarFormularioSelector(event) {
 
         const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
         formularioSelector.innerHTML="";
-totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
+        totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
         ENTRADAS_RESUMEN.innerHTML=`<h3>resumen de lo solicitado</h3>
         <div class="resumen__datospeli">
             <div class="datospeli__item datospeli__item--left">película </div>
@@ -557,8 +561,20 @@ totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
                     
                             element.indeterminate = true;
                         });
-                        Elegidos.forEach((elegido,llave)=>COORDENADAS_ASIENTOS+="<p>Asiento "+(llave+1)+" <i class='fa-solid fa-right-long'></i> "+coordenadas(elegido.id)+"</p>");
+                        const ElegidosID =[];
+                        Elegidos.forEach((elegido,llave)=>{ 
+                            COORDENADAS_ASIENTOS+="<p>Asiento "+(llave+1)+" <i class='fa-solid fa-right-long'></i> "+coordenadas(elegido.id)+"</p>";
+                            ElegidosID.push(elegido.id);
+                            });
                         MOSTRAR_ASIENTOS.innerHTML=COORDENADAS_ASIENTOS;
+                        const objEntradas = new Entrada (FUNCIONELEGIDA.id,ElegidosID,totalApagarEntradas,entradasRequeridas);
+                        console.log(objEntradas);
+                        //const vintageLS=window.localStorage;
+                        //vintageLS.setItem('entradas', JSON.stringify(objEntradas));
+                        localStorage.setItem('entradas',JSON.stringify(objEntradas));
+                        const vintageLS=localStorage.getItem('entradas');
+                        console.log("en JSON "+vintageLS);
+                        console.log("corregido "+JSON.parse(vintageLS));
                         const BOTONES = document.createElement("div");
                         BOTONES.id="botones";
                         BOTON_ACEPTAR =document.createElement("input");
@@ -572,6 +588,8 @@ totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
                         BOTONES.append(BOTON_ACEPTAR);
                         BOTONES.append(BOTON_CAMBIAR);
                         ENTRADAS_RESUMEN.appendChild(BOTONES);
+                        BOTON_ACEPTAR.addEventListener("click",preguntarSnacks());
+                        BOTON_CAMBIAR.addEventListener("click",borrarTodo());
                     }
                 } else {
                     //código de lo que pasa si hago click en asiento elegido
@@ -582,7 +600,6 @@ totalApagarEntradas=FUNCIONELEGIDA.precio*entradasRequeridas;
                     event.target.classList.replace("elegido", "libre");
                     Indeterminados.forEach((element) => {
                         element.classList.replace("indeterminado", "libre");
-                        //element.disabled=true;
                         element.indeterminate = false;
                     });
 
