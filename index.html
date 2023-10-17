@@ -27,7 +27,7 @@
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-people-roof"></i>salas</a></li>
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-cookie-bite"></i>snacks</a></li>
                 <li><a class="nav__a" href="#"><i class="fa-solid fa-address-card"></i>contacto</a></li>
-                <li><a href="#section__entradas" class="nav__a--entradas"><i
+                <li><a href="#section__entradas" class="nav__a--entradas comprar_entradas"><i
                             class="fa-solid fa-ticket"></i>entradas</a></li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@
     <section class="hero">
         <div class="hero__div">
             <p class="hero__p--principal">
-                <a href="#section__entradas">Comprá tus entradas</a>
+                <a class="comprar_entradas" href="#section__entradas">Comprá tus entradas</a>
             </p>
             <p class="hero__p--secundario">
                 Y volvé a mirar tus pelis favoritas en pantalla grande
@@ -58,7 +58,7 @@
 
     </section>
     <section class="gris" id="section__entradas">
-    <section class="section__titulo section__titulo--entradas">
+    <!-- <section class="section__titulo section__titulo--entradas">
         <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
     </section>
     <section class="main entradas">
@@ -90,7 +90,7 @@
         </div>     
         <div class="platea" id="platea">
             
-        </div>    
+        </div>     -->
     </section>
 
     
@@ -212,59 +212,7 @@
         <div class="contacto--form"></div>
         <div class="contacto--datos"></div>
     </footer>
-    <section class="descripcion">
-        <p>En este proyecto simularemos una web app de venta de entradas y snacks de un cine.</p>
-        <h2>Primer y segunda entrega</h2>
-        <p>En las dos primeras entregas, una vez que el usuario hace click en el botón de comprar entradas,
-            interactuamos con él a través de prompt y alert, sin modificar el html.</p>
-        <form>
-            <button class="boton" onclick="ejecutar();">Comprar entradas</button>
-        </form>
-        <h2>Idea general del proyecto</h2>
-        <p>Acá explicamos con un poco de detalle cuál es la idea del proyecto final</p>
-        <p>Para la venta de entradas el usuario elegirá, en el siguiente orden:</p>
-        <ol>
-            <li>Película</li>
-            <li>Tipo de sala (premium o clásica) - Si hubiera 2 salas para la misma película</li>
-            <li>Función (fecha y hora)</li>
-            <li>Cantidad de entradas</li>
-            <li>Asientos</li>
-        </ol>
-        <p>La elección de los asientos se hará en función de la ubicación de cada asiento en la sala (se mostrará una
-            especie de plano con la disposición de las butacas y el usuario hará click en el asiento elegido). Según la
-            ubicación del asiento, la entrada tendrá un valor específico.</p>
-        <p>Acá se puede ver la idea desarrollada hasta el momento (varios "checkboxes" dentro de un form). Cuando se
-            hace click en un círculo, cambia de color.</p>
-        <section class="platea">
-            <div class="fila">
-                <input type="checkbox" class="asiento" id="f1-c1"></input>
-                <input type="checkbox" class="asiento" id="f1-c2"></input>
-                <input type="checkbox" class="asiento" id="f1-c3"></input>
-                <input type="checkbox" class="asiento" id="f1-c4"></input>
-                <input type="checkbox" class="asiento" disabled id="f1-c5"></input>
-                <input type="checkbox" class="asiento" id="f1-c6"></input>
-                <input type="checkbox" class="asiento" id="f1-c7"></input>
-                <input type="checkbox" class="asiento" id="f1-c8"></input>
-                <input type="checkbox" class="asiento" id="f1-c9"></input>
-                <input type="checkbox" class="asiento" id="f1-c10"></input>
-            </div>
-            <div class="fila">
-                <input type="checkbox" class="asiento" id="f2-c1"></input>
-                <input type="checkbox" class="asiento" id="f2-c2"></input>
-                <input type="checkbox" class="asiento" id="f2-c3"></input>
-                <input type="checkbox" class="asiento" id="f2-c4"></input>
-                <input type="checkbox" class="asiento" id="f2-c5"></input>
-                <input type="checkbox" class="asiento" id="f2-c6"></input>
-                <input type="checkbox" class="asiento" id="f2-c7"></input>
-                <input type="checkbox" class="asiento" id="f2-c8"></input>
-                <input type="checkbox" class="asiento" id="f2-c9"></input>
-                <input type="checkbox" class="asiento" id="f2-c10"></input>
-            </div>
-        </section>
-        <p>Seleccionados los asientos, el usuario podrá elegir si quiere agregar snacks o si sólo compra las entradas.
-        </p>
 
-    </section>
     <script src="scripts/main.js"></script>
 </body>
 
