@@ -232,7 +232,7 @@ function dibujarSnacks(Snack) {
  * @abstract esta funcion es la que maneja toda la interacción con el usuario, desde la compra de entradas hasta el armado del carrito. Se la invoca desde la función mostrarTodo, una vez que se arma el esqueleto de la sección de venta de entradas
  * 
  */
-function armarDOM() {
+function armarDOM(peliculaDeCartelera) {
     const selectorPeliculas = document.querySelector("#select__pelicula");
     const datospeli = document.querySelector(".entradas__datospeli");
     const selectorFunciones = document.querySelector("#select__funcion");
@@ -240,14 +240,25 @@ function armarDOM() {
     const divSelectorFunciones = document.querySelector("#entradas__funcion");
     const inputCantidad = document.querySelector(".entradas__cantidad");
     const imagenpeli = document.querySelector(".entradas__imagen");
+    if (!peliculaDeCartelera) {
+        selectorPeliculas.innerHTML = `<option class="select--disabled" selected disabled value="">Elegí la película</option>`;
+    } else {selectorPeliculas.innerHTML = `<option selected value="${peliculaDeCartelera}">${peliculaDeCartelera}</option>`;
+    const changeEvent = new Event("change",{value: peliculaDeCartelera} );
+    selectorPeliculas.dispatchEvent(changeEvent);
+    generarSelectorFunciones(changeEvent);
+} 
     pelis.forEach((elemento) => {
+        if (peliculaDeCartelera == elemento.id) {
+            return;
+        } else {
         const optionPelicula = document.createElement("option");
         optionPelicula.value = elemento.id;
         optionPelicula.innerText = elemento.nombre;
         selectorPeliculas.appendChild(optionPelicula);
+    }
     });
-
-    selectorPeliculas.addEventListener("change", (event) => { //abre el primer input select: peliculas 
+selectorPeliculas.addEventListener("change",generarSelectorFunciones);
+function generarSelectorFunciones(event) { //abre el primer input select: peliculas 
         seleccionarPeli = event.target.value;
         const propiedadesFunciones = window.getComputedStyle(divSelectorFunciones);
         if (propiedadesFunciones.display === "none") {
@@ -301,7 +312,7 @@ function armarDOM() {
                 datospeli.style["display"] = "block";
             }
         }); //cierra el segundo input select: funcion
-    }); //cierra el primer input select: peliculas
+    }; //cierra el primer input select: peliculas
 
     let inputs;
     const formularioSelector = document.querySelector("#selectores");
@@ -467,7 +478,7 @@ function verificarFlag() {
 /**
  * @abstract cuando se carga el documento no se ve la sección de compra de entradas. Cuando se hace click en el botón de comprar se arma primero el esqueleto de esa parte y luego la interacción con el usuario desde la function armarDOM(), invocada al final de esta
  */
-function mostrarTodo() {
+function mostrarTodo(cartelera_id) {
     divEntradas.innerHTML =
         `<section class="section__titulo section__titulo--entradas">
     <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
@@ -477,7 +488,7 @@ function mostrarTodo() {
         <div class="entradas__selectores">
             <div class="entradas__select">
             <select name="select__pelicula" id="select__pelicula">
-                <option class="select--disabled" selected disabled value="">Elegí la película</option>
+                
             </select>
             </div>
             <div class="entradas__select" id="entradas__funcion">
@@ -502,7 +513,7 @@ function mostrarTodo() {
     <div class="platea" id="platea">
         
     </div>`;
-    armarDOM();
+    armarDOM(cartelera_id);
 }
 function preguntarSnacks() {
     alert ("quieres comprar snacks o solo las entradas?");
@@ -657,10 +668,13 @@ pelis.forEach((elemento) => {
     overlay.append(texto);
     const botonCartelera = document.createElement("div");
     botonCartelera.className = "cartelera__boton";
+    botonCartelera.id=elemento.id;
     botonCartelera.innerText = "elegir";
+    botonCartelera.style.cursor="pointer";
     overlay.append(botonCartelera);
     peliculaEnCartelera.append(overlay);
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
+    botonCartelera.addEventListener("click",(event)=> mostrarTodo(event.target.id) );
 });
 
 /** 
