@@ -276,7 +276,7 @@ background-image: url(../../assets/imagenes/estrellaTextoVintage.png);
     width:100%;
 }
 .entradas__imagen {
-width:20%;
+width:30%;
 overflow:hidden;
 img {
     width:100%;
@@ -288,7 +288,7 @@ img {
 }
 .entradas__datospeli {
     border-radius:10px;
-    width:40%;
+    width:65%;
    @extend %contenedor-datospeli;  
 }
 .resumen__datospeli {
@@ -312,8 +312,20 @@ img {
 
     }
 }
+.entradas {
+    column-gap:20px;
+    justify-items: stretch;
+}
 .entradas__cantidad {
     display:none;
+}
+.entradas__izquierda {
+    width:40%;
+    
+}
+.entradas__derecha {
+    width:60%;
+    display:flex;
 }
 
 
@@ -407,20 +419,6 @@ img {
     background-color: white;
 }
 
-.entradas-borrador {
-    display: flex;
-    grid-area: entradas-borrador;
-
-    div {
-        width: 100%;
-        margin: 5px;
-    }
-
-    @media screen and (max-width: 992px) {
-        flex-wrap: wrap;
-    }
-
-}
 
 
 .snacks {
@@ -495,4 +493,7 @@ color:#eeeeee;
         border-color:grey;
         width:50%;
     }
+}
+.platea {
+    display:none;
 }

@@ -241,14 +241,20 @@ function armarDOM(peliculaDeCartelera) {
     const inputCantidad = document.querySelector(".entradas__cantidad");
     const imagenpeli = document.querySelector(".entradas__imagen");
     if (!peliculaDeCartelera) {
+        console.log("undefined ? "+peliculaDeCartelera)
         selectorPeliculas.innerHTML = `<option class="select--disabled" selected disabled value="">Elegí la película</option>`;
-    } else {selectorPeliculas.innerHTML = `<option selected value="${peliculaDeCartelera}">${peliculaDeCartelera}</option>`;
+    } else {
+        let PELIDECARTELERA = pelis.find((element) => element.id === peliculaDeCartelera);
+        console.log(peliculaDeCartelera);
+        console.log(PELIDECARTELERA);
+        selectorPeliculas.innerHTML = `<option selected value="${peliculaDeCartelera}">${PELIDECARTELERA.nombre}</option>`;
     const changeEvent = new Event("change",{value: peliculaDeCartelera} );
     selectorPeliculas.dispatchEvent(changeEvent);
     generarSelectorFunciones(changeEvent);
 } 
     pelis.forEach((elemento) => {
-        if (peliculaDeCartelera == elemento.id) {
+        if (peliculaDeCartelera === elemento.id) {
+            console.log("en el lado donde SI hay coincidencia")
             return;
         } else {
         const optionPelicula = document.createElement("option");
@@ -428,11 +434,12 @@ function generarSelectorFunciones(event) { //abre el primer input select: pelicu
                             BOTONES.append(BOTON_ACEPTAR);
                             BOTONES.append(BOTON_CAMBIAR);
                             ENTRADAS_RESUMEN.appendChild(BOTONES);
-                            BOTON_ACEPTAR.addEventListener("click", preguntarSnacks);
+                            BOTON_ACEPTAR.addEventListener("click", () =>{ preguntarSnacks()});
                             BOTON_CAMBIAR.addEventListener("click", ()=>{
                                 FLAG_ENTRADAS = 0;
                                 borrarTodo();
                             });
+                            
                         }
                     } else {
                         //código de lo que pasa si hago click en asiento elegido
@@ -466,13 +473,14 @@ function borrarTodo() {
  * @abstract se usa para verificar si está armado el esqueleto de la sección de venta de entradas. Es por si un usuario ya empezó a elegir películas y sin querer vuelve a apretar el botón de comprar entradas, para que no se le pierdan los datos ingresados
  * 
  */
-function verificarFlag() {
+function verificarFlag(id) {
     if (FLAG_ENTRADAS != 0) { 
         console.log("flag en evento de boton "+FLAG_ENTRADAS);
         alert ("ya estás en un proceso de compra de entradas, si haces click nuevamente se perderán los datos cargados"); return;   
     } else
     { FLAG_ENTRADAS = 1;
-        mostrarTodo();
+        document.querySelector("#section__entradas").scrollIntoView("smooth");
+        mostrarTodo(id);
     } 
 }
 /**
@@ -484,6 +492,7 @@ function mostrarTodo(cartelera_id) {
     <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
 </section>
 <section class="main entradas">
+<div class="entradas__izquierda">
     <form action="" id="selectores">
         <div class="entradas__selectores">
             <div class="entradas__select">
@@ -506,17 +515,42 @@ function mostrarTodo(cartelera_id) {
     <div class="entradas__resumen">
             
     </div> 
+    </div>
+    <div class="entradas__derecha">
     <div class="entradas__imagen"></div>
     <div class="entradas__datospeli">
         
     </div>     
     <div class="platea" id="platea">
         
+    </div>
+    <div class="carrito"></div>
     </div>`;
     armarDOM(cartelera_id);
 }
 function preguntarSnacks() {
-    alert ("quieres comprar snacks o solo las entradas?");
+    const MAS = prompt("¿quieres comprar snacks o solo las entradas?");
+    if (MAS=="SI") { 
+        document.querySelector("#botones").remove();
+        platea.style["display"] = "none";
+        const mostrar = mostrarSnacks();
+        document.querySelector(".carrito").appendChild(mostrar);}
+}
+
+function mostrarSnacks() {
+    const FRAGMENTO_SNACKS = new DocumentFragment();
+    const CARRITO_SNACKS = document.createElement("div");
+    CARRITO_SNACKS.classList.add("carrito_snacks");
+    const UL_SNACKS = document.createElement("ul");
+    UL_SNACKS.classList.add("ul_snacks");
+    snacks.forEach((element)=>{
+        let LI_SNACKS = document.createElement("li");
+        LI_SNACKS.innerText = element.nombre;
+        UL_SNACKS.append(LI_SNACKS);
+    });
+    CARRITO_SNACKS.append(UL_SNACKS);
+    FRAGMENTO_SNACKS.append(CARRITO_SNACKS);
+    return FRAGMENTO_SNACKS;
 }
 // //////// VARIABLES /////////  //
 let FLAG_ENTRADAS = 0;
@@ -532,7 +566,7 @@ let funciones = new Array();
 const sectionSnacks = document.querySelector(".snacks");
 const divEntradas = document.querySelector("#section__entradas");
 const botonEntradas = document.querySelectorAll(".comprar_entradas");
-botonEntradas.forEach((element)=>element.addEventListener("click", verificarFlag));
+botonEntradas.forEach((element)=>element.addEventListener("click", (event)=> verificarFlag(undefined)));
 
 
 // //////// OBJETOS ///////////  //
@@ -670,11 +704,11 @@ pelis.forEach((elemento) => {
     botonCartelera.className = "cartelera__boton";
     botonCartelera.id=elemento.id;
     botonCartelera.innerText = "elegir";
-    botonCartelera.style.cursor="pointer";
+    //botonCartelera.style.cursor="pointer";
     overlay.append(botonCartelera);
     peliculaEnCartelera.append(overlay);
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
-    botonCartelera.addEventListener("click",(event)=> mostrarTodo(event.target.id) );
+    botonCartelera.addEventListener("click",(event)=> verificarFlag(event.target.id) );
 });
 
 /** 
