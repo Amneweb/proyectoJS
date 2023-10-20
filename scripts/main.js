@@ -4,10 +4,11 @@
  * 
  * @abstract para mostrar los precios con un formato de currency
  */
-const currency=(valor)=> new Intl.NumberFormat('en-US', {
+const currency=(valor)=> valor.toLocaleString('es-ar', {
     style: 'currency',
-    currency: 'USD',
-}).format(valor);
+    currency: 'ARS',
+    minimumFractionDigits: 2
+});
  
 /**
  *
