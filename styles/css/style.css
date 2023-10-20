@@ -623,6 +623,12 @@ select::-ms-expand {
   display: none;
 }
 
+.carrito {
+  background-color: var(--rojo-butaca);
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .platea {
   width: auto;
   background-color: white;
