@@ -1,6 +1,15 @@
 // **** **** **** DECLARACIONES **** **** **** //
 // //////// FUNCTIONS ///////////  //
 /**
+ * 
+ * @abstract para mostrar los precios con un formato de currency
+ */
+const currency=(valor)=> new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+}).format(valor);
+ 
+/**
  *
  * @abstract Permite mostrar las fechas en el formato DD/MM/YYYY
  * @param {number} anio Pasamos año como número
@@ -242,7 +251,7 @@ function dibujarSnacksEnEntradas(Snack) {
     snacks__p.innerText = `${Snack.nombre}`;
     const snacks__precio = document.createElement("p");
     snacks__precio.classList.add("snacks__precio");
-    snacks__precio.innerText = `$ ${Snack.precio}`;
+    snacks__precio.innerText = `${currency(Snack.precio)}`;
     const snacks__input = document.createElement("input");
     snacks__input.classList.add("snacks__input");
     snacks__input.setAttribute("value", "Elegir");
@@ -546,11 +555,11 @@ function dibujarEntradasResumen(ENTRADAS_RESUMEN,PELIELEGIDA,FUNCIONELEGIDA,entr
                 <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
                 <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
                 <div class="datospeli__item datospeli__item--left">precio unitario</div>
-                <div class="datospeli__item datospeli__item--right">${FUNCIONELEGIDA.precio}</div>
+                <div class="datospeli__item datospeli__item--right">${currency(FUNCIONELEGIDA.precio)}</div>
                 <div class="datospeli__item datospeli__item--left">asientos</div>
                 <div class="datospeli__item datospeli__item--right asientos__elegidos">Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</div>
                 <div class="datospeli__item datospeli__item--left">total a pagar</div>
-                <div class="datospeli__item datospeli__item--right">${totalApagarEntradas}</div>
+                <div class="datospeli__item datospeli__item--right">${currency(totalApagarEntradas)}</div>
             </div>`;
 }
 /**
