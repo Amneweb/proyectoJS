@@ -114,8 +114,12 @@ function simularOcupacion(funcion) {
  * @returns modifica el DOM, generando una grilla en la que cada checkbox tien un id del tipo f1-c1 (fila 1 - columna 1)
  * 
  */
-function dibujarPlatea(asientos, DOMplatea) {
-    DOMplatea.innerHTML = `<div class="pantalla">Pantalla</div>`;
+function dibujarPlatea(asientos) {
+    const FRAGMENTO = new DocumentFragment();
+    const pantalla = document.createElement("div");
+    pantalla.classList.add("pantalla");
+    pantalla.innerText="Pantalla";
+    FRAGMENTO.append(pantalla);
     asientos.forEach((arrayFila, indiceFila) => {
         const fila = document.createElement("div");
         fila.className = "fila";
@@ -133,37 +137,9 @@ function dibujarPlatea(asientos, DOMplatea) {
             }
             fila.appendChild(lugar);
         });
-        DOMplatea.appendChild(fila);
-
+        FRAGMENTO.append(fila);
     });
-}
-/**
- *
- * @abstract funcion para contar la cantidad de asientos libres CONTIGUOS. Eso después se compara con la cantidad de entradas a comprar y se muestra qué filas tienen asientos contiguos libres (no sé si esta función va a usarse en el proyecto final, pero por las dudas no la borro). Acá no puedo usar la función de contarCeros porque esa función (usando .reduce) recorre todo el array antes de decirme el total y en este caso paro de contar cuando llego a asientos = entradas. 
- * @param {array} matrizAsientos Corresponde a la matriz de filas y columnas de asientos en una sala.
- * @param {number} entradas Cantidad de entradas a comprar.  
- * @returns un string que muestra todas las filas que tienen la cantidad necesarias de asientos contiguos (es decir, la cantidad de entradas)
- * 
- */
-function asientosContiguos(entradas, matrizAsientos) {
-    let filasConAsientosContiguos = [];
-    let contador = 0;
-    for (let i = 0; i < matrizAsientos.length; i++) {
-        for (let j = 0; j < matrizAsientos[i].length; j++) {
-            if (matrizAsientos[i][j] === 0) {
-                contador++;
-                if (contador >= entradas) {
-                    filasConAsientosContiguos.push(i + 1);
-                    contador = 0;
-                    break;
-                }
-            } else {
-                contador = 0;
-            }
-        }
-        contador = 0;
-    }
-    return alertaFilas = "las filas con " + entradas + " o más asientos libres contiguos son: " + filasConAsientosContiguos.join();
+    return FRAGMENTO;
 }
 /**
  * 
@@ -173,8 +149,7 @@ function asientosContiguos(entradas, matrizAsientos) {
  * @returns un DocumentFragment con la tabla que se muestra en las div overlay de la cartelera y en la div roja que aparce a la derecha del selector cuando el usuario elige la peli
  * 
  */
-function armarDatosPeli(PELIELEGIDA, DOMdatospeli) {
-    DOMdatospeli.innerHTML = "";
+function armarDatosPeli(PELIELEGIDA) {
     const FRAGMENTO = new DocumentFragment();
     const TITULOS = [
         "nombre",
@@ -238,6 +213,12 @@ function dibujarSnacks(Snack) {
     FRAGMENTO.append(snacks__item);
     return FRAGMENTO;
 }
+/**
+ * 
+ * @abstract dibujar la div de snacks en la página
+ * @returns un DocumentFragment con las cards de los snacks
+ * 
+ */
 function dibujarSnacksEnEntradas(Snack) {
     const FRAGMENTO = new DocumentFragment();
     const snacks__item = document.createElement("div");
@@ -271,187 +252,64 @@ function dibujarSnacksEnEntradas(Snack) {
  * @abstract si la compra de entradas se inicia desde el menú superior o cualquier botón general de compra de entradas (la variable peliculaDeCartelera es undefined), el primer elemento del selector pide que se elija una película. Si la compra se inicia desde la cartelera (peliculaDeCartelera tiene un valor distinto de undefined), el selector ya tiene seleccionada la película en cuestión, pero igual muestra las demás. Para que funcione todo lo que se ocurre por el evento change del selector, genero un evento ficticio
  * 
  */
-function dibujarSelectorPeliculas(DOMselectorPeliculas,peliculaDeCartelera) {
-    
-    if (peliculaDeCartelera=="") {
-        DOMselectorPeliculas.innerHTML = `<option class="select--disabled" selected disabled value="">Elegí la película</option>`;
-    } else {
-        let PELIDECARTELERA = pelis.find((element) => element.id === peliculaDeCartelera);
-        DOMselectorPeliculas.innerHTML = `<option selected value="${peliculaDeCartelera}">${PELIDECARTELERA.nombre}</option>`;
-        //genero un evento ficticio para simular el change del selector
-        const changeEvent = new Event("change",{value: peliculaDeCartelera} );
-        DOMselectorPeliculas.dispatchEvent(changeEvent);
-        generarSelectorFunciones(changeEvent);
-    } 
-
+function dibujarSelectorPeliculas() {
+    const FRAGMENTO = new DocumentFragment();
+    const optionInicial=document.createElement("option");
+    optionInicial.value="";
+    optionInicial.classList.add("select--disabled");
+    optionInicial.setAttribute("disabled","disabled");
+    optionInicial.setAttribute("selected","selected");
+    optionInicial.innerHTML="Elegí la película";
+    FRAGMENTO.appendChild(optionInicial);
     pelis.forEach((elemento) => {
-        if (peliculaDeCartelera === elemento.id) {
-            return;
-        } else {
         const optionPelicula = document.createElement("option");
         optionPelicula.value = elemento.id;
         optionPelicula.innerText = elemento.nombre;
-        DOMselectorPeliculas.appendChild(optionPelicula);
+        FRAGMENTO.appendChild(optionPelicula);
         }
-    });
+    );
+    return FRAGMENTO;
 }
-
+function dibujarDatosPeli(id) {
+    const PELIELEGIDA = pelis.find((element) => element.id === id);
+    DOMdatospeli=document.querySelector(".entradas__datospeli");
+    DOMimagenPeli=document.querySelector(".entradas__imagen")
+    DOMdatospeli.style["background-color"] = "var(--rojo-butaca)";
+    DOMdatospeli.innerHTML = "";
+    DOMdatospeli.appendChild(armarDatosPeli(PELIELEGIDA));
+    DOMimagenPeli.innerHTML = `<img src="assets/imagenes/peliculas/${PELIELEGIDA.id}.jpg" alt="Poster película elegida">`;
+}
+ 
 /**
  * para armar el selector de funciones en base a la peli elegida
  */
 
-function dibujarSelectorFunciones(event,DOMdatospeli,DOMdivSelectorFunciones,DOMimagenPeli,DOMselectorFunciones) { 
-    seleccionarPeli = event.target.value;
+function dibujarSelectorFunciones(id) { 
+    console.log("id en funciones ",id);
+    const DOMdivSelectorFunciones = document.querySelector("#entradas__funcion");
     const propiedadesFunciones = window.getComputedStyle(DOMdivSelectorFunciones);
     if (propiedadesFunciones.display === "none") {
         DOMdivSelectorFunciones.style["display"] = "block";
     }
-    let PELIELEGIDA = pelis.find((element) => element.id === seleccionarPeli);
-    /**
-     * 
-     * @abstract mostramos la info de la peli seleccionada en un div a la derecha del selector (o abajo si usamos celular)
-     * @param {Element} DOMdatospeli div roja, a la que le agrego datos de la película usando la función armarDatosPeli
-     * @param {Element} DOMimagenPeli div que contiene el poster de la película, que aparece entre DOMdatospeli y el selector
-     * 
-     */
-    DOMdatospeli.style["background-color"] = "var(--rojo-butaca)";
-    DOMdatospeli.innerHTML = "";
-    DOMdatospeli.appendChild(armarDatosPeli(PELIELEGIDA, DOMdatospeli));
-    DOMimagenPeli.innerHTML = `<img src="assets/imagenes/peliculas/${PELIELEGIDA.id}.jpg" alt="Poster película elegida">`;
-    
+    const PELIELEGIDA = pelis.find((element) => element.id === id);
     const mostrarNombreCorto = acortarPalabra(PELIELEGIDA.nombre, 12);
+    const DOMselectorFunciones=document.querySelector("#select__funcion");
     DOMselectorFunciones.innerHTML = `<option class="select--disabled" selected disabled value="">Elegí la función para la película ${mostrarNombreCorto}</option>`;
-    let funcionesPeliSeleccionada = funciones.filter((peliculaId) => peliculaId.pelicula == seleccionarPeli);
+    const funcionesPeliSeleccionada = funciones.filter((peliculaId) => peliculaId.pelicula == id);
     funcionesPeliSeleccionada.forEach((elemento) => {
         optionFuncion = document.createElement("option");
         optionFuncion.value = elemento.id;
         optionFuncion.innerText = "Día " + formatearDia(elemento.anio, elemento.mes, elemento.dia) + " Hora " + elemento.hora;
         DOMselectorFunciones.appendChild(optionFuncion);
-    });
-
-    
+    });    
 }; 
 
 /**
  * 
- * @abstract esta funcion es la que maneja toda la interacción con el usuario, desde la compra de entradas hasta el armado del carrito. Se la invoca desde la función mostrarTodo, una vez que se arma el esqueleto de la sección de venta de entradas
- * 
- */
-function armarDOM(peliculaDeCartelera = "") {
-    const DOMselectorPeliculas = document.querySelector("#select__pelicula");
-
-    const DOMdatospeli = document.querySelector(".entradas__datospeli");
-    const DOMselectorFunciones = document.querySelector("#select__funcion");
-    const DOMplatea = document.querySelector("#platea");
-    const DOMdivSelectorFunciones = document.querySelector("#entradas__funcion");
-    const DOMinputCantidad = document.querySelector(".entradas__cantidad");
-    const DOMimagenPeli = document.querySelector(".entradas__imagen");
-
-    dibujarSelectorPeliculas(DOMselectorPeliculas,peliculaDeCartelera)
-    DOMselectorPeliculas.addEventListener("change",()=>dibujarSelectorFunciones(event,DOMdatospeli,DOMdivSelectorFunciones,DOMimagenPeli,DOMselectorFunciones));
-    
-
-    DOMselectorFunciones.addEventListener("change", () => DOMinputCantidad.style["display"] = "block"); 
-    let inputs;
-    const formularioSelector = document.querySelector("#selectores");
-    formularioSelector.addEventListener("submit", enviarFormularioSelector);
-    function enviarFormularioSelector(event) {
-        event.preventDefault();
-        DOMdatospeli.style["display"] = "none";
-        DOMimagenPeli.style["display"] = "none";
-        inputs = event.target.elements;
-        const FUNCIONELEGIDA = funciones.find((element) => element.id === inputs[1].value);
-        PELIELEGIDA = pelis.find((element) => element.id === inputs[0].value);
-        asientosFuncionElegida = simularOcupacion(FUNCIONELEGIDA);
-        const totalLibres = cerosEnMatriz(asientosFuncionElegida);
-        const entradasRequeridas = parseInt(inputs[2].value);
-        //script para dibujar la platea y capturar cuando algún asiento es seleccionado
-        if (entradasRequeridas <= totalLibres) {
-            formularioSelector.innerHTML = "";
-            const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
-            dibujarEntradasResumen(ENTRADAS_RESUMEN,PELIELEGIDA,FUNCIONELEGIDA,entradasRequeridas);
-            dibujarPlatea(asientosFuncionElegida, DOMplatea);
-            DOMplatea.style["display"] = "block";
-            let COORDENADAS_ASIENTOS = "";
-            const MOSTRAR_ASIENTOS = document.querySelector(".asientos__elegidos");
-            DOMplatea.addEventListener("click", (event) => {
-                idSeleccionado = event.target.id;
-                if (event.target.classList.contains("indeterminado")) {
-                    //código de lo que pasa si hago click en asiento indeterminado
-                    event.target.checked = false;
-                    alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
-                } else {
-                    if (!event.target.classList.contains("elegido")) {
-                        //código de lo que pasa si hago click en asiento libre
-                        event.target.classList.replace("libre", "elegido");
-                        const Elegidos = DOMplatea.querySelectorAll('input[type="checkbox"]:checked');
-                        let cantidadElegidos = Elegidos.length;
-                        if (cantidadElegidos === entradasRequeridas) {
-                            const Libres = DOMplatea.querySelectorAll(".libre");
-                            Libres.forEach((element) => {
-                                element.classList.replace("libre", "indeterminado");
-                                element.indeterminate = true;
-                            });
-                            const ElegidosID = [];
-                            Elegidos.forEach((elegido, llave) => {
-                                COORDENADAS_ASIENTOS += "<p>Asiento " + (llave + 1) + " <i class='fa-solid fa-right-long'></i> " + coordenadas(elegido.id) + "</p>";
-                                ElegidosID.push(elegido.id);
-                            });
-                            MOSTRAR_ASIENTOS.innerHTML = COORDENADAS_ASIENTOS;
-                            const objEntradas = new Entrada(FUNCIONELEGIDA.id, ElegidosID, totalApagarEntradas, entradasRequeridas);
-                            localStorage.setItem('entradas', JSON.stringify(objEntradas));
-                            const vintageLS = localStorage.getItem('entradas');
-                            console.log("en JSON " + vintageLS);
-                            console.log("corregido " + JSON.parse(vintageLS));
-                            dibujarBotones(ENTRADAS_RESUMEN);                      
-                        }
-                    } else {
-                        //código de lo que pasa si hago click en asiento elegido
-                        const Indeterminados = DOMplatea.querySelectorAll(".indeterminado");
-                        COORDENADAS_ASIENTOS = "";
-                        document.querySelector("#botones").remove();
-                        MOSTRAR_ASIENTOS.innerText = "Asiento/s liberados. Seleccionar uno o más asientos para llegar a la cantidad de entradas.";
-                        event.target.classList.replace("elegido", "libre");
-                        Indeterminados.forEach((element) => {
-                            element.classList.replace("indeterminado", "libre");
-                            element.indeterminate = false;
-                        });
-                    }
-                }
-            });
-        } else { alert("Lo sentimos, la sala no cuenta con la capacidad de asientos solicitada") }
-    }
-}
-/**
- * 
- * @abstract para reiniciar el proceso de selección de películas. Se la llama con el botón modificar una vez que se seleccionó la película.
- * 
- */
-function borrarTodo() {
-    divEntradas.innerHTML = "";
-    mostrarTodo();
-}
-/**
- * @abstract se usa para verificar si está armado el esqueleto de la sección de venta de entradas. Se hizo por si un usuario ya empezó a elegir películas y sin querer vuelve a apretar el botón de comprar entradas, para que no se le pierdan los datos ingresados
- * @param {string} id puede ser nulo (cuando la orden de compra viene desde el botón de comprar entradas) o puede ser el id de la película (cuando la orden de la compra de entradas llega desde la cartelera, con una película ya definida)
- * @returns el valor de FLAG_ENTRADAS, que es 1 cuando ya se empezó el proceso de compra, o 0 cuando se anuló el proceso o recién se entra en la página. Se podría hacer con sessionStorage
- * 
- */
-function verificarFlag(id) {
-    if (FLAG_ENTRADAS != 0) { 
-        console.log("flag en evento de boton "+FLAG_ENTRADAS);
-        alert ("ya estás en un proceso de compra de entradas, si haces click nuevamente se perderán los datos cargados"); return;   
-    } else
-    { FLAG_ENTRADAS = 1;
-        document.querySelector("#section__entradas").scrollIntoView("smooth");
-        mostrarTodo(id);
-    } 
-}
-/**
- * 
  * @abstract cuando se carga el documento no se ve la sección de compra de entradas. Cuando se hace click en el botón de comprar se arma primero el esqueleto de esa parte y luego la interacción con el usuario desde la function armarDOM(), invocada al final de esta
  */
-function mostrarTodo(cartelera_id) {
+function mostrarTodo() {
+    divEntradas = document.querySelector("#section__entradas");
     divEntradas.innerHTML =
         `<section class="section__titulo section__titulo--entradas">
             <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
@@ -488,8 +346,146 @@ function mostrarTodo(cartelera_id) {
                 </div>
             </div>
         </section>`;
-    armarDOM(cartelera_id);
 }
+function mostrarAsientos(Elegidos) {
+    let COORDENADAS_ASIENTOS = "";
+    const MOSTRAR_ASIENTOS = document.querySelector(".asientos__elegidos");
+    const ElegidosID = [];
+    Elegidos.forEach((elegido, llave) => {
+        COORDENADAS_ASIENTOS += "<p>Asiento " + (llave + 1) + " <i class='fa-solid fa-right-long'></i> " + coordenadas(elegido.id) + "</p>";
+        ElegidosID.push(elegido.id);
+    });
+    MOSTRAR_ASIENTOS.innerHTML = COORDENADAS_ASIENTOS;
+    return ElegidosID;
+}
+
+function seleccionDeAsientos(event,entradasRequeridas){
+    idSeleccionado = event.target.id;
+    console.log("id asiento ",idSeleccionado);
+    DOMplatea=document.querySelector("#platea");
+    if (event.target.classList.contains("indeterminado")) {
+        //código de lo que pasa si hago click en asiento indeterminado
+        event.target.checked = false;
+        alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+    } else {
+        if (!event.target.classList.contains("elegido")) {
+            //código de lo que pasa si hago click en asiento libre
+            event.target.classList.replace("libre", "elegido");
+            const Elegidos = DOMplatea.querySelectorAll('input[type="checkbox"]:checked');
+            let cantidadElegidos = Elegidos.length;
+            if (cantidadElegidos === entradasRequeridas) {
+                const Libres = DOMplatea.querySelectorAll(".libre");
+                Libres.forEach((element) => {
+                    element.classList.replace("libre", "indeterminado");
+                    element.indeterminate = true;
+                });
+                const ElegidosID=mostrarAsientos(Elegidos);
+                const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
+                ENTRADAS_RESUMEN.appendChild(dibujarBotones());  
+
+                const objEntradas = new Entrada(FUNCIONELEGIDA.id, ElegidosID, totalApagarEntradas, entradasRequeridas);
+                localStorage.setItem('entradas', JSON.stringify(objEntradas));
+                const vintageLS = localStorage.getItem('entradas');
+                console.log("en JSON " + vintageLS);
+                console.log("corregido " + JSON.parse(vintageLS));
+                                    
+            }
+        } else {
+            //código de lo que pasa si hago click en asiento elegido
+            const Indeterminados = DOMplatea.querySelectorAll(".indeterminado");
+            COORDENADAS_ASIENTOS = "";
+            const MOSTRAR_ASIENTOS = document.querySelector(".asientos__elegidos");
+            document.querySelector("#botones").remove();
+            MOSTRAR_ASIENTOS.innerText = "Asiento/s liberados. Seleccionar uno o más asientos para llegar a la cantidad de entradas.";
+            event.target.classList.replace("elegido", "libre");
+            Indeterminados.forEach((element) => {
+                element.classList.replace("indeterminado", "libre");
+                element.indeterminate = false;
+            });
+        }
+    }
+
+}
+/**
+ * 
+ * @abstract esta funcion es la que maneja toda la interacción con el usuario, desde la compra de entradas hasta el armado del carrito. Se la invoca desde la función mostrarTodo, una vez que se arma el esqueleto de la sección de venta de entradas
+ * 
+ */
+function armarDOM(id = "") {
+    //1) armo el selector de películas y le doy un eventListener, que arma el selector de funciones y la sección con datos de la peli elegida
+    const DOMselectorPeliculas = document.querySelector("#select__pelicula");
+    DOMselectorPeliculas.appendChild(dibujarSelectorPeliculas());
+    DOMselectorPeliculas.addEventListener("change",(event)=> {
+        dibujarSelectorFunciones(event.target.value);
+        dibujarDatosPeli(event.target.value);
+    } );
+ 
+    const DOMselectorFunciones = document.querySelector("#select__funcion");
+    const DOMplatea = document.querySelector("#platea");
+    const DOMinputCantidad = document.querySelector(".entradas__cantidad");
+    
+
+    //2) le doy un evnt listener al selector de funciones, que hace que se muestre el input de cantidad de entradas
+    DOMselectorFunciones.addEventListener("change", () => DOMinputCantidad.style["display"] = "block"); 
+   
+    //3)  
+    const formularioSelector = document.querySelector("#selectores");
+    formularioSelector.addEventListener("submit", enviarFormularioSelector);
+    function enviarFormularioSelector(event) {
+        event.preventDefault();
+        //borra los datos de la pelicula
+        const DOMdatospeli = document.querySelector(".entradas__datospeli");
+        const DOMimagenPeli = document.querySelector(".entradas__imagen");
+        DOMdatospeli.style["display"] = "none";
+        DOMimagenPeli.style["display"] = "none";
+        //genera variables en función a valores de los selects
+        const inputs = event.target.elements;
+        const FUNCIONELEGIDA = funciones.find((element) => element.id === inputs[1].value);
+        const PELIELEGIDA = pelis.find((element) => element.id === inputs[0].value);
+        asientosFuncionElegida = simularOcupacion(FUNCIONELEGIDA);
+        const totalLibres = cerosEnMatriz(asientosFuncionElegida);
+        const entradasRequeridas = parseInt(inputs[2].value);
+        //script para dibujar la platea y capturar cuando algún asiento es seleccionado
+        if (entradasRequeridas <= totalLibres) {
+            formularioSelector.innerHTML = "";
+            const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
+            dibujarEntradasResumen(ENTRADAS_RESUMEN, PELIELEGIDA, FUNCIONELEGIDA, entradasRequeridas);
+            DOMplatea.append(dibujarPlatea(asientosFuncionElegida));
+            DOMplatea.style["display"] = "block";
+            DOMplatea.addEventListener("click", (event) => {
+                seleccionDeAsientos(event,entradasRequeridas);
+            });
+        } else {
+            alert("Lo sentimos, la sala no cuenta con la capacidad de asientos solicitada")
+        }
+    }
+}
+/**
+ * 
+ * @abstract para reiniciar el proceso de selección de películas. Se la llama con el botón modificar una vez que se seleccionó la película.
+ * 
+ */
+function borrarTodo() {
+    divEntradas.innerHTML = "";
+    mostrarTodo();
+}
+/**
+ * @abstract se usa para verificar si está armado el esqueleto de la sección de venta de entradas. Se hizo por si un usuario ya empezó a elegir películas y sin querer vuelve a apretar el botón de comprar entradas, para que no se le pierdan los datos ingresados
+ * @param {string} id puede ser nulo (cuando la orden de compra viene desde el botón de comprar entradas) o puede ser el id de la película (cuando la orden de la compra de entradas llega desde la cartelera, con una película ya definida)
+ * @returns el valor de FLAG_ENTRADAS, que es 1 cuando ya se empezó el proceso de compra, o 0 cuando se anuló el proceso o recién se entra en la página. Se podría hacer con sessionStorage
+ * 
+ */
+function verificarFlag() {
+    if (FLAG_ENTRADAS != 0) { 
+        console.log("flag en evento de boton "+FLAG_ENTRADAS);
+        alert ("ya estás en un proceso de compra de entradas, si haces click nuevamente se perderán los datos cargados"); return;   
+    } else
+    { FLAG_ENTRADAS = 1;
+        document.querySelector("#section__entradas").scrollIntoView("smooth");
+        mostrarTodo();
+    } 
+}
+
 function preguntarSnacks() {
     const MAS = prompt("¿querés comprar snacks o sólo las entradas? \n\nEste prompt es temporario, la idea es usar un swift alert. \nEn este caso, para comprar snacks escribir SI.");
     if (MAS=="SI") { 
@@ -523,7 +519,8 @@ function mostrarSnacks() {
     // return FRAGMENTO_SNACKS;
 }
 
-function dibujarBotones(ENTRADAS_RESUMEN) {
+function dibujarBotones() {
+    const FRAGMENTO = new DocumentFragment();
     const BOTONES = document.createElement("div");
     BOTONES.id = "botones";
     BOTON_ACEPTAR = document.createElement("input");
@@ -536,15 +533,17 @@ function dibujarBotones(ENTRADAS_RESUMEN) {
     BOTON_CAMBIAR.setAttribute("type", "button");
     BOTONES.append(BOTON_ACEPTAR);
     BOTONES.append(BOTON_CAMBIAR);
-    ENTRADAS_RESUMEN.appendChild(BOTONES);
+    FRAGMENTO.appendChild(BOTONES);
     BOTON_ACEPTAR.addEventListener("click", () =>{ preguntarSnacks()});
     BOTON_CAMBIAR.addEventListener("click", ()=>{
         FLAG_ENTRADAS = 0;
         borrarTodo();
     });
+    return FRAGMENTO;
 }
 function dibujarEntradasResumen(ENTRADAS_RESUMEN,PELIELEGIDA,FUNCIONELEGIDA,entradasRequeridas) {
             totalApagarEntradas = FUNCIONELEGIDA.precio * entradasRequeridas;
+            const fecha = formatearDia(FUNCIONELEGIDA.anio,FUNCIONELEGIDA.mes,FUNCIONELEGIDA.dia);
             ENTRADAS_RESUMEN.innerHTML = `
             <h3>resumen de lo solicitado</h3>
             <div class="resumen__datospeli">
@@ -554,6 +553,8 @@ function dibujarEntradasResumen(ENTRADAS_RESUMEN,PELIELEGIDA,FUNCIONELEGIDA,entr
                 <div class="datospeli__item datospeli__item--right">${PELIELEGIDA.duracion}</div>
                 <div class="datospeli__item datospeli__item--left">sala</div>
                 <div class="datospeli__item datospeli__item--right">${salas[FUNCIONELEGIDA.sala].nombre}</div>
+                <div class="datospeli__item datospeli__item--left">función</div>
+                <div class="datospeli__item datospeli__item--right">${fecha}, ${FUNCIONELEGIDA.hora}</div>
                 <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
                 <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
                 <div class="datospeli__item datospeli__item--left">precio unitario</div>
@@ -591,10 +592,9 @@ let carrito = [];
 const PRECIOBASE = 3000; //valor de precio indicado desde el backend
 let funciones = [];
 
-const sectionSnacks = document.querySelector(".snacks");
-const divEntradas = document.querySelector("#section__entradas");
-const botonEntradas = document.querySelectorAll(".comprar_entradas");
-botonEntradas.forEach((element)=>element.addEventListener("click", ()=> verificarFlag()));
+
+
+
 
 // //////// OBJETOS ///////////  //
 //*********** Salas */
@@ -704,11 +704,16 @@ class Entrada {
 // **** **** **** FIN DECLARACIONES **** **** **** /////////////////////
 
 // ************* Armado del DOM inicial  ****************************************//
+const botonEntradas = document.querySelectorAll(".comprar_entradas");
+botonEntradas.forEach((element)=>element.addEventListener("click", ()=> { 
+    verificarFlag();
+    mostrarTodo();
+    armarDOM();
+}
+    ));
 /** 
  * 
-* @abstract Con el código que sigue armamos el overlay de las películas en cartelera
- * @param {Element} DOMselectorPeliculas input en div entradas__selects con las opciones de películas en cartelera para elegir
- * @param {Element} peliculaEnCartelera div dentro de contenedor__peliculas, que va a contener la imagen de las películas y el overlay
+* @abstract armamos la parte de la cartelera con los posters y el overlay
  * 
 */
 pelis.forEach((elemento) => {
@@ -732,12 +737,16 @@ pelis.forEach((elemento) => {
     overlay.append(botonCartelera);
     peliculaEnCartelera.append(overlay);
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
-    botonCartelera.addEventListener("click",(event)=> verificarFlag(event.target.id) );
+    botonCartelera.addEventListener("click",(event)=> { 
+        verificarFlag();
+        mostrarTodo();
+        armarDOM(event.target.id);
+    } );
 });
 /** 
  * 
- * @abstract Armamos el carousel de snacks
- * @param {Array} snacks array de objetos
+ * @abstract Armamos el carousel de snacks en la parte estática de la página
  * 
 */
+const sectionSnacks = document.querySelector(".snacks");
 snacks.forEach((element) => sectionSnacks.appendChild(dibujarSnacks(element)));
