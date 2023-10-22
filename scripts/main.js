@@ -236,6 +236,7 @@ function dibujarSnacksEnEntradas(Snack) {
     snacks__precio.innerText = `${currency(Snack.precio)}`;
     const snacks__input = document.createElement("input");
     snacks__input.classList.add("snacks__input");
+    snacks__input.setAttribute("id",Snack.id);
     snacks__input.setAttribute("value", "Elegir");
     snacks__input.setAttribute("type", "button");
     snacks__contenido.append(snacks__img);
@@ -414,6 +415,7 @@ function seleccionDeAsientos(event, entradasRequeridas) {
 }
 function cargarCarritoEntradas() {
     //manda los datos de las entradas al local storage
+    carrito.push(carritoEntradas);
     localStorage.setItem('entradas', JSON.stringify(carritoEntradas));
     const vintageLS = localStorage.getItem('entradas');
     console.log("en JSON " + vintageLS);
@@ -529,7 +531,18 @@ function mostrarSnacks() {
         document.querySelector(".carrito").innerHTML = `
         <h3>¿querés agregar snacks?</h3>
         <p>Elegí el que quieras o completá la compra de entradas sin snacks haciendo click en el botón TERMINAR</p>`;
-        snacks.forEach((element) => document.querySelector(".carrito").appendChild(dibujarSnacksEnEntradas(element)));
+        snacks.forEach((element) => {
+            document.querySelector(".carrito").appendChild(dibujarSnacksEnEntradas(element));
+            document.querySelector(`#${element.id}`).addEventListener("click",(event) => {
+                generarCarritoSnacks(event.target.id);
+                });
+        });
+    }
+    function generarCarritoSnacks(id) {
+        const SNACKELEGIDO = snacks.find((element) => element.id === id);
+        let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
+        carrito.push(snackResumido);
+        console.log(carrito);
     }
 
 
