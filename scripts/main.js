@@ -366,7 +366,7 @@ function mostrarAsientos(Elegidos) {
         COORDENADAS_ASIENTOS += "<p>Asiento " + (llave + 1) + " <i class='fa-solid fa-right-long'></i> " + coordenadas(elegido.id) + "</p>";
         ElegidosID.push(elegido.id);
     });
-    COORDENADAS_ASIENTOS += "<p class='aclaracion'><i class='fa-solid fa-triangle-exclamation'></i>Para modificar los asientos, hacer click en la platea sobre el/los asientos seleccionados y elegir otro/s.</p>"
+    COORDENADAS_ASIENTOS += "<p class='aclaracion' id='advertencia'><i class='fa-solid fa-triangle-exclamation'></i>Para modificar los asientos, hacer click en la platea sobre el/los asientos seleccionados y elegir otro/s.</p>"
     MOSTRAR_ASIENTOS.innerHTML = COORDENADAS_ASIENTOS;
     return ElegidosID;
 }
@@ -416,8 +416,8 @@ function seleccionDeAsientos(event, entradasRequeridas) {
 function cargarCarritoEntradas() {
     //manda los datos de las entradas al local storage
     carrito.push(carritoEntradas);
-    localStorage.setItem('entradas', JSON.stringify(carritoEntradas));
-    const vintageLS = localStorage.getItem('entradas');
+    localStorage.setItem('compra', JSON.stringify(carrito));
+    const vintageLS = localStorage.getItem('compra');
     console.log("en JSON " + vintageLS);
     console.log("corregido " + JSON.parse(vintageLS));
     console.log(JSON.parse(vintageLS).asientos);
@@ -442,6 +442,7 @@ function enviarFormularioSelector(inputs) {
         dibujarEntradasResumen(ENTRADAS_RESUMEN, PELIELEGIDA, FUNCIONELEGIDA, entradasRequeridas);
         carritoEntradas.funcion=FUNCIONELEGIDA.id;
         carritoEntradas.cantidad=entradasRequeridas;
+        carritoEntradas.total=FUNCIONELEGIDA.precio*entradasRequeridas;
         DOMplatea = document.querySelector("#platea");
         DOMplatea.append(dibujarPlatea(asientosFuncionElegida));
         DOMplatea.style["display"] = "block";
@@ -527,6 +528,7 @@ function verificarFlag() {
 
 function mostrarSnacks() {
         document.querySelector("#botones").remove();
+        document.querySelector("#advertencia").remove();
         document.querySelector("#platea").style["display"] = "none";
         document.querySelector(".carrito").innerHTML = `
         <h3>¿querés agregar snacks?</h3>
@@ -594,7 +596,7 @@ function dibujarEntradasResumen(ENTRADAS_RESUMEN, PELIELEGIDA, FUNCIONELEGIDA, e
                 <div class="datospeli__item datospeli__item--right">${currency(FUNCIONELEGIDA.precio)}</div>
                 <div class="datospeli__item datospeli__item--left">asientos</div>
                 <div class="datospeli__item datospeli__item--right asientos__elegidos"><p class="aclaracion"><i class="fa-solid fa-circle-exclamation"></i>Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</p></div>
-                <div class="datospeli__item datospeli__item--left">total a pagar</div>
+                <div class="datospeli__item datospeli__item--left">total a pagar en entradas</div>
                 <div class="datospeli__item datospeli__item--right">${currency(totalApagarEntradas)}</div>
             </div>`;
 }
