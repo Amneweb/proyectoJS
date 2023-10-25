@@ -2,9 +2,9 @@
 //------ IMAGEN INICIAL --------
 .hero {
     background-image: url(../../assets/imagenes/telon-cine.jpg);
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     position: relative;
     height: 100%;
     min-height: 600px;
