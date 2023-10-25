@@ -25,6 +25,18 @@ Para mostrar los asientos pensé en un *select* en el que cada opción es un cí
 
 **Final** Se genera un pdf con el resumen de la compra y un QR (o por lo menos se mostrará en pantalla)
 
+## Tercer entrega
+Se agrega la interacción del usuario desde el DOM. Aun hay varias cosas por corregir, pero el funcionamiento básico está correcto.
+Cuando el usuario entra a la página no se ve la sección de compra de entradas. Ésta recién aparece cuando se hace click en el botón superior, en el link central de comprar entradas o en el botón ELEGIR del overlay de los pósters de la cartelera. 
+Las secciones CARTELERA y SNACKS son generadas desde javascript. La sección de las salas es estática, pero también podría generarse dinámicamente.
+Hay algunos alerts que serán reemplazados por swift alerts para la próxima entrega.
+**Pasos para 'comprar':**
+- Una vez abierta la sección de compra de entradas, el usuario debe seleccionar la película, luego la función y la cantidad de entradas. 
+- Cuando se envía el formulario se entra en el proceso de selección de asientos, para el cual se muestra la platea con los asientos libres y ocupados (esto se genera aleatoriamente). 
+- Una vez seleccionados los asientos se ofrece la posibilidad de comprar snacks y se muestran los snacks disponibles. Al hacer click en cada uno de ellos se irán agregando al listado, que a su vez irá mostrando el total.
+
+Usé **sessionStorage** en lugar de localStorage porque la compra de entradas va a tener un tiempo límite, ya que los asientos de la platea deben ser liberados para la posible compra de otro usuario. 
+
 ## Segunda entrega
 El recorrido del usuario y el método general de funcionamiento es similar al de la primer entrega. El archivo js sigue siendo main.js, pero con las siguientes modificaciones:
 - Las funciones se simplifican utilizando métodos de arrays

@@ -215,7 +215,7 @@ function dibujarSnacks(Snack) {
 }
 /**
  * 
- * @abstract dibujar la div de snacks en la página
+ * @abstract dibujar la div de snacks en la sección de compra de entradas, una vez elegidas la película y los asientos
  * @returns un DocumentFragment con las cards de los snacks
  * 
  */
@@ -236,7 +236,7 @@ function dibujarSnacksEnEntradas(Snack) {
     snacks__precio.innerText = `${currency(Snack.precio)}`;
     const snacks__input = document.createElement("input");
     snacks__input.classList.add("snacks__input");
-    snacks__input.setAttribute("id",Snack.id);
+    snacks__input.setAttribute("id", Snack.id);
     snacks__input.setAttribute("value", "Elegir");
     snacks__input.setAttribute("type", "button");
     snacks__contenido.append(snacks__img);
@@ -250,7 +250,7 @@ function dibujarSnacksEnEntradas(Snack) {
 
 /**
  * 
- * @abstract si la compra de entradas se inicia desde el menú superior o cualquier botón general de compra de entradas (la variable peliculaDeCartelera es undefined), el primer elemento del selector pide que se elija una película. Si la compra se inicia desde la cartelera (peliculaDeCartelera tiene un valor distinto de undefined), el selector ya tiene seleccionada la película en cuestión, pero igual muestra las demás. Para que funcione todo lo que se ocurre por el evento change del selector, genero un evento ficticio
+ * @abstract dibuja el input select de las películas. Si el proceso se inicia desde el botón en el menú o desde cualquier botón general, el selector muestra "elegí la película". Si el proceso se inicia desde la cartelera (posters con overlays), el selector ya muestra la película elegida.
  * 
  */
 function dibujarSelectorPeliculas(id = "") {
@@ -278,6 +278,10 @@ function dibujarSelectorPeliculas(id = "") {
     );
     return FRAGMENTO;
 }
+/**
+ * @abstract dibuja la div roja a la derecha del selector 
+ * @param {*} id id de la película seleccionada
+ */
 function dibujarDatosPeli(id) {
     const PELIELEGIDA = pelis.find((element) => element.id === id);
     DOMdatospeli = document.querySelector(".entradas__datospeli");
@@ -289,9 +293,9 @@ function dibujarDatosPeli(id) {
 }
 
 /**
+ * 
  * para armar el selector de funciones en base a la peli elegida
  */
-
 function dibujarSelectorFunciones(id) {
     const DOMdivSelectorFunciones = document.querySelector("#entradas__funcion");
     const propiedadesFunciones = window.getComputedStyle(DOMdivSelectorFunciones);
@@ -310,7 +314,6 @@ function dibujarSelectorFunciones(id) {
         DOMselectorFunciones.appendChild(optionFuncion);
     });
 };
-
 /**
  * 
  * @abstract cuando se carga el documento no se ve la sección de compra de entradas. Cuando se hace click en el botón de comprar se arma primero el esqueleto de esa parte y luego la interacción con el usuario desde la function armarDOM()
@@ -354,6 +357,11 @@ function mostrarTodo() {
             </div>
         </section>`;
 }
+/**
+ * 
+ * @param {Array} Elegidos array con el id de los asientos seleccionados (provienen de los checkboxes)
+ * @returns muestra en la pantalla las filas y número de butaca, y genera un array sólo con el id de los elegidos
+ */
 function mostrarAsientos(Elegidos) {
     let COORDENADAS_ASIENTOS = "";
     const MOSTRAR_ASIENTOS = document.querySelector(".asientos__elegidos");
@@ -366,7 +374,12 @@ function mostrarAsientos(Elegidos) {
     MOSTRAR_ASIENTOS.innerHTML = COORDENADAS_ASIENTOS;
     return ElegidosID;
 }
-
+/**
+ * 
+ * @abstract evalua la situación de los asientos seleccionados por el usuario
+ * @param {Event} event evento de click en los checkboxes de la platea
+ * @param {*} entradasRequeridas cantidad de entradas a comprar
+ */
 function seleccionDeAsientos(event, entradasRequeridas) {
     idSeleccionado = event.target.id;
     DOMplatea = document.querySelector("#platea");
@@ -407,6 +420,11 @@ function seleccionDeAsientos(event, entradasRequeridas) {
     }
 
 }
+/**
+ * @abstract genera un objeto que luego será cargado al carrito que irá al storage
+ * @param {Object} FUNCIONELEGIDA 
+ * @param {*} entradasRequeridas 
+ */
 function armarCarritoEntradas(FUNCIONELEGIDA, entradasRequeridas) {
     sessionStorage.getItem("compra") && sessionStorage.removeItem("compra")
     Object.keys(carritoEntradas).length = 0;
@@ -437,26 +455,26 @@ function recuperarStorage() {
 function dibujarSnacksElegidos() {
     const listadoSnacks = document.querySelector(".entradas__izquierda");
     if (!document.querySelector("#titulo-snacks")) {
-    const tituloSnacks=document.createElement("h3");
-    tituloSnacks.id="titulo-snacks";
-    tituloSnacks.innerHTML = "Snacks seleccionados";
-    listadoSnacks.append(tituloSnacks);
-}
-    document.querySelectorAll(".lista-snacks") && document.querySelectorAll(".lista-snacks").forEach((element)=> element.remove());
+        const tituloSnacks = document.createElement("h3");
+        tituloSnacks.id = "titulo-snacks";
+        tituloSnacks.innerHTML = "Snacks seleccionados";
+        listadoSnacks.append(tituloSnacks);
+    }
+    document.querySelectorAll(".lista-snacks") && document.querySelectorAll(".lista-snacks").forEach((element) => element.remove());
     document.querySelector("#a-pagar") && document.querySelector("#a-pagar").remove();
     resultados = extraerRepetidos(); //es un vector de 2 elementos: carrito sin duplicados y total a pagar
-    
-    resultados[0].forEach((elemento)=> {
-        const snacksP=document.createElement("p");
+
+    resultados[0].forEach((elemento) => {
+        const snacksP = document.createElement("p");
         snacksP.classList.add("lista-snacks");
-        snacksP.innerText=`${elemento[1]} x ${elemento[0].nombre}`;
+        snacksP.innerText = `${elemento[1]} x ${elemento[0].nombre}`;
         listadoSnacks.appendChild(snacksP);
     });
-    const snacksH4=document.createElement("h4");
-    snacksH4.id="a-pagar";
-    totalFormateado=currency(resultados[1]);
-snacksH4.innerText=`Total a pagar por snacks: ${totalFormateado}`;
-listadoSnacks.appendChild(snacksH4);
+    const snacksH4 = document.createElement("h4");
+    snacksH4.id = "a-pagar";
+    totalFormateado = currency(resultados[1]);
+    snacksH4.innerText = `Total a pagar por snacks: ${totalFormateado}`;
+    listadoSnacks.appendChild(snacksH4);
 }
 
 function enviarFormularioSelector(inputs) {
@@ -544,6 +562,7 @@ function borrarTodo() {
     divEntradas.innerHTML = "";
 }
 /**
+ * 
  * @abstract se usa para verificar si está armado el esqueleto de la sección de venta de entradas. Se hizo por si un usuario ya empezó a elegir películas y sin querer vuelve a apretar el botón de comprar entradas, para que no se le pierdan los datos ingresados
  * @returns verdadero o falso según si el session storage está lleno o vacío
  * 
@@ -556,46 +575,58 @@ function verificarFlag() {
         return true;
     }
 }
-
+/**
+ * 
+ * @abstract genera la galería con los snacks 
+ */
 function mostrarSnacks() {
-        document.querySelector("#botones").remove();
-        document.querySelector("#advertencia").remove();
-        document.querySelector("#platea").style["display"] = "none";
-        document.querySelector(".carrito").innerHTML = `
+    document.querySelector("#botones").remove();
+    document.querySelector("#advertencia").remove();
+    document.querySelector("#platea").style["display"] = "none";
+    document.querySelector(".carrito").innerHTML = `
         <h3>¿querés agregar snacks?</h3>
         <p>Elegí el que quieras o completá la compra de entradas sin snacks haciendo click en el botón TERMINAR</p>`;
-        snacks.forEach((element) => {
-            document.querySelector(".carrito").appendChild(dibujarSnacksEnEntradas(element));
-            document.querySelector(`#${element.id}`).addEventListener("click",(event) => {
-                generarCarritoSnacks(event.target.id);
-                dibujarSnacksElegidos(event.target.id);
-                });
+    snacks.forEach((element) => {
+        document.querySelector(".carrito").appendChild(dibujarSnacksEnEntradas(element));
+        document.querySelector(`#${element.id}`).addEventListener("click", (event) => {
+            generarCarritoSnacks(event.target.id);
+            dibujarSnacksElegidos(event.target.id);
         });
+    });
+}
+/**
+ * 
+ * @param {String} id id del snack seleccionado con el botón correspondiente. Snack resumido genera un objeto con menos propiedades que el objeto completo y lo carga en el carrito (que ya tiene cargado el objeto de entradas)
+ */
+function generarCarritoSnacks(id) {
+    const SNACKELEGIDO = snacks.find((element) => element.id === id);
+    let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
+    carrito.push(snackResumido);
+    cargarStorage();
+}
+/**
+ * @abstract para que en la pantalla se visualicen sólo un renglón por snack. Si el snack se repite cambia la cantidad, pero sólo aparece un renglón por snack. El proceso es el siguiente:
+ * 1) se ordena el carrito que viene del storage (carritoRecuperado) en base al id del snack
+ * 2) se genera un nuevo array carritoSinDuplicados, al que se le van agregando los elementos del carrito. Este array tiene 2 elementos por fila: el objeto snack y la cantidad.
+ * 3) si los elementos del carrito recuperado se repiten, no los agrego al nuevo carrito, sino que modifico la cantidad
+ */
+function extraerRepetidos() {
+    const carritoRecuperado = recuperarStorage();
+    const sorted = carritoRecuperado.splice(1).sort((a, b) => {
+        if (a.id < b.id) { return -1; }
+        if (a.id > b.id) { return 1; }
+        return 0;
+    });
+    const carritoSinDuplicados = [];
+    carritoSinDuplicados.push([sorted[0], 1]);
+    for (i = 1; i < sorted.length; i++) {
+        (sorted[i].id === sorted[i - 1].id) ? carritoSinDuplicados[carritoSinDuplicados.length - 1][1]++ : carritoSinDuplicados.push([sorted[i], 1]);
     }
-    function generarCarritoSnacks(id) {
-        const SNACKELEGIDO = snacks.find((element) => element.id === id);
-        let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
-        carrito.push(snackResumido);
-        cargarStorage();
-    }
-    function extraerRepetidos() {
-        const carritoRecuperado = recuperarStorage();
-        console.log(carritoRecuperado);
-        const sorted = carritoRecuperado.splice(1).sort((a,b)=>{
-            if (a.id<b.id) {return -1;}
-            if(a.id>b.id) {return 1;}
-            return 0;
-        });
-        const carritoSinDuplicados = [];
-        carritoSinDuplicados.push([sorted[0],1]);
-        for (i=1;i<sorted.length;i++) {
-        (sorted[i].id===sorted[i-1].id) ? carritoSinDuplicados[carritoSinDuplicados.length-1][1]++: carritoSinDuplicados.push([sorted[i],1]);
-        }
-const temp = carritoSinDuplicados.map((elemento)=>elemento[0].precio*elemento[1]);
-const totalAPagarSnacks=temp.reduce((accumulator,elemento)=>accumulator+elemento);
-const aDevolver =[carritoSinDuplicados,totalAPagarSnacks];
-return aDevolver;
-    }
+    const temp = carritoSinDuplicados.map((elemento) => elemento[0].precio * elemento[1]);
+    const totalAPagarSnacks = temp.reduce((accumulator, elemento) => accumulator + elemento);
+    const aDevolver = [carritoSinDuplicados, totalAPagarSnacks];
+    return aDevolver;
+}
 
 /**
  * 
