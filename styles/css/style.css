@@ -430,31 +430,22 @@ select::-ms-expand {
 .cartelera__icono {
   position: absolute;
   z-index: 1;
-  right: 50px;
-  font-size: 4em;
-  padding-top: 10%;
-  color: #eeeeee;
-  animation: pointRight 1.5s ease-in-out infinite;
+  height: 100%;
+  font-size: 3em;
+  padding-top: 15%;
+  text-shadow: 2px 2px 3px #000000;
+  color: #ffffff;
 }
 .cartelera__iconoi {
-  margin: auto auto;
+  margin: 50% auto;
 }
-@keyframes pointRight {
-  0% {
-    transform: translateX(0);
-  }
-  15% {
-    transform: translateX(-0.25em);
-  }
-  35% {
-    transform: translateX(0.15em);
-  }
-  55% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
+
+.to-right--cartelera, .to-right--snacks {
+  right: 30px;
+}
+
+.to-left--cartelera, .to-left--snacks {
+  left: 30px;
 }
 
 .entradas__selectores {
@@ -577,6 +568,7 @@ select::-ms-expand {
   width: 100%;
   display: flex;
   overflow-x: auto;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
 }
