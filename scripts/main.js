@@ -569,12 +569,49 @@ function borrarTodo() {
  */
 function verificarFlag() {
     if (sessionStorage.getItem("compra")) {
-        alert("ya estás en un proceso de compra de entradas, si haces click nuevamente se perderán los datos cargados. Para cerrar y volver a empezar hacer click en la cruz arriba a la derecha de la sección de comprar entradas."); return false;
+        sweet();
     } else {
-        document.querySelector("#section__entradas").scrollIntoView("smooth");
-        return true;
+        mostrarTodo();
+        armarDOM();
     }
 }
+/**
+ * 
+ * @abstract usamos un sweetalert para alertar a la gente que está en un proceso de compra
+ * 
+ */
+function sweet() {
+if (sessionStorage.getItem("compra")) {
+Swal.fire({
+    title: 'Estás en un proceso de compra',
+    icon: 'warning',
+    html:
+      'Si hacés click en borrar, se cerrará el proceso de compra.',
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText:
+      '<i class="fa fa-thumbs-up"></i> Borrar y empezar de nuevo',
+    confirmButtonAriaLabel: 'Borrar y empezar de nuevo',
+    cancelButtonText:
+      '<i class="fa fa-thumbs-down"></i> Continuar compra actual',
+    cancelButtonAriaLabel: 'Pulgar abajo'
+   }).then((result) => {
+ if (result.isConfirmed) {
+    sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
+        borrarTodo();
+        mostrarTodo();
+        armarDOM();
+ } else if (result.isDenied) {
+       document.querySelector("#section__entradas").scrollIntoView("smooth");
+      }
+  })
+  } else {
+        document.querySelector("#section__entradas").scrollIntoView("smooth");
+        mostrarTodo();
+        armarDOM();
+    }
+}
+
 /**
  * 
  * @abstract genera la galería con los snacks 
@@ -824,10 +861,11 @@ funciones = [
 (sessionStorage.getItem("compra")) && sessionStorage.removeItem("compra");
 const botonEntradas = document.querySelectorAll(".comprar_entradas");
 botonEntradas.forEach((element) => element.addEventListener("click", () => {
-    if (verificarFlag()) {
-        mostrarTodo();
-        armarDOM();
-    }
+    sweet();
+    //if (verificarFlag()) {
+    //    mostrarTodo();
+    //    armarDOM();
+    //}
 }
 ));
 /** 
