@@ -321,11 +321,11 @@ function dibujarSelectorFunciones(id) {
 function mostrarTodo() {
     divEntradas = document.querySelector("#section__entradas");
     divEntradas.innerHTML =
-        `<section class="section__titulo section__titulo--entradas">
-            <h2><i class="fa-solid fa-ticket"></i>comprá tus entradas</h2>
-            <h3><i class="fa-solid fa-xmark cerrar"></i></h3>
+        `<section class="section__titulo--entradas">
+            <h2>comprá tus entradas</h2>
+            <h3 class="section__entradas--cerrar"><i class="fa-solid fa-xmark cerrar"></i></h3>
         </section>
-        <section class="main entradas">
+        <section class="main__entradas entradas">
             <div class="entradas__izquierda">
                 <form action="" id="selectores">
                     <div class="entradas__selectores">
@@ -560,6 +560,7 @@ function armarDOM(id = "") {
 function borrarTodo() {
     divEntradas = document.querySelector("#section__entradas");
     divEntradas.innerHTML = "";
+    divEntradas.style['display']="none";
 }
 /**
  * 
@@ -601,29 +602,17 @@ function sweet(id = undefined) {
                 sessionStorage.removeItem("compra");
                 mostrarTodo(id);
                 armarDOM(id);
-                
-                    //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
-                    let entradasArriba = document.querySelector("#section__entradas").offsetTop;
-  
-  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
+                document.querySelector("#section__entradas").style["display"]="block";
         
             } else {
                 console.log("is denied");
-                //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
-                let entradasArriba = document.querySelector("#section__entradas").offsetTop;
-  
-  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
             }
         })
     } else {
         console.log("session vacio");
         mostrarTodo(id);
         armarDOM(id);
-        //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
-        let entradasArriba = document.querySelector("#section__entradas").offsetTop;
-  
-  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
-        // document.querySelector("#section__entradas").scrollIntoView({ behavior: "smooth", block: "center"});
+        document.querySelector("#section__entradas").style["display"]="block";
     }
 }
 

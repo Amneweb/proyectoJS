@@ -249,6 +249,28 @@ select::-ms-expand {
   text-align: center;
 }
 
+.main__entradas {
+  display: flex;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+.main__entradas form {
+  text-align: center;
+}
+
+#section__entradas {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  height: 90%;
+  width: 90%;
+  z-index: 10;
+  outline: 9999px solid rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
 .entradas__select {
   width: 100%;
 }
@@ -321,6 +343,7 @@ select::-ms-expand {
   display: flex;
   justify-content: space-between;
   border-bottom: dotted 10px var(--smoky-black);
+  margin: 20px 20px;
 }
 .section__titulo--entradas h2::after {
   content: "";
