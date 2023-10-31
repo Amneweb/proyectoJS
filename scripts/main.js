@@ -580,35 +580,50 @@ function verificarFlag() {
  * @abstract usamos un sweetalert para alertar a la gente que está en un proceso de compra
  * 
  */
-function sweet() {
-if (sessionStorage.getItem("compra")) {
-Swal.fire({
-    title: 'Estás en un proceso de compra',
-    icon: 'warning',
-    html:
-      'Si hacés click en borrar, se cerrará el proceso de compra.',
-    showCancelButton: true,
-    focusConfirm: false,
-    confirmButtonText:
-      '<i class="fa fa-thumbs-up"></i> Borrar y empezar de nuevo',
-    confirmButtonAriaLabel: 'Borrar y empezar de nuevo',
-    cancelButtonText:
-      '<i class="fa fa-thumbs-down"></i> Continuar compra actual',
-    cancelButtonAriaLabel: 'Pulgar abajo'
-   }).then((result) => {
- if (result.isConfirmed) {
-    sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
-        borrarTodo();
-        mostrarTodo();
-        armarDOM();
- } else if (result.isDenied) {
-       document.querySelector("#section__entradas").scrollIntoView("smooth");
-      }
-  })
-  } else {
-        document.querySelector("#section__entradas").scrollIntoView("smooth");
-        mostrarTodo();
-        armarDOM();
+function sweet(id = undefined) {
+    if (sessionStorage.getItem("compra")) {
+        Swal.fire({
+            title: 'Estás en un proceso de compra',
+            icon: 'warning',
+            html:
+                'Si hacés click en borrar, se cerrará el proceso de compra.',
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="fa fa-thumbs-up"></i> Borrar y empezar de nuevo',
+            confirmButtonAriaLabel: 'Borrar y empezar de nuevo',
+            cancelButtonText:
+                '<i class="fa fa-thumbs-down"></i> Continuar compra actual',
+            cancelButtonAriaLabel: 'Pulgar abajo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("is confirmed");
+                sessionStorage.removeItem("compra");
+                mostrarTodo(id);
+                armarDOM(id);
+                
+                    //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
+                    let entradasArriba = document.querySelector("#section__entradas").offsetTop;
+  
+  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
+        
+            } else {
+                console.log("is denied");
+                //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
+                let entradasArriba = document.querySelector("#section__entradas").offsetTop;
+  
+  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
+            }
+        })
+    } else {
+        console.log("session vacio");
+        mostrarTodo(id);
+        armarDOM(id);
+        //document.querySelector("#section__entradas").scrollIntoView(false,{ behavior: "smooth" });
+        let entradasArriba = document.querySelector("#section__entradas").offsetTop;
+  
+  document.querySelector("#section__entradas").scrollTo({top: entradasArriba, behavior: 'smooth'});
+        // document.querySelector("#section__entradas").scrollIntoView({ behavior: "smooth", block: "center"});
     }
 }
 
@@ -895,10 +910,12 @@ pelis.forEach((elemento) => {
     peliculaEnCartelera.append(overlay);
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
     botonCartelera.addEventListener("click", (event) => {
-        if (verificarFlag()) {
-            mostrarTodo(event.target.id);
-            armarDOM(event.target.id);
-        }
+sweet(event.target.id);
+
+       // if (verificarFlag()) {
+        //    mostrarTodo(event.target.id);
+         //   armarDOM(event.target.id);
+       // }
     });
 });
 /** 
