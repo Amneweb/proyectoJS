@@ -261,14 +261,23 @@ select::-ms-expand {
 #section__entradas {
   display: none;
   position: fixed;
-  top: 50%;
+  border-radius: 10px;
+  top: 5%;
   left: 5%;
-  transform: translateY(-50%);
   height: 90%;
   width: 90%;
   z-index: 10;
   outline: 9999px solid rgba(0, 0, 0, 0.5);
   overflow: auto;
+}
+
+.section__entradas--cerrar {
+  position: fixed;
+  display: block;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  color: var(--hunyadi-yellow);
 }
 
 .entradas__select {

@@ -325,6 +325,7 @@ function mostrarTodo() {
             <h2>comprá tus entradas</h2>
             <h3 class="section__entradas--cerrar"><i class="fa-solid fa-xmark cerrar"></i></h3>
         </section>
+        
         <section class="main__entradas entradas">
             <div class="entradas__izquierda">
                 <form action="" id="selectores">
