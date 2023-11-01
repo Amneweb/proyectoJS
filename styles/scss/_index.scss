@@ -512,7 +512,7 @@ color:#eeeeee;
     p{
     border:solid 1px var(--smoky-black);
     border-radius:5px;
-    padding:10px;
+    padding:5px 10px;
     font-size:1em;
     &.aclaracion {
         border:solid 1px var(--hunyadi-yellow);
@@ -550,9 +550,42 @@ color:#eeeeee;
 }
 .carrito {
     background-color: var(--rojo-butaca);
-    display:flex;
-    flex-wrap: wrap;
+    h3,p {
+        color:#eeeeee;
+        margin:10px 20px;
+    }
+    &__flexSnacks{
+        margin:10px 20px;
+        display:flex;
+        color:white;
+        .snacks__item {
+            margin:5px;
+            display:flex;
+            flex-direction:row !important;
+            width:100%;
+            img {
+                width:20%;
+            }
+        }
+    }
+    
 }
 .input_escondido {
     display:none;
+}
+.lista-snacks {
+    border: 1px solid var(--smoky-black);
+    padding:5px;
+    border-radius:5px;
+    display:flex;
+    margin-bottom:5px;
+    justify-content:space-between;
+    align-items: center;
+    img {
+        width:10%;
+    }
+    input {
+        align-self: stretch;
+    }
+    
 }

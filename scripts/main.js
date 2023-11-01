@@ -387,7 +387,13 @@ function seleccionDeAsientos(event, entradasRequeridas) {
     if (event.target.classList.contains("indeterminado")) {
         //código de lo que pasa si hago click en asiento indeterminado
         event.target.checked = false;
-        alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+        Swal.fire({
+            html: '<h3>atención</h3><p>Ya tenés '+entradasRequeridas+ ' asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste</p>',
+            icon: 'warning',
+            iconColor: '#cc2d2c',
+            confirmButtonColor:'#cc2d2c'
+        })
+        //alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
     } else {
         if (!event.target.classList.contains("elegido")) {
             //código de lo que pasa si hago click en asiento libre
@@ -466,16 +472,24 @@ function dibujarSnacksElegidos() {
     resultados = extraerRepetidos(); //es un vector de 2 elementos: carrito sin duplicados y total a pagar
 
     resultados[0].forEach((elemento) => {
-        const snacksP = document.createElement("p");
-        snacksP.classList.add("lista-snacks");
-        snacksP.innerText = `${elemento[1]} x ${elemento[0].nombre}`;
-        listadoSnacks.appendChild(snacksP);
+        const snacksDIV = document.createElement("div");
+        snacksDIV.classList.add("lista-snacks");
+        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" value="x">`;
+        listadoSnacks.appendChild(snacksDIV);
     });
     const snacksH4 = document.createElement("h4");
     snacksH4.id = "a-pagar";
     totalFormateado = currency(resultados[1]);
     snacksH4.innerText = `Total a pagar por snacks: ${totalFormateado}`;
     listadoSnacks.appendChild(snacksH4);
+    document.querySelector("#total-gral") && document.querySelector("#total-gral").remove();
+    const DOMtotalGeneral=document.createElement("h3");
+    DOMtotalGeneral.id="total-gral";
+    const totalGeneral = currency(resultados[1]+totalApagarEntradas);
+    DOMtotalGeneral.innerText=`Total general: ${totalGeneral}`;
+    listadoSnacks.append(DOMtotalGeneral);
+
+
 }
 
 function enviarFormularioSelector(inputs) {
@@ -627,9 +641,10 @@ function mostrarSnacks() {
     document.querySelector("#platea").style["display"] = "none";
     document.querySelector(".carrito").innerHTML = `
         <h3>¿querés agregar snacks?</h3>
-        <p>Elegí el que quieras o completá la compra de entradas sin snacks haciendo click en el botón TERMINAR</p>`;
+        <p>Elegí el que quieras o completá la compra de entradas sin snacks haciendo click en el botón TERMINAR</p>
+        <div class="carrito__flexSnacks"></div>`;
     snacks.forEach((element) => {
-        document.querySelector(".carrito").appendChild(dibujarSnacksEnEntradas(element));
+        document.querySelector(".carrito__flexSnacks").appendChild(dibujarSnacksEnEntradas(element));
         document.querySelector(`#${element.id}`).addEventListener("click", (event) => {
             generarCarritoSnacks(event.target.id);
             dibujarSnacksElegidos(event.target.id);
@@ -709,7 +724,7 @@ function dibujarBotones() {
  */
 function dibujarEntradasResumen(ENTRADAS_RESUMEN, carrito) {
     const funcionelegida = funciones.find((element) => element.id === carrito[0].funcion);
-    const totalApagarEntradas = funcionelegida.precio * carrito[0].cantidad;
+    totalApagarEntradas = funcionelegida.precio * carrito[0].cantidad;
     const fecha = formatearDia(funcionelegida.anio, funcionelegida.mes, funcionelegida.dia);
     const pelielegida = pelis.find((element) => element.id === funcionelegida.pelicula);
     const entradasRequeridas = carrito[0].cantidad;
@@ -759,6 +774,7 @@ let carrito = [];
 const PRECIOBASE = 3000; //valor de precio indicado desde el backend
 let funciones = [];
 let carritoEntradas = {};
+let totalApagarEntradas;
 
 
 // //////// OBJETOS ///////////  //

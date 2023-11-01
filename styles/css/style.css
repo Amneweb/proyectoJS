@@ -642,7 +642,7 @@ select::-ms-expand {
 .asientos__elegidos p {
   border: solid 1px var(--smoky-black);
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 1em;
 }
 .asientos__elegidos p.aclaracion {
@@ -680,12 +680,44 @@ select::-ms-expand {
 
 .carrito {
   background-color: var(--rojo-butaca);
+}
+.carrito h3, .carrito p {
+  color: #eeeeee;
+  margin: 10px 20px;
+}
+.carrito__flexSnacks {
+  margin: 10px 20px;
   display: flex;
-  flex-wrap: wrap;
+  color: white;
+}
+.carrito__flexSnacks .snacks__item {
+  margin: 5px;
+  display: flex;
+  flex-direction: row !important;
+  width: 100%;
+}
+.carrito__flexSnacks .snacks__item img {
+  width: 20%;
 }
 
 .input_escondido {
   display: none;
+}
+
+.lista-snacks {
+  border: 1px solid var(--smoky-black);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+.lista-snacks img {
+  width: 10%;
+}
+.lista-snacks input {
+  align-self: stretch;
 }
 
 .platea {
