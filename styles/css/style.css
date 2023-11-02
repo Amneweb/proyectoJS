@@ -680,6 +680,7 @@ select::-ms-expand {
 
 .carrito {
   background-color: var(--rojo-butaca);
+  border-radius: 5px;
 }
 .carrito h3, .carrito p {
   color: #eeeeee;

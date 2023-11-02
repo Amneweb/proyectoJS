@@ -460,7 +460,12 @@ function recuperarStorage() {
 
 }
 function dibujarSnacksElegidos() {
+    const carritoEnStorage = recuperarStorage();
+    let totalGeneral;
     const listadoSnacks = document.querySelector(".entradas__izquierda");
+    if (carritoEnStorage.length > 1) {
+    
+    
     if (!document.querySelector("#titulo-snacks")) {
         const tituloSnacks = document.createElement("h3");
         tituloSnacks.id = "titulo-snacks";
@@ -469,23 +474,33 @@ function dibujarSnacksElegidos() {
     }
     document.querySelectorAll(".lista-snacks") && document.querySelectorAll(".lista-snacks").forEach((element) => element.remove());
     document.querySelector("#a-pagar") && document.querySelector("#a-pagar").remove();
-    resultados = extraerRepetidos(); //es un vector de 2 elementos: carrito sin duplicados y total a pagar
+    resultados = extraerRepetidos(); //es un vector de 2 elementos: carrito sin duplicados y total a pagar por snacks
 
     resultados[0].forEach((elemento) => {
         const snacksDIV = document.createElement("div");
         snacksDIV.classList.add("lista-snacks");
-        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" id="${elemento[0].id}" value="x">`;
+        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" id="borrar-${elemento[0].id}" value="x">`;
         listadoSnacks.appendChild(snacksDIV);
+        document.querySelector(`#borrar-${elemento[0].id}`).addEventListener("click", (event) => {
+            borrarCarritoSnacks(event.target.id);
+        });
     });
     const snacksH4 = document.createElement("h4");
     snacksH4.id = "a-pagar";
     totalFormateado = currency(resultados[1]);
     snacksH4.innerText = `Total a pagar por snacks: ${totalFormateado}`;
     listadoSnacks.appendChild(snacksH4);
+    totalGeneral = currency(resultados[1]+totalApagarEntradas);
+} else {
+    document.querySelector(".lista-snacks").innerHTML=`<p>No hay snacks seleccionados</p>`;
+    document.querySelector("#titulo-snacks").remove();
+    document.querySelector("#a-pagar") && document.querySelector("#a-pagar").remove();
+    totalGeneral = currency(totalApagarEntradas);
+}
     document.querySelector("#total-gral") && document.querySelector("#total-gral").remove();
     const DOMtotalGeneral=document.createElement("h3");
     DOMtotalGeneral.id="total-gral";
-    const totalGeneral = currency(resultados[1]+totalApagarEntradas);
+    
     DOMtotalGeneral.innerText=`Total general: ${totalGeneral}`;
     listadoSnacks.append(DOMtotalGeneral);
 
@@ -662,10 +677,12 @@ function generarCarritoSnacks(id) {
     cargarStorage();
 }
 function borrarCarritoSnacks(id) {
-    const SNACKBORRADO = snacks.find((element) => element.id === id);
-    let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
-    carrito.push(snackResumido);
+    const nuevoID = id.slice(7);
+    console.log(carrito);
+ carrito.splice(carrito.findIndex((elemento)=>elemento.id===nuevoID),1);
+ console.log(carrito);
     cargarStorage();
+    dibujarSnacksElegidos();
 }
 /**
  * @abstract para que en la pantalla se visualicen sólo un renglón por snack. Si el snack se repite cambia la cantidad, pero sólo aparece un renglón por snack. El proceso es el siguiente:
