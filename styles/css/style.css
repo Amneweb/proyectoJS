@@ -688,16 +688,19 @@ select::-ms-expand {
 .carrito__flexSnacks {
   margin: 10px 20px;
   display: flex;
+  flex-wrap: wrap;
   color: white;
 }
 .carrito__flexSnacks .snacks__item {
   margin: 5px;
   display: flex;
-  flex-direction: row !important;
-  width: 100%;
+  width: 22%;
 }
-.carrito__flexSnacks .snacks__item img {
-  width: 20%;
+.carrito__flexSnacks .snacks__item p {
+  font-size: 0.8em;
+}
+.carrito__flexSnacks .snacks__item--contenido {
+  padding: 5px;
 }
 
 .input_escondido {

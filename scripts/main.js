@@ -474,7 +474,7 @@ function dibujarSnacksElegidos() {
     resultados[0].forEach((elemento) => {
         const snacksDIV = document.createElement("div");
         snacksDIV.classList.add("lista-snacks");
-        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" value="x">`;
+        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" id="${elemento[0].id}" value="x">`;
         listadoSnacks.appendChild(snacksDIV);
     });
     const snacksH4 = document.createElement("h4");
@@ -657,6 +657,12 @@ function mostrarSnacks() {
  */
 function generarCarritoSnacks(id) {
     const SNACKELEGIDO = snacks.find((element) => element.id === id);
+    let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
+    carrito.push(snackResumido);
+    cargarStorage();
+}
+function borrarCarritoSnacks(id) {
+    const SNACKBORRADO = snacks.find((element) => element.id === id);
     let snackResumido = (({ id, nombre, precio }) => ({ id, nombre, precio }))(SNACKELEGIDO);
     carrito.push(snackResumido);
     cargarStorage();
