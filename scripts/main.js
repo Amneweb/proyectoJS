@@ -818,9 +818,10 @@ salas[2] = new Sala("Infantil", 25, 15, "La sala más económica, con butacas co
 
 //*********** Películas */
 class Pelicula {
-    constructor(id, nombre, anio, actor, genero, edad, director, resumen, duracion, rating) {
+    constructor(id, nombre, imdbID, anio, actor, genero, edad, director, resumen, duracion, rating) {
         this.id = id;
         this.nombre = nombre;
+        this.imdbID=imdbID;
         this.anio = anio;
         this.actor = actor;
         this.genero = genero;
@@ -833,12 +834,12 @@ class Pelicula {
 }
 
 pelis = [
-    new Pelicula("2309101900_IND", "Indiana Jones y el templo de la perdición", 1984, "Harrison Ford", "Aventuras", "ATP", "Steven Spielberg", "En 1935, Indiana Jones llega a la India, todavía parte del Imperio británico, y se le pide que encuentre una piedra mística. Entonces se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un palacio.", "1h 58m", 7.5),
-    new Pelicula("2309101901_TOY", "Toy Story", 1995, "Tom Hank", "Animación", "ATP", "John Lasseter", "Un vaquero de juguete se encuentra celoso y amenazado cuando un nuevo juguete, un guardián espacial, se convierte en el favorito del niño al que pertenecen.", "1h 21m", 8.3),
-    new Pelicula("2309101904_VOL", "Volver al futuro", 1985, "Michael J Fox", "Ciencia ficción, aventuras", "ATP", "Robert Zemeckis", "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo, inventado por su gran amigo, el excéntrico científico Doc Brown.", "1h 56m", 8.5),
-    new Pelicula("2309052000_TIT", "Titanic", 1997, "Leonardo Di Caprio, Kate Winslett", "Romance, Drama", "PG-13", "James Cameron", "Una aristócrata de diecisiete años se enamora de un amable pero pobre artista a bordo del lujoso y desafortunado R.M.S. Titanic.", "3h 14m", 7.9),
-    new Pelicula("2309040102_AFR", "Africa mía", 1985, "Robert Redford, Maryl Streep", "Romance, Drama, Biografía", "GP-13", "Sydney Pollack", "En la Kenia colonial del siglo XX, una baronesa danesa, propietaria de una plantación, mantiene una apasionada relación amorosa con un cazador de espíritu libre.", "2h 41m", 7.1),
-    new Pelicula("2310020824_KAR", "Karate Kid", 1984, "Ralph Macchio, Pat Morita", "Acción, Drama, Familiar", "ATP", "John G. Avildsen", "Un maestro de artes marciales acepta instruir a un adolescente acosado.", "2h 6m", 7.5)
+    new Pelicula("2309101900_IND", "Indiana Jones y el templo de la perdición","tt0087469", 1984, "Harrison Ford", "Aventuras", "ATP", "Steven Spielberg", "En 1935, Indiana Jones llega a la India, todavía parte del Imperio británico, y se le pide que encuentre una piedra mística. Entonces se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un palacio.", "1h 58m", 7.5),
+    new Pelicula("2309101901_TOY", "Toy Story", "tt0114709", 1995, "Tom Hank", "Animación", "ATP", "John Lasseter", "Un vaquero de juguete se encuentra celoso y amenazado cuando un nuevo juguete, un guardián espacial, se convierte en el favorito del niño al que pertenecen.", "1h 21m", 8.3),
+    new Pelicula("2309101904_VOL", "Volver al futuro", "tt0088763", 1985, "Michael J Fox", "Ciencia ficción, aventuras", "ATP", "Robert Zemeckis", "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo, inventado por su gran amigo, el excéntrico científico Doc Brown.", "1h 56m", 8.5),
+    new Pelicula("2309052000_TIT", "Titanic", "tt0120338", 1997, "Leonardo Di Caprio, Kate Winslett", "Romance, Drama", "PG-13", "James Cameron", "Una aristócrata de diecisiete años se enamora de un amable pero pobre artista a bordo del lujoso y desafortunado R.M.S. Titanic.", "3h 14m", 7.9),
+    new Pelicula("2309040102_AFR", "Africa mía", "tt0089755", 1985, "Robert Redford, Maryl Streep", "Romance, Drama, Biografía", "GP-13", "Sydney Pollack", "En la Kenia colonial del siglo XX, una baronesa danesa, propietaria de una plantación, mantiene una apasionada relación amorosa con un cazador de espíritu libre.", "2h 41m", 7.1),
+    new Pelicula("2310020824_KAR", "Karate Kid", "tt0087538", 1984, "Ralph Macchio, Pat Morita", "Acción, Drama, Familiar", "ATP", "John G. Avildsen", "Un maestro de artes marciales acepta instruir a un adolescente acosado.", "2h 6m", 7.5)
 ]
 
 //*********** Snacks */
@@ -935,17 +936,17 @@ pelis.forEach((elemento) => {
     botonCartelera.id = elemento.id;
     botonCartelera.innerText = "elegir";
     botonCartelera.style.cursor = "pointer";
+    const botonFetch = document.createElement("div");
+    botonFetch.className = "cartelera__boton";
+    botonFetch.id = elemento.imdbID;
+    botonFetch.innerText = "ver más";
+    botonFetch.style.cursor = "pointer";
+    overlay.append(botonFetch);
     overlay.append(botonCartelera);
     peliculaEnCartelera.append(overlay);
     document.querySelector(".cartelera__contenedor").appendChild(peliculaEnCartelera);
-    botonCartelera.addEventListener("click", (event) => {
-sweet(event.target.id);
-
-       // if (verificarFlag()) {
-        //    mostrarTodo(event.target.id);
-         //   armarDOM(event.target.id);
-       // }
-    });
+    botonCartelera.addEventListener("click", (event) => sweet(event.target.id));
+    botonFetch.addEventListener("click", (event) => apitmdb(event.target.id)); 
 });
 /** 
  * 
