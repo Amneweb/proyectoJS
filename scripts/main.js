@@ -326,7 +326,7 @@ function mostrarTodo() {
             <h3 class="section__entradas--cerrar"><i class="fa-solid fa-xmark cerrar"></i></h3>
         </section>
         
-        <section class="main__entradas entradas">
+        <section class="entradas">
             <div class="entradas__izquierda">
                 <form action="" id="selectores">
                     <div class="entradas__selectores">

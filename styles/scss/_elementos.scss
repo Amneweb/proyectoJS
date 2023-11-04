@@ -10,7 +10,7 @@
 	font-weight: 700;
 	color: rgb(18, 17, 17);
 	line-height: 1.3;
-	padding: .6em 1.4em .5em .8em;
+	padding: .6em 0.9em .5em .8em;
 	width: 100%;
 	max-width: 100%;
 	box-sizing: border-box;
@@ -29,7 +29,7 @@ select#select__funcion {
 @extend %inputs;
 	@extend %flecha;
 	background-repeat: no-repeat, repeat;
-	background-position: right .7em top 50%, 0 0;
+	background-position: right 1em top 50%, 0 0;
 	background-size: .65em auto, 100%;
   option.select--disabled {
     color:grey;

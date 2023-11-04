@@ -58,16 +58,6 @@
         text-align: center;
     }
 }
-.main__entradas {
-    display: flex;
-    padding: 20px;
-    justify-content: space-evenly;
-
-    form {
-        text-align: center;
-    }
-}
-
 
 #section__entradas {
     display: none;
@@ -75,7 +65,6 @@
     border-radius:10px;
     top:5%;
     left:5%;
-    //transform: translateY(-50%);
     height:90%;
     width:90%;
     z-index:10;
@@ -355,6 +344,13 @@ img {
 .entradas {
     column-gap:20px;
     justify-items: stretch;
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+
+    form {
+        text-align: center;
+    }
 }
 .entradas__cantidad {
     display:none;
