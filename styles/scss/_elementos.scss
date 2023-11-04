@@ -14,7 +14,6 @@
 	width: 100%;
 	max-width: 100%;
 	box-sizing: border-box;
-	margin: 0;
 	border: 1px solid black;
 	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
 	border-radius: .5em;
@@ -129,4 +128,20 @@ select#select__funcion {
       background-position: 0 0;
       left: 0;
   }
+}
+.snacks__input {
+  display: block;
+	font-family: 'Poppins', sans-serif;
+	color: rgb(18, 17, 17);
+	padding: 3px 5px;
+	width: 80%;
+	max-width: 80%;
+	box-sizing: border-box;
+  border:none;
+	border-radius: 5px;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+  margin:auto;
 }

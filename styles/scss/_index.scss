@@ -70,6 +70,16 @@
     z-index:10;
     outline: 9999px solid rgba(0,0,0,0.5);
     overflow:auto;
+    
+    h2 {
+        font-size:var(--size-h3);
+    }
+    h3 {
+        font-size:1.5em;
+    }
+
+
+
  }
 .section__entradas--cerrar {
     position:fixed;
@@ -153,7 +163,6 @@
         &--entradas {
             display: flex;
             justify-content: space-between;
-            border-bottom: dotted 10px var(--smoky-black);
             margin:20px 20px;
     
             h2::after {
@@ -588,4 +597,21 @@ font-size:0.8em;
         align-self: stretch;
     }
     
+}
+%div-totales {
+    padding:10px;
+    text-align: center;
+    border-radius: 10px;
+    margin:10px auto 20px 10px;
+    h3 {
+        color:white;
+    }
+}
+.totales {
+    @extend %div-totales;
+    background-color:var(--smoky-black);   
+}
+#total-gral {
+    @extend %div-totales;
+    background-color:var(--rojo-butaca);
 }

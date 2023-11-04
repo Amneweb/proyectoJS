@@ -99,7 +99,6 @@ select#select__funcion {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  margin: 0;
   border: 1px solid black;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
@@ -199,6 +198,23 @@ select::-ms-expand {
   left: 0;
 }
 
+.snacks__input {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  color: rgb(18, 17, 17);
+  padding: 3px 5px;
+  width: 80%;
+  max-width: 80%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: auto;
+}
+
 .hero {
   background-image: url(../../assets/imagenes/telon-cine.jpg);
   background-position: center;
@@ -260,6 +276,12 @@ select::-ms-expand {
   z-index: 10;
   outline: 9999px solid rgba(0, 0, 0, 0.5);
   overflow: auto;
+}
+#section__entradas h2 {
+  font-size: var(--size-h3);
+}
+#section__entradas h3 {
+  font-size: 1.5em;
 }
 
 .section__entradas--cerrar {
@@ -342,7 +364,6 @@ select::-ms-expand {
 .section__titulo--entradas {
   display: flex;
   justify-content: space-between;
-  border-bottom: dotted 10px var(--smoky-black);
   margin: 20px 20px;
 }
 .section__titulo--entradas h2::after {
@@ -719,6 +740,24 @@ select::-ms-expand {
 }
 .lista-snacks input {
   align-self: stretch;
+}
+
+#total-gral, .totales {
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px auto 20px 10px;
+}
+#total-gral h3, .totales h3 {
+  color: white;
+}
+
+.totales {
+  background-color: var(--smoky-black);
+}
+
+#total-gral {
+  background-color: var(--rojo-butaca);
 }
 
 .platea {

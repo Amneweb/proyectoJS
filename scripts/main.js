@@ -371,7 +371,7 @@ function mostrarAsientos(Elegidos) {
         COORDENADAS_ASIENTOS += "<p>Asiento " + (llave + 1) + " <i class='fa-solid fa-right-long'></i> " + coordenadas(elegido.id) + "</p>";
         ElegidosID.push(elegido.id);
     });
-    COORDENADAS_ASIENTOS += "<p class='aclaracion' id='advertencia'><i class='fa-solid fa-triangle-exclamation'></i>Para modificar los asientos, hacer click en la platea sobre el/los asientos seleccionados y elegir otro/s.</p>"
+    COORDENADAS_ASIENTOS += "<p class='aclaracion' id='advertencia'><i class='fa-solid fa-triangle-exclamation'></i>Para modificar los asientos, hacer click en la platea sobre el/los asientos seleccionados y elegir otro/s.</p>";
     MOSTRAR_ASIENTOS.innerHTML = COORDENADAS_ASIENTOS;
     return ElegidosID;
 }
@@ -406,7 +406,13 @@ function seleccionDeAsientos(event, entradasRequeridas) {
                     element.indeterminate = true;
                 });
                 cargarAsientos(mostrarAsientos(Elegidos));
+                document.querySelector("#totalEntradas") && document.querySelector("#totalEntradas").remove();
+                const totalEnEntradas = document.createElement("div");
+                totalEnEntradas.classList.add("totales");
+                totalEnEntradas.id="totalEntradas";
+                totalEnEntradas.innerHTML = `<h3>Total entradas: ${currency(totalApagarEntradas)}</h3>`; 
                 const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
+                ENTRADAS_RESUMEN.appendChild(totalEnEntradas);
                 ENTRADAS_RESUMEN.appendChild(dibujarBotones());
             }
         } else {
@@ -485,11 +491,12 @@ function dibujarSnacksElegidos() {
             borrarCarritoSnacks(event.target.id);
         });
     });
-    const snacksH4 = document.createElement("h4");
-    snacksH4.id = "a-pagar";
+    const snacksTotales = document.createElement("div");
+    snacksTotales.id = "a-pagar";
+    snacksTotales.classList.add("totales");
     totalFormateado = currency(resultados[1]);
-    snacksH4.innerText = `Total a pagar por snacks: ${totalFormateado}`;
-    listadoSnacks.appendChild(snacksH4);
+    snacksTotales.innerHTML = `<h3>Total snacks: ${totalFormateado}</h3>`;
+    listadoSnacks.appendChild(snacksTotales);
     totalGeneral = currency(resultados[1]+totalApagarEntradas);
 } else {
     document.querySelector(".lista-snacks").innerHTML=`<p>No hay snacks seleccionados</p>`;
@@ -498,10 +505,10 @@ function dibujarSnacksElegidos() {
     totalGeneral = currency(totalApagarEntradas);
 }
     document.querySelector("#total-gral") && document.querySelector("#total-gral").remove();
-    const DOMtotalGeneral=document.createElement("h3");
+    const DOMtotalGeneral=document.createElement("div");
     DOMtotalGeneral.id="total-gral";
     
-    DOMtotalGeneral.innerText=`Total general: ${totalGeneral}`;
+    DOMtotalGeneral.innerHTML=`<h3>Total general: ${totalGeneral}</h3>`;
     listadoSnacks.append(DOMtotalGeneral);
 
 
@@ -754,23 +761,21 @@ function dibujarEntradasResumen(ENTRADAS_RESUMEN, carrito) {
     ENTRADAS_RESUMEN.innerHTML = `
             <h3>resumen de lo solicitado</h3>
             <div class="resumen__datospeli">
-                <div class="datospeli__item datospeli__item--left">película </div>
+                <div class="datospeli__item datospeli__item--left">Película </div>
                 <div class="datospeli__item datospeli__item--right">${pelielegida.nombre}</div>
-                <div class="datospeli__item datospeli__item--left">duración</div>
+                <div class="datospeli__item datospeli__item--left">Duración</div>
                 <div class="datospeli__item datospeli__item--right">${pelielegida.duracion}</div>
-                <div class="datospeli__item datospeli__item--left">sala</div>
+                <div class="datospeli__item datospeli__item--left">Sala</div>
                 <div class="datospeli__item datospeli__item--right">${salas[funcionelegida.sala].nombre}</div>
-                <div class="datospeli__item datospeli__item--left">función</div>
+                <div class="datospeli__item datospeli__item--left">Función</div>
                 <div class="datospeli__item datospeli__item--right">${fecha}, ${funcionelegida.hora}</div>
-                <div class="datospeli__item datospeli__item--left">cantidad de entradas</div>
+                <div class="datospeli__item datospeli__item--left">Entradas</div>
                 <div class="datospeli__item datospeli__item--right">${entradasRequeridas}</div>
-                <div class="datospeli__item datospeli__item--left">precio unitario</div>
+                <div class="datospeli__item datospeli__item--left">Precio unitario</div>
                 <div class="datospeli__item datospeli__item--right">${currency(funcionelegida.precio)}</div>
-                <div class="datospeli__item datospeli__item--left">asientos</div>
+                <div class="datospeli__item datospeli__item--left">Asientos</div>
                 <div class="datospeli__item datospeli__item--right asientos__elegidos"><p class="aclaracion"><i class="fa-solid fa-circle-exclamation"></i>Elegir butacas haciendo click en los asientos libres que se muestran a la derecha.</p></div>
-                <div class="datospeli__item datospeli__item--left">total entradas</div>
-                <div class="datospeli__item datospeli__item--right">${currency(totalApagarEntradas)}</div>
-            </div>`;
+                </div>`;
 }
 /**
  * 
