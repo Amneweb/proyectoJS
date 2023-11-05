@@ -411,7 +411,7 @@ function seleccionDeAsientos(event, entradasRequeridas) {
                 const totalEnEntradas = document.createElement("div");
                 totalEnEntradas.classList.add("totales");
                 totalEnEntradas.id="totalEntradas";
-                totalEnEntradas.innerHTML = `<h3>Total entradas: ${currency(totalApagarEntradas)}</h3>`; 
+                totalEnEntradas.innerHTML = `<p>Total entradas: ${currency(totalApagarEntradas)}</p>`; 
                 const ENTRADAS_RESUMEN = document.querySelector(".entradas__resumen");
                 ENTRADAS_RESUMEN.appendChild(totalEnEntradas);
                 ENTRADAS_RESUMEN.appendChild(dibujarBotones());
@@ -486,7 +486,7 @@ function dibujarSnacksElegidos() {
     resultados[0].forEach((elemento) => {
         const snacksDIV = document.createElement("div");
         snacksDIV.classList.add("lista-snacks");
-        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><input type="button" id="borrar-${elemento[0].id}" value="x">`;
+        snacksDIV.innerHTML = `<img src="assets/imagenes/${elemento[0].id}.png"><p>${elemento[1]} x ${elemento[0].nombre}</p><button class="basura" id="borrar-${elemento[0].id}"><i class="fa-solid fa-trash-can"></i></button>`;
         listadoSnacks.appendChild(snacksDIV);
         document.querySelector(`#borrar-${elemento[0].id}`).addEventListener("click", (event) => {
             borrarCarritoSnacks(event.target.id);
@@ -496,7 +496,7 @@ function dibujarSnacksElegidos() {
     snacksTotales.id = "a-pagar";
     snacksTotales.classList.add("totales");
     totalFormateado = currency(resultados[1]);
-    snacksTotales.innerHTML = `<h3>Total snacks: ${totalFormateado}</h3>`;
+    snacksTotales.innerHTML = `<p>Total snacks: ${totalFormateado}</p>`;
     listadoSnacks.appendChild(snacksTotales);
     totalGeneral = currency(resultados[1]+totalApagarEntradas);
 } else {
@@ -556,8 +556,9 @@ function armarDOM(id = "") {
 
     const DOMbotonCerrar = document.querySelector(".cerrar");
     DOMbotonCerrar.addEventListener("click", () => {
-        sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
-        borrarTodo();
+        sweetCerrar()
+        //sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
+        //borrarTodo();
     });
 
     //1) armar selector de películas. 
@@ -602,20 +603,6 @@ function borrarTodo() {
 }
 /**
  * 
- * @abstract se usa para verificar si está armado el esqueleto de la sección de venta de entradas. Se hizo por si un usuario ya empezó a elegir películas y sin querer vuelve a apretar el botón de comprar entradas, para que no se le pierdan los datos ingresados
- * @returns verdadero o falso según si el session storage está lleno o vacío
- * 
- */
-function verificarFlag() {
-    if (sessionStorage.getItem("compra")) {
-        sweet();
-    } else {
-        mostrarTodo();
-        armarDOM();
-    }
-}
-/**
- * 
  * @abstract usamos un sweetalert para alertar a la gente que está en un proceso de compra
  * 
  */
@@ -629,7 +616,7 @@ function sweet(id = undefined) {
             showCancelButton: true,
             focusConfirm: false,
             confirmButtonText:
-                '<i class="fa fa-thumbs-up"></i> Borrar y empezar de nuevo',
+                'Borrar y empezar de nuevo',
             confirmButtonAriaLabel: 'Borrar y empezar de nuevo',
             cancelButtonText:
                 '<i class="fa fa-thumbs-down"></i> Continuar compra actual',
@@ -651,6 +638,39 @@ function sweet(id = undefined) {
         mostrarTodo(id);
         armarDOM(id);
         document.querySelector("#section__entradas").style["display"]="block";
+    }
+}
+/**
+ * 
+ * @abstract funcion para generar sweet alert cuando se hace click en boton cerrar (cruz a la derecha de div de entradas)
+ */
+function sweetCerrar() {
+    if (sessionStorage.getItem("compra")) {
+        Swal.fire({
+            title: 'Estás en un proceso de compra',
+            icon: 'warning',
+            html:
+                'Si hacés click en borrar, se cerrará el proceso de compra.',
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="fa fa-thumbs-up"></i> Cerrar',
+            confirmButtonAriaLabel: 'Cerrar',
+            cancelButtonText:
+                '<i class="fa fa-thumbs-down"></i> Continuar compra',
+            cancelButtonAriaLabel: 'Pulgar abajo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("is confirmed");
+                sessionStorage.removeItem("compra");
+                borrarTodo();
+        
+            } else {
+                console.log("is denied");
+            }
+        })
+    } else {
+        borrarTodo();
     }
 }
 
@@ -727,11 +747,11 @@ function dibujarBotones() {
     BOTONES.id = "botones";
     BOTON_ACEPTAR = document.createElement("input");
     BOTON_ACEPTAR.classList.add("boton__aceptar", "boton");
-    BOTON_ACEPTAR.setAttribute("value", "CONFIRMAR");
+    BOTON_ACEPTAR.setAttribute("value", "👍 CONFIRMAR");
     BOTON_ACEPTAR.setAttribute("type", "button");
     BOTON_CAMBIAR = document.createElement("input");
     BOTON_CAMBIAR.classList.add("boton__cambiar", "boton");
-    BOTON_CAMBIAR.setAttribute("value", "CAMBIAR DE PELICULA");
+    BOTON_CAMBIAR.setAttribute("value", "👎 Empezar de nuevo");
     BOTON_CAMBIAR.setAttribute("type", "button");
     BOTONES.append(BOTON_ACEPTAR);
     BOTONES.append(BOTON_CAMBIAR);
@@ -740,10 +760,11 @@ function dibujarBotones() {
         mostrarSnacks();
     });
     BOTON_CAMBIAR.addEventListener("click", () => {
-        sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
-        borrarTodo();
-        mostrarTodo();
-        armarDOM();
+        sweet();
+        //sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
+        //borrarTodo();
+        //mostrarTodo();
+        //armarDOM();
     });
     return FRAGMENTO;
 }

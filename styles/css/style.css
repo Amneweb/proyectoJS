@@ -220,6 +220,15 @@ select::-ms-expand {
   color: var(--rojo-butaca);
 }
 
+.basura {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
 .hero {
   background-image: url(../../assets/imagenes/telon-cine.jpg);
   background-position: center;
@@ -683,17 +692,18 @@ select::-ms-expand {
   display: flex;
 }
 
+.boton {
+  cursor: pointer;
+}
 .boton:hover {
   background-color: white;
 }
 .boton__aceptar {
-  background-color: palegreen;
   border-color: rgb(4, 163, 39);
   width: 50%;
 }
 .boton__cambiar {
-  background-color: #cccccc;
-  border-color: grey;
+  border-color: var(--rojo-butaca);
   width: 50%;
 }
 
@@ -757,6 +767,9 @@ select::-ms-expand {
 .totales {
   border: 1px solid var(--rojo-butaca);
   background-color: rgb(249, 215, 215);
+}
+.totales p {
+  font-weight: bolder;
 }
 
 #total-gral {

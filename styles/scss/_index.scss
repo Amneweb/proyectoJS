@@ -536,17 +536,18 @@ color:#eeeeee;
 }
 .boton {
     @extend %inputs;
+    cursor:pointer;
     &:hover {
         background-color:white;
     }
     &__aceptar {
-        background-color:palegreen;
+     
         border-color:rgb(4, 163, 39);
         width:50%;
     }
     &__cambiar {
-        background-color:#cccccc;
-        border-color:grey;
+     
+        border-color:var(--rojo-butaca);
         width:50%;
     }
 }
@@ -604,11 +605,16 @@ font-size:0.8em;
     border-radius: 10px;
     margin:10px auto 20px 10px;
     
+    
 }
 .totales {
     @extend %div-totales;
     border:1px solid var(--rojo-butaca); 
     background-color: rgb(249, 215, 215); 
+    p {
+        font-weight: bolder;
+    }
+    
 }
 #total-gral {
     @extend %div-totales;
