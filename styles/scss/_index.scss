@@ -558,7 +558,7 @@ color:#eeeeee;
     border-radius:5px;
     h3,p {
         color:#eeeeee;
-        margin:10px 20px;
+        margin:20px 20px;
     }
     &__flexSnacks{
         margin:10px 20px;
@@ -603,15 +603,18 @@ font-size:0.8em;
     text-align: center;
     border-radius: 10px;
     margin:10px auto 20px 10px;
-    h3 {
-        color:white;
-    }
+    
 }
 .totales {
     @extend %div-totales;
-    background-color:var(--smoky-black);   
+    border:1px solid var(--rojo-butaca); 
+    background-color: rgb(249, 215, 215); 
 }
 #total-gral {
     @extend %div-totales;
-    background-color:var(--rojo-butaca);
+    background-color:var(--smoky-black);
+    color:white;
+}
+.boton__pagar {
+    display: none;
 }

@@ -345,6 +345,7 @@ function mostrarTodo() {
                 </form>
                 <div class="entradas__resumen">
                 </div> 
+                
             </div>
             <div class="entradas__derecha">
                 <div class="entradas__imagen">

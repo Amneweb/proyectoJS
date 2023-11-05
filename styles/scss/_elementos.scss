@@ -132,16 +132,26 @@ select#select__funcion {
 .snacks__input {
   display: block;
 	font-family: 'Poppins', sans-serif;
-	color: rgb(18, 17, 17);
+	color: white;
 	padding: 3px 5px;
 	width: 80%;
 	max-width: 80%;
 	box-sizing: border-box;
-  border:none;
+  border:white 1px solid;
 	border-radius: 5px;
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
-	background-color: #fff;
+  background-color:transparent;
+  cursor:pointer;
+  
+	//background-color: #fff;
   margin:auto;
+  &:hover {
+    background-color:white;
+    color:var(--rojo-butaca);
+  }
+}
+#boton__pagar {
+  @extend %inputs;
 }
