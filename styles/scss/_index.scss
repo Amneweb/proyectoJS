@@ -569,12 +569,17 @@ color:#eeeeee;
         .snacks__item {
             margin:5px;
             display:flex;
-            width:22%;
+            width:23%;
             p {
 font-size:0.8em;
+margin: 5px;
             }
             &--contenido {
                 padding:5px;
+            }
+            img {
+                max-width:80%;
+                margin:auto;
             }
         }
     }

@@ -213,7 +213,7 @@ select::-ms-expand {
   appearance: none;
   background-color: transparent;
   cursor: pointer;
-  margin: auto;
+  margin: 5px auto 10px auto;
 }
 .snacks__input:hover {
   background-color: white;
@@ -728,13 +728,18 @@ select::-ms-expand {
 .carrito__flexSnacks .snacks__item {
   margin: 5px;
   display: flex;
-  width: 22%;
+  width: 23%;
 }
 .carrito__flexSnacks .snacks__item p {
   font-size: 0.8em;
+  margin: 5px;
 }
 .carrito__flexSnacks .snacks__item--contenido {
   padding: 5px;
+}
+.carrito__flexSnacks .snacks__item img {
+  max-width: 80%;
+  margin: auto;
 }
 
 .input_escondido {
