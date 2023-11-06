@@ -712,7 +712,7 @@ select::-ms-expand {
 }
 
 .carrito {
-  background-color: var(--rojo-butaca);
+  background-color: var(--hunyadi-yellow);
   border-radius: 5px;
 }
 .carrito h3, .carrito p {
@@ -770,8 +770,8 @@ select::-ms-expand {
 }
 
 .totales {
-  border: 1px solid var(--rojo-butaca);
-  background-color: rgb(249, 215, 215);
+  border: 1px solid var(--hunyadi-yellow);
+  background-color: lightyellow;
 }
 .totales p {
   font-weight: bolder;

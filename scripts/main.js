@@ -467,6 +467,7 @@ function recuperarStorage() {
 
 }
 function dibujarSnacksElegidos() {
+    document.querySelector("#boton_pagar").remove();
     const carritoEnStorage = recuperarStorage();
     let totalGeneral;
     const listadoSnacks = document.querySelector(".entradas__izquierda");
@@ -511,6 +512,7 @@ function dibujarSnacksElegidos() {
     
     DOMtotalGeneral.innerHTML=`<h3>Total general: ${totalGeneral}</h3>`;
     listadoSnacks.append(DOMtotalGeneral);
+    BOTON_PAGAR(".entradas__izquierda");
 
 
 }
@@ -673,6 +675,7 @@ function sweetCerrar() {
         borrarTodo();
     }
 }
+function sweetPagar() {}
 
 /**
  * 
@@ -682,6 +685,7 @@ function mostrarSnacks() {
     document.querySelector("#botones").remove();
     document.querySelector("#advertencia").remove();
     document.querySelector("#platea").style["display"] = "none";
+           BOTON_PAGAR(".entradas__resumen");   
     document.querySelector(".carrito").innerHTML = `
         <h3>¿querés agregar snacks?</h3>
         <p>Elegí el que quieras o completá la compra de entradas sin snacks haciendo click en el botón TERMINAR</p>
@@ -693,6 +697,15 @@ function mostrarSnacks() {
             dibujarSnacksElegidos(event.target.id);
         });
     });
+}
+
+const BOTON_PAGAR = (donde) => {
+    const BOTON_PAGAR_INICIAL = document.createElement("div");
+    BOTON_PAGAR_INICIAL.id=("boton_pagar");
+    BOTON_PAGAR_INICIAL.innerHTML=`<button class="boton_pagar">PAGAR Y FINALIZAR COMPRA</button>`;
+    const DONDE = document.querySelector(donde);
+    DONDE.append(BOTON_PAGAR_INICIAL);  
+    BOTON_PAGAR_INICIAL.addEventListener("click",()=> sweetPagar());
 }
 /**
  * 
