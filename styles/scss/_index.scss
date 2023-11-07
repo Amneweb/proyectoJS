@@ -59,7 +59,9 @@
     }
 }
 
-#section__entradas {
+#section__entradas,
+#section__api
+ {
     display: none;
     position:fixed;
     border-radius:10px;

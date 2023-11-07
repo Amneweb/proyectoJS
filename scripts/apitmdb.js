@@ -12,7 +12,12 @@ const errorHandler = (error)=> console.log(error);
     const apiURL = 'https://api.themoviedb.org/3/find/'+id+'?external_source=imdb_id&language=es-ES';
   fetch(apiURL, options)
     .then(response => response.json())
-    .then(response => buscarCreditosPeli(response.movie_results[0].id))
+    .then(response => {
+      resultado_pelicula = (({id, title, original_title,overview,poster_path,popularity,release_date,vote_average,vote_count }) => ({id, title, original_title,overview,poster_path,popularity,release_date,vote_average,vote_count }))(response.movie_results[0]);
+      console.log(resultado_pelicula);
+      buscarCreditosPeli(response.movie_results[0].id);
+      dibujarDatosApi(resultado_pelicula);
+    } )
     .catch(err => console.error(err));
   }
   //RESULTADO
@@ -146,5 +151,16 @@ function buscarCreditosPeli(id) {
   //   "popularity": 36.553,
   //   "profile_path": "/woWhZzFILVhYMAvsPL171HjMY0y.jpg"
   // }
-
+function dibujarDatosApi(resultado) {
+  const section__api = document.querySelector("#section__api");
+  section__api.style["display"]="block";
+  let datos_movie="";
+  Object.entries(resultado).forEach(([key,value]) => {
+    datos_movie =+ "<p>"+ key + ": "+ value +"</p>";
+  })
+  section__api.innerHTML=`
+  <div>
+  ${datos_movie}
+  </div>`;
+}
   
