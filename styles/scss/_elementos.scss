@@ -154,8 +154,15 @@ select#select__funcion {
     color:var(--rojo-butaca);
   }
 }
-#boton__pagar {
+.boton_pagar {
   @extend %inputs;
+  cursor:pointer;
+  background-color:green;
+  color:white;
+  i {
+    color: var(--hunyadi-yellow);
+    margin-right:10px;
+  }
 }
 .basura {
   -moz-appearance: none;
@@ -164,4 +171,47 @@ select#select__funcion {
   background-color:transparent;
   cursor:pointer;
   border:none;
+}
+//------------ LOGO EN SWEET ---------------
+.title-final { 
+  font-family: var(--logo);
+  font-size: var(--size-h1);
+  padding: 10px 20px 20px 20px;
+  color: var(--smoky-black);
+  margin-top:30px;
+
+  &::after {
+      content: '';
+      background-image: url(../../assets/imagenes/estrellaVintage.png);
+      width: 50px;
+      height: 50px;
+      background-size: 50px 50px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      background-position: 0 0;
+      left: 0;
+  }
+}
+// ---------- HTML EN SWEET ALERT ----------------
+.final {
+  p {
+    text-align: justify;
+  }
+  .canales {
+    display: flex;
+    justify-content:center;
+  }
+  a {
+    color: var(--smoky-black);
+    font-size: var(--size-h3);
+    margin-top:30px;
+    margin-left:10px;
+    margin-right:10px;
+    &:hover {
+      color:var(--rojo-butaca);
+    }
+  }
+}
+.boton-final {
+  background-color: var(--rojo-butaca);
 }

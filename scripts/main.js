@@ -510,7 +510,7 @@ function dibujarSnacksElegidos() {
     const DOMtotalGeneral=document.createElement("div");
     DOMtotalGeneral.id="total-gral";
     
-    DOMtotalGeneral.innerHTML=`<h3>Total general: ${totalGeneral}</h3>`;
+    DOMtotalGeneral.innerHTML=`<p>Total general: ${totalGeneral}</p>`;
     listadoSnacks.append(DOMtotalGeneral);
     BOTON_PAGAR(".entradas__izquierda");
 
@@ -675,7 +675,41 @@ function sweetCerrar() {
         borrarTodo();
     }
 }
-function sweetPagar() {}
+function sweetPagar() {
+    let timerInterval;
+Swal.fire({
+  html: "<p>Te estamos dirigiendo a la pasarela de pagos...</p>",
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading();
+    timerInterval = setInterval();
+  },
+  willClose: () => {
+    clearInterval(timerInterval);
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    Swal.fire({
+        title:"The end",
+        html: "<p>Hasta acá llegó el simulador de mi proyecto para el curso de JavaScript de Coderhouse. Gracias por recorrerlo hasta el final.</p><p>Si te gustó y querés conversar por la posibilidad de concretar un proyecto tuyo, contactame a través de cualquiera de mis canales.</p><div class='canales'><a href='https://www.linkedin.com/in/amneriscalle/'><i class='fa-brands fa-linkedin'></i></a><a href='https://www.instagram.com/amne.calle/'><i class='fa-brands fa-instagram'></i></a><a href='mailto:amneris.calle@gmail.com'><i class='fa-regular fa-envelope'></i></a></div>",
+        confirmButtonText: "Hasta la próxima 👋",
+        customClass: {
+            htmlContainer:'final',
+            title:'title-final',
+            confirmButton: 'boton-final'
+        }
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
+            borrarTodo();
+        }
+      });
+  }
+});
+}
 
 /**
  * 
@@ -702,7 +736,7 @@ function mostrarSnacks() {
 const BOTON_PAGAR = (donde) => {
     const BOTON_PAGAR_INICIAL = document.createElement("div");
     BOTON_PAGAR_INICIAL.id=("boton_pagar");
-    BOTON_PAGAR_INICIAL.innerHTML=`<button class="boton_pagar">PAGAR Y FINALIZAR COMPRA</button>`;
+    BOTON_PAGAR_INICIAL.innerHTML=`<button class="boton_pagar"><i class="fa-solid fa-money-check-dollar"></i>PAGAR Y FINALIZAR COMPRA</button>`;
     const DONDE = document.querySelector(donde);
     DONDE.append(BOTON_PAGAR_INICIAL);  
     BOTON_PAGAR_INICIAL.addEventListener("click",()=> sweetPagar());

@@ -624,7 +624,10 @@ margin: 5px;
 #total-gral {
     @extend %div-totales;
     background-color:var(--smoky-black);
-    color:white;
+    p {
+        color:white;
+    }
+    
 }
 .boton__pagar {
     display: none;
