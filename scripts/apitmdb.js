@@ -8,6 +8,8 @@ const options = {
 const errorHandler = (error)=> console.log(error);
 
   function apitmdb(id) {
+    const section__api = document.querySelector("#section__api");
+    section__api.style["display"]="block";
     //busca la película en base al id de imdb - metodo find by ID
     const apiURL = 'https://api.themoviedb.org/3/find/'+id+'?external_source=imdb_id&language=es-ES';
   fetch(apiURL, options)
@@ -15,12 +17,127 @@ const errorHandler = (error)=> console.log(error);
     .then(response => {
       resultado_pelicula = (({id, title, original_title,overview,poster_path,popularity,release_date,vote_average,vote_count }) => ({id, title, original_title,overview,poster_path,popularity,release_date,vote_average,vote_count }))(response.movie_results[0]);
       console.log(resultado_pelicula);
-      buscarCreditosPeli(response.movie_results[0].id);
+      console.log(response.status);
+      buscarCreditosPeli(id);
       dibujarDatosApi(resultado_pelicula);
     } )
     .catch(err => console.error(err));
   }
-  //RESULTADO
+
+  function buscarCreditosPeli(id) {
+    const apiURL='https://api.themoviedb.org/3/movie/'+id+'/credits?language=es-ES';
+    fetch(apiURL, options)
+    .then(response => response.json())
+    .then(response => {
+      const cast = response.cast;
+      cast.splice(10);
+
+      console.log("en funcion dibujar creditos CAST ",cast);
+      const crew =response.crew;
+      crew.splice(2);
+      console.log("en funcion dibujar créditos CREW ",crew);
+      let i=0;
+      const cast_resumido = [];
+      cast.forEach((elemento) => {
+      cast_resumido[i] = (({id, name, original_name, popularity,profile_path,character }) => ({id,name, original_name, popularity,profile_path,character }))(elemento);
+      console.log('cast resumido ',cast_resumido[i]);
+      i++;
+    });
+      let j=0;
+      const crew_resumido = [];
+      crew.forEach((elemento) => {
+      crew_resumido[i] = (({id, name, original_name, popularity,profile_path,job }) => ({id,name, original_name, popularity,profile_path,job }))(elemento);
+      console.log('crew resumido ',crew_resumido[i]);
+      j++;
+    });
+    dibujarCast(cast_resumido);
+    dibujarCrew(crew_resumido);
+      buscarInfoActores(cast);
+      buscarInfoDirectores(crew);
+      
+      
+    } )
+    .catch(err => errorHandler(err));
+  }
+
+  function buscarInfoActores(cast) {
+    cast.forEach((persona) => 
+    {
+      const apiURL = 'https://api.themoviedb.org/3/person/'+persona.id+'?language=es-ES';
+      fetch(apiURL, options)
+  .then(response => response.json())
+  .then(response => mostrarPerfil(response))
+  .catch(err => errorHandler(err));
+  });
+  }
+  function mostrarPerfil(id) {
+    
+  }
+
+  function buscarInfoDirectores(crew) {
+    crew.forEach((persona) => 
+    {
+      const apiURL = 'https://api.themoviedb.org/3/person/'+persona.id+'?language=es-ES';
+      fetch(apiURL, options)
+  .then(response => response.json())
+  .then(response => mostrarPerfil(response))
+  .catch(err => errorHandler(err));
+  });
+  }
+  function mostrarPerfil(id) {
+    
+  }
+
+  function dibujarDatosApi(resultado) {
+    console.log("en funcion dibujarDatosApi");
+    
+    let datos_movie = "<div><h3>Datos de película</h3>";
+    Object.entries(resultado).forEach(([key,value]) => {
+      console.log("key: ",key,"value: ",value);
+      datos_movie += "<p>"+ key + ": "+ value +"</p>";
+    })
+    datos_movie +="</div>";
+    section__api.innerHTML=`
+    
+    ${datos_movie}
+    
+    <div id="actores"></div>
+    <div id="directores"></div>`;
+  }
+  function dibujarCast(resultado) {
+    console.log("en funcion dibujarCast");
+    const section__actores = document.querySelector("#actores");
+    let creditos="<h3>Listado de actores</h3>";
+    resultado.forEach((elemento) => {
+      creditos += "<h2>Actor: "+elemento.name+"</h2>"
+      Object.entries(elemento).forEach(([key,value]) => {
+        console.log("key: ",key,"value: ",value);
+        creditos += "<p>"+ key + ": "+ value +"</p>";
+      });
+    });
+      
+    
+    section__actores.innerHTML=`
+    ${creditos}`;
+  }
+  function dibujarCrew(resultado) {
+    console.log("en funcion dibujarCast");
+    const section__directores = document.querySelector("#directores");
+    let creditos="<h3>Listado de directores y escritores</h3>";
+    resultado.forEach((elemento) => {
+      creditos += "<h2>Director: "+elemento.name+"</h2>"
+      Object.entries(elemento).forEach(([key,value]) => {
+        console.log("key: ",key,"value: ",value);
+        creditos += "<p>"+ key + ": "+ value +"</p>";
+      });
+    });
+      
+    
+    section__directores.innerHTML=`
+    ${creditos}`;
+  }
+
+  //RESULTADO apitmdb
   // {
   //   "movie_results": [
   //     {
@@ -51,16 +168,7 @@ const errorHandler = (error)=> console.log(error);
   // }
 
 //busca los creditos en base al id de la peli en tmdb
-function buscarCreditosPeli(id) {
-  const apiURL='https://api.themoviedb.org/3/movie/'+id+'/credits?language=es-ES';
-  fetch(apiURL, options)
-  .then(response => response.json())
-  .then(response => {
-    console.log(response.cast);
-    buscarInfoActores(response.cast); 
-  } )
-  .catch(err => errorHandler(err));
-}
+
   
   //busca info de los actores en base a los id conseguidos en el fetch anterior
   //RESULTADO
@@ -119,19 +227,7 @@ function buscarCreditosPeli(id) {
   // }
 
   //busca info de cada actor en base a los credits de la peli
-  function buscarInfoActores(cast) {
-    cast.forEach((actor) => 
-    {
-      const apiURL = 'https://api.themoviedb.org/3/person/'+actor.id+'?language=es-ES';
-      fetch(apiURL, options)
-  .then(response => response.json())
-  .then(response => mostrarPerfil(response))
-  .catch(err => errorHandler(err));
-  });
-  }
-  function mostrarPerfil(id) {
-    console.log(id)
-  }
+  
   // {
   //   "adult": false,
   //   "also_known_as": [
@@ -151,16 +247,5 @@ function buscarCreditosPeli(id) {
   //   "popularity": 36.553,
   //   "profile_path": "/woWhZzFILVhYMAvsPL171HjMY0y.jpg"
   // }
-function dibujarDatosApi(resultado) {
-  const section__api = document.querySelector("#section__api");
-  section__api.style["display"]="block";
-  let datos_movie="";
-  Object.entries(resultado).forEach(([key,value]) => {
-    datos_movie =+ "<p>"+ key + ": "+ value +"</p>";
-  })
-  section__api.innerHTML=`
-  <div>
-  ${datos_movie}
-  </div>`;
-}
+
   

@@ -59,8 +59,7 @@
     }
 }
 
-#section__entradas,
-#section__api
+#section__entradas
  {
     display: none;
     position:fixed;
@@ -79,10 +78,11 @@
     h3 {
         font-size:1.5em;
     }
-
-
-
  }
+ #section__api {
+@extend #section__entradas;
+ }
+
 .section__entradas--cerrar {
     position:fixed;
     display:block;
