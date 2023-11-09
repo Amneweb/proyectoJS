@@ -584,13 +584,13 @@ function armarDOM(id = "") {
     const formularioSelector = document.querySelector("#selectores");
     formularioSelector.addEventListener("submit", (event) => {
         event.preventDefault();
-       if (DOMinputCantidad.value<1||DOMinputCantidad.value===undefined) {
-        sweetCantidad();
-       } else {
         const inputs = event.target.elements;
-        enviarFormularioSelector(inputs);
-       }
-        
+        if (parseInt(inputs[2].value<1) || inputs[2].value == "" ) {
+            sweetCantidad();
+        } else {
+            enviarFormularioSelector(inputs);
+        }
+  
     });
 
 }
@@ -713,7 +713,7 @@ Swal.fire({
 }
 
 const sweetCantidad = (condicion) => {
-texto = condicion==="mayor"? "<p>Lo sentimos, la sala no cuenta con la cantidad de entradas libres solicitada.</p><p> Ingresá una cantidad menor o, si querés organizar un evento empresarial a sala completa, escribinos a info@vintage.com</p>":"<Para>🤔 ¿No te habrás olvidado de ingresar la cantidad de entradas? Para seguir adelante deberás ingresar una cantidad igual o mayor a 1.</p>"
+texto = condicion==="mayor"? "<p>Lo sentimos, la sala no cuenta con la cantidad de entradas libres solicitada.</p><p> Ingresá una cantidad menor o, si querés organizar un evento empresarial a sala completa, escribinos a info@vintage.com</p>":"<p>🤔 ¿No te habrás olvidado de ingresar la cantidad de entradas? Para seguir adelante deberás ingresar una cantidad igual o mayor a 1.</p>"
  
 Swal.fire({
     icon:'error',
