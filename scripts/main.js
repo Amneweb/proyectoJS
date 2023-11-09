@@ -394,7 +394,7 @@ function seleccionDeAsientos(event, entradasRequeridas) {
             iconColor: '#cc2d2c',
             confirmButtonColor:'#cc2d2c'
         })
-        //alert("Ya tenés " + entradasRequeridas + " asientos seleccionados. Para cambiarlos debés liberar uno de los que ya elegiste");
+  
     } else {
         if (!event.target.classList.contains("elegido")) {
             //código de lo que pasa si hago click en asiento libre
@@ -434,11 +434,7 @@ function seleccionDeAsientos(event, entradasRequeridas) {
     }
 
 }
-/**
- * @abstract genera un objeto que luego será cargado al carrito que irá al storage
- * @param {Object} FUNCIONELEGIDA 
- * @param {*} entradasRequeridas 
- */
+
 function armarCarritoEntradas(FUNCIONELEGIDA, entradasRequeridas) {
     sessionStorage.getItem("compra") && sessionStorage.removeItem("compra")
     Object.keys(carritoEntradas).length = 0;
@@ -456,7 +452,7 @@ function cargarAsientos(asientos) {
     sessionStorage.removeItem("compra");
     cargarStorage();
 }
-//manda los datos de las entradas al local storage
+
 
 function cargarStorage() {
     sessionStorage.setItem('compra', JSON.stringify(carrito));
@@ -482,7 +478,7 @@ function dibujarSnacksElegidos() {
     }
     document.querySelectorAll(".lista-snacks") && document.querySelectorAll(".lista-snacks").forEach((element) => element.remove());
     document.querySelector("#a-pagar") && document.querySelector("#a-pagar").remove();
-    resultados = extraerRepetidos(); //es un vector de 2 elementos: carrito sin duplicados y total a pagar por snacks
+    resultados = extraerRepetidos(); 
 
     resultados[0].forEach((elemento) => {
         const snacksDIV = document.createElement("div");
@@ -541,7 +537,7 @@ function enviarFormularioSelector(inputs) {
             seleccionDeAsientos(event, entradasRequeridas);
         });
     } else {
-        alert("Lo sentimos, la sala no cuenta con la capacidad de asientos solicitada")
+        sweetCantidad("mayor");
     }
 }
 function reordenarPelis(id) {
@@ -588,8 +584,13 @@ function armarDOM(id = "") {
     const formularioSelector = document.querySelector("#selectores");
     formularioSelector.addEventListener("submit", (event) => {
         event.preventDefault();
+       if (DOMinputCantidad.value<1||DOMinputCantidad.value===undefined) {
+        sweetCantidad();
+       } else {
         const inputs = event.target.elements;
         enviarFormularioSelector(inputs);
+       }
+        
     });
 
 }
@@ -693,7 +694,7 @@ Swal.fire({
   if (result.dismiss === Swal.DismissReason.timer) {
     Swal.fire({
         title:"The end",
-        html: "<p>Hasta acá llegó el simulador de mi proyecto para el curso de JavaScript de Coderhouse. Gracias por recorrerlo hasta el final.</p><p>Si te gustó y querés conversar por la posibilidad de concretar un proyecto tuyo, contactame a través de cualquiera de mis canales.</p><div class='canales'><a href='https://www.linkedin.com/in/amneriscalle/'><i class='fa-brands fa-linkedin'></i></a><a href='https://www.instagram.com/amne.calle/'><i class='fa-brands fa-instagram'></i></a><a href='mailto:amneris.calle@gmail.com'><i class='fa-regular fa-envelope'></i></a></div>",
+        html: "<p>Hasta acá llegó el simulador de mi proyecto para el curso de JavaScript de Coderhouse. Gracias por recorrerlo hasta el final.</p><p>Si te gustó mi trabajo y te gustaría contratarme, contactame a través de cualquiera de mis canales.</p><div class='canales'><a href='https://www.linkedin.com/in/amneriscalle/'><i class='fa-brands fa-linkedin'></i></a><a href='https://www.instagram.com/amne.calle/'><i class='fa-brands fa-instagram'></i></a><a href='mailto:amneris.calle@gmail.com'><i class='fa-regular fa-envelope'></i></a></div>",
         confirmButtonText: "Hasta la próxima 👋",
         customClass: {
             htmlContainer:'final',
@@ -709,6 +710,17 @@ Swal.fire({
       });
   }
 });
+}
+
+const sweetCantidad = (condicion) => {
+texto = condicion==="mayor"? "<p>Lo sentimos, la sala no cuenta con la cantidad de entradas libres solicitada.</p><p> Ingresá una cantidad menor o, si querés organizar un evento empresarial a sala completa, escribinos a info@vintage.com</p>":"<Para>🤔 ¿No te habrás olvidado de ingresar la cantidad de entradas? Para seguir adelante deberás ingresar una cantidad igual o mayor a 1.</p>"
+ 
+Swal.fire({
+    icon:'error',
+  title: "Ups...",
+ html: texto,
+});
+
 }
 
 /**
@@ -759,12 +771,7 @@ function borrarCarritoSnacks(id) {
     cargarStorage();
     dibujarSnacksElegidos();
 }
-/**
- * @abstract para que en la pantalla se visualicen sólo un renglón por snack. Si el snack se repite cambia la cantidad, pero sólo aparece un renglón por snack. El proceso es el siguiente:
- * 1) se ordena el carrito que viene del storage (carritoRecuperado) en base al id del snack
- * 2) se genera un nuevo array carritoSinDuplicados, al que se le van agregando los elementos del carrito. Este array tiene 2 elementos por fila: el objeto snack y la cantidad.
- * 3) si los elementos del carrito recuperado se repiten, no los agrego al nuevo carrito, sino que modifico la cantidad
- */
+
 function extraerRepetidos() {
     const carritoRecuperado = recuperarStorage();
     const sorted = carritoRecuperado.splice(1).sort((a, b) => {
@@ -783,10 +790,7 @@ function extraerRepetidos() {
     return aDevolver;
 }
 
-/**
- * 
- * @returns Dibuja los botones ACEPTAR y CAMBIAR PELICULA al final del resumen de las entradas compradas. El de aceptar genera que se muestre el carrito de snacks y el de cambiar hace que empiece todo de nuevo
- */
+
 
 function dibujarBotones() {
     const FRAGMENTO = new DocumentFragment();
@@ -808,19 +812,10 @@ function dibujarBotones() {
     });
     BOTON_CAMBIAR.addEventListener("click", () => {
         sweet();
-        //sessionStorage.getItem("compra") && sessionStorage.removeItem("compra");
-        //borrarTodo();
-        //mostrarTodo();
-        //armarDOM();
     });
     return FRAGMENTO;
 }
-/**
- * 
- * @abstract Dibuja la tabla con la info de lo elegido hasta el momento. Por ahora no están los asientos
- * @param {Node} ENTRADAS_RESUMEN La div en donde vamos a mostrar lo cargado en el carrito del sessionStorage
- * @param {Array} carrito carrito del sessionStorage
- */
+
 function dibujarEntradasResumen(ENTRADAS_RESUMEN, carrito) {
     const funcionelegida = funciones.find((element) => element.id === carrito[0].funcion);
     totalApagarEntradas = funcionelegida.precio * carrito[0].cantidad;
@@ -912,10 +907,10 @@ pelis = [
     new Pelicula("2309101901_TOY", "Toy Story", "tt0114709", 1995, "Tom Hank", "Animación", "ATP", "John Lasseter", "Un vaquero de juguete se encuentra celoso y amenazado cuando un nuevo juguete, un guardián espacial, se convierte en el favorito del niño al que pertenecen.", "1h 21m", 8.3),
     new Pelicula("2309101904_VOL", "Volver al futuro", "tt0088763", 1985, "Michael J Fox", "Ciencia ficción, aventuras", "ATP", "Robert Zemeckis", "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo, inventado por su gran amigo, el excéntrico científico Doc Brown.", "1h 56m", 8.5),
     new Pelicula("2309052000_TIT", "Titanic", "tt0120338", 1997, "Leonardo Di Caprio, Kate Winslett", "Romance, Drama", "PG-13", "James Cameron", "Una aristócrata de diecisiete años se enamora de un amable pero pobre artista a bordo del lujoso y desafortunado R.M.S. Titanic.", "3h 14m", 7.9),
-    new Pelicula("2309040102_AFR", "Africa mía", "tt0089755", 1985, "Robert Redford, Maryl Streep", "Romance, Drama, Biografía", "GP-13", "Sydney Pollack", "En la Kenia colonial del siglo XX, una baronesa danesa, propietaria de una plantación, mantiene una apasionada relación amorosa con un cazador de espíritu libre.", "2h 41m", 7.1),
+    new Pelicula("2309040102_AFR", "Africa mía", "tt", 1985, "Robert Redford, Maryl Streep", "Romance, Drama, Biografía", "GP-13", "Sydney Pollack", "En la Kenia colonial del siglo XX, una baronesa danesa, propietaria de una plantación, mantiene una apasionada relación amorosa con un cazador de espíritu libre.", "2h 41m", 7.1),
     new Pelicula("2310020824_KAR", "Karate Kid", "tt0087538", 1984, "Ralph Macchio, Pat Morita", "Acción, Drama, Familiar", "ATP", "John G. Avildsen", "Un maestro de artes marciales acepta instruir a un adolescente acosado.", "2h 6m", 7.5)
 ]
-
+//id de africa mia tt0089755
 //*********** Snacks */
 class Snack {
     constructor(id, nombre, descripcion, calorias, precio) {

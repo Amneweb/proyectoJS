@@ -52,17 +52,18 @@
                     class="bienvenidos__span">hoy</span>, las películas del <span
                     class="bienvenidos__span">pasado</span> en un cine del <span
                     class="bienvenidos__span">futuro</span>.</p>
-            <!--<p>Comprá tus entradas antes de que se agoten haciendo click en el menú superior (o en cualquier lugar donde diga COMPRAR ENTRADAS 😉) o empezá la compra directamente desde nuestra cartelera, seleccionando la peli que te gusta. </p>
-                <p>Si sos de los que les gusta 'picar' algo mientras mirás la película,
-                más abajo te mostramos las opciones de snacks y golosinas.</p>-->
         </div>
 
     </section>
     <section class="gris" id="section__entradas">
-    
+
     </section>
     <section class="gris" id="section__api">
-    
+
+        <h3 class="section__api--cerrar"><i class="fa-solid fa-xmark cerrar"></i></h3>
+        <div class="loader"></div>
+        <p id="showError"></p>
+        <div id="datosPelicula"></div>
     </section>
 
     <section class="negro" id="cartelera">
@@ -70,7 +71,7 @@
             <h2><i class="fa-solid fa-clapperboard"></i>cartelera</h2>
         </section>
         <section class="main cartelera">
-            
+
             <div class="cartelera__contenedor">
                 <div class="cartelera__icono to-right--cartelera"><i class="fa-solid fa-arrow-right"></i></div>
                 <div class="cartelera__icono to-left--cartelera"><i class="fa-solid fa-arrow-left"></i></div>
@@ -165,9 +166,11 @@
             <h2><i class="fa-solid fa-cookie-bite"></i>Snacks</h2>
         </section>
         <section class="section__titulo section__titulo--intro">
-            <p class="section__titulo__p">Tentate con nuestros snacks. Acá te mostramos las opciones en combos. Además, en la entrada al complejo
+            <p class="section__titulo__p">Tentate con nuestros snacks. Acá te mostramos las opciones en combos. Además,
+                en la entrada al complejo
                 tenés un kiosko lleno de golosinas para elegir.</p>
-            <p class="section__titulo__p"><i class="fa-solid fa-circle-exclamation"></i>Los snacks sólo se pueden adquirir una vez seleccionadas
+            <p class="section__titulo__p"><i class="fa-solid fa-circle-exclamation"></i>Los snacks sólo se pueden
+                adquirir una vez seleccionadas
                 las entradas. No se venden por separado.</p>
         </section>
 
@@ -178,20 +181,20 @@
             </section>
         </section>
     </section>
-   
-        <section class="negro">
-            <footer class="footer" id="contacto">
+
+    <section class="negro">
+        <footer class="footer" id="contacto">
             <section class="section__titulo section__titulo--contacto">
                 <h2><i class="fa-solid fa-address-card"></i>Contacto</h2>
             </section>
-        <div class="contacto--form"></div>
-        <div class="contacto--datos"></div>
-    </footer>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <div class="contacto--form"></div>
+            <div class="contacto--datos"></div>
+        </footer>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/carousel.js"></script>
-    <script src="scripts/apitmdb.js"></script>
+    <script src="scripts/apitmdb-1.js"></script>
 </body>
 
 </html>

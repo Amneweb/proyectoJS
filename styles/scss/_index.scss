@@ -81,7 +81,18 @@
  }
  #section__api {
 @extend #section__entradas;
+//padding:40px;
  }
+ #datosPelicula {
+    margin:40px;
+ }
+ #actores {
+    margin:40px;
+ }
+ #directores {
+    margin:40px;
+ }
+ 
 
 .section__entradas--cerrar {
     position:fixed;
@@ -91,6 +102,24 @@
     z-index:10;
     color:var(--hunyadi-yellow);
 }
+.section__api--cerrar {
+    position:fixed;
+    display:block;
+    top:10px;
+    right:10px;
+    z-index:10;
+    color:var(--hunyadi-yellow);
+    i.cerrar {
+        font-size: var(--size-h3);
+        &:hover {
+            color:var(--rojo-butaca);
+            animation-name: cerrar-entradas;
+            animation-duration:1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+    }
+ }
 .entradas__select {
     width:100%;
 }
@@ -633,4 +662,13 @@ margin: 5px;
 }
 .boton__pagar {
     display: none;
+}
+.perfilActor {
+    display:none;
+    background-color:white;
+    border-radius:10px;
+    border: solid 1px #cccccc;
+    margin-bottom:30px;
+    margin-top:10px;
+    padding:30px;
 }
